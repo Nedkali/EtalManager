@@ -6,6 +6,8 @@ Imports System.IO
 Imports System.Reflection
 
 Namespace PInvoke
+
+
     Public Enum ThreadAccessFlags As UInteger
         Terminate = &H1
         SuspendResume = &H2

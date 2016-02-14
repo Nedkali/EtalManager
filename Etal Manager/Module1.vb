@@ -29,7 +29,14 @@ Module Module1
     End Structure
 
 
+    Const SW_HIDE As Integer = 0
+    Const SW_RESTORE As Integer = 1
+    Const SW_MINIMIZE As Integer = 2
+    Const SW_MAXIMIZE As Integer = 3
 
+    <DllImport("User32")>
+    Public Function ShowWindow(ByVal hwnd As Integer, ByVal nCmdShow As Integer) As Integer
+    End Function
 
 
 End Module

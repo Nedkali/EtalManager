@@ -14,14 +14,14 @@ Public Class Form1
                 Dim temp As String = Marshal.PtrToStringAnsi(cds.lpData, nLength)
                 Dim y As Integer = cds.dwData
                 Dim a As Integer = m.WParam
-                'MessageBox.Show(a)
-                'RichTextBox3.AppendText("int = " & y & " " & temp & vbCrLf)
+
+
                 Dim x As Integer = -1
-                For i As Integer = 0 To Objects.Count - 1
+                For i = 0 To Objects.Count - 1
                     If Objects(i).D2PID = a Then
                         x = i
                     End If
-                Next i
+                Next
                 If x < 0 Then MessageBox.Show("exiting") : Return
                 Dim tnow As System.DateTime = System.DateTime.Now
                 Dim temp1 As String = tnow.Hour.ToString() & "."
@@ -59,6 +59,9 @@ Public Class Form1
                     Case D2NT_MGR_ERROR_LOG
                         RichTextBox3.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp + vbCrLf)
                         RichTextBox3.AppendText(vbCrLf)
+                    Case Else
+                        RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
+                        RichTextBox3.AppendText("" & vbCrLf)
                 End Select
                 cds = Nothing
 
@@ -202,12 +205,22 @@ Public Class Form1
     Private Sub button2_Click(sender As Object, e As EventArgs) Handles RunButton.Click
 
         Dim a As Integer = dataGridView1.CurrentRow.Index
-        If a < 0 Then Return
-        If Objects(a).Running = True Then
-            For Each proc As Process In Process.GetProcesses
-                If proc.Id = Objects(a).D2PID Then Return
+        If a < 0 Then RichTextBox3.AppendText("no profile selected") : Return
+        If Objects(a).D2PID > 0 Then
+            Dim d2app = Process.GetProcessesByName("Game")
+            For Each process In d2app
+                If process.Id = Objects(a).D2PID Then
+                    RichTextBox3.AppendText("Profile already running") : Return
+                    Return
+                End If
             Next
-            Objects(a).Running = False
+        End If
+
+        Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
+
+        If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
+            RichTextBox3.AppendText("Unable to locate Game.exe")
+            Return
         End If
 
         If MemFile(a) = False Then Return
@@ -216,27 +229,26 @@ Public Class Form1
         Dim str2 = String.Concat(objArray)
 
         Dim ApArgs As String = str2
-
-        'MessageBox.Show(ApArgs) : Return
         If Objects(a).WindowMode = 1 Then ApArgs = ApArgs & " -w"
         If Objects(a).D2Sound = 1 Then ApArgs = ApArgs & " -ns"
+        If Objects(a).D2Quality = 1 Then ApArgs = ApArgs & " -lq"
+        If Objects(a).D2DirectText = 1 Then ApArgs = ApArgs & " -direct -txt"
 
 
-        Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
-        'MessageBox.Show(d2RelPath)
+        Dim procstartinfo As ProcessStartInfo = New ProcessStartInfo()
+        procstartinfo.Arguments = ApArgs
+        procstartinfo.FileName = Objects(0).D2Path
+        procstartinfo.UseShellExecute = False
+        procstartinfo.WorkingDirectory = d2RelPath
 
         Dim p As Process = New Process()
-        p.StartInfo.WorkingDirectory = d2RelPath
         p.EnableRaisingEvents = True
-        p.StartInfo.Arguments = ApArgs
-        p.StartInfo.FileName = Objects(0).D2Path
-        p.StartInfo.UseShellExecute = False
-
+        p.StartInfo = procstartinfo
         p = PInvoke.Extensions.StartSuspended(p, p.StartInfo) 'loads D2 into memory
-
         Objects(a).D2PID = p.Id
 
         If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2M.dll") Then RichTextBox3.AppendText(" Failed to load D2M.dll")
+
         'blocks 2nd instance check
         Dim oldValue(1) As Byte
         Dim newvalue() As Byte = {&HEB, &H45}
@@ -256,9 +268,19 @@ Public Class Form1
         'resume/start process
         PInvoke.Kernel32.ResumeProcess(p)
         p.WaitForInputIdle()
+        'removes instance check
+        Try
+            PInvoke.Kernel32.SuspendProcess(p)
+            PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
+            PInvoke.Kernel32.ResumeProcess(p)
+        Catch ex As Exception
+            RichTextBox3.AppendText("Error reverting d2gfx patch")
+        End Try
 
-        Objects(a).Running = True
-        ' dataGridView1.Rows(a).Cells(5).Value = "Running"
+        If Objects(a).D2Minimized = 1 Then
+            ShowWindow(p.MainWindowHandle, 2)
+        End If
+
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles MoveUp.Click
@@ -331,13 +353,12 @@ Public Class Form1
     End Sub
 
     Private Sub button3_Click(sender As Object, e As EventArgs) Handles StopButton.Click
-        Dim processIsRunning = Process.GetProcessesByName("Game").Length > 0
         Dim a As Integer = dataGridView1.CurrentRow.Index
-
-        For Each proc As Process In Process.GetProcesses
+        'Dim d2app = Process.GetProcessesByName("Game")
+        For Each proc As Process In Process.GetProcessesByName("Game")
             If proc.Id = Objects(a).D2PID Then
-                proc.CloseMainWindow()
-                Objects(a).Running = False
+                proc.Kill()
+                Objects(a).D2PID = 0
                 dataGridView1.Rows(a).Cells(5).Value = ""
             End If
         Next
