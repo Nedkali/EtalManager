@@ -40,7 +40,6 @@ Partial Class Enterpassword
         '
         'Button1
         '
-        Me.Button1.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Button1.Location = New System.Drawing.Point(56, 40)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
@@ -62,7 +61,7 @@ Partial Class Enterpassword
         Me.MinimumSize = New System.Drawing.Size(212, 114)
         Me.Name = "Enterpassword"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Enterpassword"
+        Me.Text = "Password"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

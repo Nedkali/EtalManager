@@ -220,8 +220,8 @@ Public Class Form1
 
         'set account password
         If Objects(a).D2PlayType <> 0 And Objects(a).AccPass = Nothing Then
-            Enterpassword.ShowDialog()
-            If DialogResult = DialogResult.Cancel Then Return
+            Dim dr = Enterpassword.ShowDialog()
+            If dr = DialogResult.Cancel Then Return
         End If
 
 
@@ -378,8 +378,8 @@ Public Class Form1
                 dataGridView1.Rows(a).Cells(5).Value = ""
             End If
         Next
-
-
+        dataGridView1.Rows(a).Cells(5).Value = ""
+        dataGridView1.Rows(a).Cells(1).Value = ""
     End Sub
 
     Private Sub CopyButton_Click(sender As Object, e As EventArgs) Handles CopyButton.Click
