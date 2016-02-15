@@ -83,8 +83,13 @@ Public Class Form2
             If radioButton6.Checked = True Then Objects(x).CharPosition = 5
             If radioButton7.Checked = True Then Objects(x).CharPosition = 6
             If radioButton8.Checked = True Then Objects(x).CharPosition = 7
-            If comboBox1.SelectedIndex = 0 Then Objects(x).D2starter = ""
-            If comboBox1.SelectedIndex > 0 Then Objects(x).D2starter = comboBox1.SelectedText
+            If comboBox1.Text = "Loader Only" Then
+                Objects(x).D2starter = ""
+            Else
+                Objects(x).D2starter = comboBox1.Text
+            End If
+
+
 
             Form1.dataGridView1.Rows(x).Cells(0).Value = Objects(x).ProfileName
             Me.Close()

@@ -38,5 +38,17 @@ Module Module1
     Public Function ShowWindow(ByVal hwnd As Integer, ByVal nCmdShow As Integer) As Integer
     End Function
 
+    <StructLayout(LayoutKind.Sequential)>
+    Friend Structure Profile
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=24)>
+        Public Account As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=12)>
+        Public AccPass As String
+        Public Charloc As Char
+        Public Realm As Char
+        Public Difficulty As Char
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Public ScriptFile As String
+    End Structure
 
 End Module

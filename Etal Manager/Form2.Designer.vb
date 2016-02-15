@@ -309,7 +309,7 @@ Partial Class Form2
         Me.comboBox2.BackColor = System.Drawing.SystemColors.Control
         Me.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboBox2.FormattingEnabled = True
-        Me.comboBox2.Items.AddRange(New Object() {"Battle.Net", "Single Player"})
+        Me.comboBox2.Items.AddRange(New Object() {"Single Player", "Battle.Net"})
         Me.comboBox2.Location = New System.Drawing.Point(132, 44)
         Me.comboBox2.Name = "comboBox2"
         Me.comboBox2.Size = New System.Drawing.Size(101, 21)

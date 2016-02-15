@@ -1,4 +1,5 @@
-﻿Imports System.Runtime.InteropServices
+﻿Imports System.IO.MemoryMappedFiles
+Imports System.Runtime.InteropServices
 Imports System.Threading
 
 Public Class Form1
@@ -40,13 +41,13 @@ Public Class Form1
                         dataGridView1.Rows(x).Cells(5).Value = "Game Create"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] Game Create" & vbCrLf)
                     Case D2NT_MGR_INGAME
-                        y = Convert.ToInt32(dataGridView1.Rows(x).Cells(1).Value)
+                        y = Convert.ToInt32(dataGridView1.Rows(x).Cells(2).Value)
                         y = y + 1
-                        dataGridView1.Rows(x).Cells(1).Value = y
-                        dataGridView1.Rows(x).Cells(4).Value = "In Game"
+                        dataGridView1.Rows(x).Cells(2).Value = y
+                        dataGridView1.Rows(x).Cells(5).Value = "In Game"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")" & vbCrLf)
                     Case D2NT_MGR_RESTART
-                        dataGridView1.Rows(x).Cells(4).Value = "Restarting"
+                        dataGridView1.Rows(x).Cells(5).Value = "Restarting"
                     Case D2NT_MGR_CHICKEN
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
                     Case D2NT_MGR_PRINT_STATUS
@@ -204,6 +205,7 @@ Public Class Form1
 
     Private Sub button2_Click(sender As Object, e As EventArgs) Handles RunButton.Click
 
+
         Dim a As Integer = dataGridView1.CurrentRow.Index
         If a < 0 Then RichTextBox3.AppendText("no profile selected") : Return
         If Objects(a).D2PID > 0 Then
@@ -216,6 +218,13 @@ Public Class Form1
             Next
         End If
 
+        'set account password
+        If Objects(a).D2PlayType <> 0 And Objects(a).AccPass = Nothing Then
+            Enterpassword.ShowDialog()
+            If DialogResult = DialogResult.Cancel Then Return
+        End If
+
+
         Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
 
         If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
@@ -223,7 +232,13 @@ Public Class Form1
             Return
         End If
 
-        If MemFile(a) = False Then Return
+        SetMpq(a)
+
+        Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateNew("D2NT Profile", 71)
+        If MemFile(mmf, a) = False Then Return
+
+        ' mpq setting ?????
+
 
         Dim objArray = New Object() {" -mpq ", dataGridView1.Rows(a).Cells(1).Value}
         Dim str2 = String.Concat(objArray)
@@ -267,7 +282,8 @@ Public Class Form1
 
         'resume/start process
         PInvoke.Kernel32.ResumeProcess(p)
-        p.WaitForInputIdle()
+        p.WaitForInputIdle(5000)
+        mmf.Dispose()
         'removes instance check
         Try
             PInvoke.Kernel32.SuspendProcess(p)
@@ -378,5 +394,12 @@ Public Class Form1
         If a > 5 Then a = a - 5
         If a < 5 Then a = 0
         dataGridView1.FirstDisplayedScrollingRowIndex = a
+    End Sub
+
+    Private Sub SetMpq(ByRef x)
+        ' later need some kind of calc to enable key switching
+
+        Dim keys = Objects(x).CDkeys.Split(";")
+        dataGridView1.Rows(x).Cells(1).Value = keys(0)
     End Sub
 End Class

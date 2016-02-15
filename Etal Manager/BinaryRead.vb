@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
 Imports System.IO.MemoryMappedFiles
+Imports System.Runtime.InteropServices
 
 Module BinaryRead
     'reads binary file and copy to profile class
@@ -205,100 +206,42 @@ Module BinaryRead
     End Sub
 
 
-    Function MemFile(ByVal x)
-        Dim charval As Int32 = 0
-        Dim temp1 = Split(Objects(x).CDkeys, ";")
-        Dim currentcdkey = temp1(0) 'need to add a formula to determine key on swap
-        Dim temp As String = ""
+    Function MemFile(ByVal mmf, ByVal x)
+        Dim prof As Profile
+        'MessageBox.Show("size = " & Marshal.SizeOf(prof), "Debug")
+
+        prof.Account = Objects(x).AccountName
+        prof.AccPass = Objects(x).AccPass
+        prof.Charloc = Chr(Objects(x).CharPosition)
+        prof.Difficulty = Chr(0)
+        prof.Realm = Chr(Objects(x).Realm + 1)
+        prof.ScriptFile = Objects(x).D2starter
+        If Objects(x).D2PlayType = 0 Then
+            prof.Realm = Chr(0)
+        End If
+
+        Dim Ptr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(prof))
+        Dim ByteArray(Marshal.SizeOf(prof) - 1) As Byte
+        Marshal.StructureToPtr(prof, Ptr, False)
+        Marshal.Copy(Ptr, ByteArray, 0, Marshal.SizeOf(prof))
+        Marshal.FreeHGlobal(Ptr)
+
         Try
-            Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateOrOpen("D2NT Profile", 1010)
             Dim Stream As MemoryMappedViewStream = mmf.CreateViewStream()
             Dim writer As BinaryWriter = New BinaryWriter(Stream)
-
-
-            For y = 0 To Objects(x).ProfileName.Length - 1 : writer.Write(Objects(x).ProfileName(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 63 : writer.Write("") : Next
-
-            For y = 0 To Objects(x).D2Path.Length - 1 : writer.Write(Objects(x).D2Path(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 583 : writer.Write("") : Next
-
-            writer.Write(Chr(Objects(x).WindowMode))
-            writer.Write(Chr(Objects(x).D2Sound))
-            writer.Write(Chr(Objects(x).D2Quality))
-            writer.Write(Chr(Objects(x).D2DirectText))
-            writer.Write(Chr(Objects(x).D2Minimized))
-            writer.Write("")
-
-            For y = 0 To currentcdkey.Length - 1 : writer.Write(currentcdkey(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 845 : writer.Write("") : Next
-
-            For y = 0 To Objects(x).CDkeySwap.Length - 1 : writer.Write(Objects(x).CDkeySwap(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 851 : writer.Write("") : Next
-
-            For y = 0 To Objects(x).AccountName.Length - 1 : writer.Write(Objects(x).AccountName(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 899 : writer.Write("") : Next
-
-            For y = 0 To Objects(x).GameName.Length - 1 : writer.Write(Objects(x).GameName(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 923 : writer.Write("") : Next
-            'MessageBox.Show("Current file position = " & writer.BaseStream.Position)
-
-            For y = 0 To Objects(x).GamePass.Length - 1 : writer.Write(Objects(x).GamePass(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 939 : writer.Write("") : Next
-            'MessageBox.Show("Current file position = " & writer.BaseStream.Position)
-
-            writer.Write(Chr(Objects(x).D2PlayType))
-            writer.Write(Chr(Objects(x).Realm))
-            writer.Write(Chr(Objects(x).D2Difficulty))
-            writer.Write(Chr(Objects(x).CharPosition))
-            writer.Write(Chr(Objects(x).randomGame))
-            writer.Write(Chr(Objects(x).randompass))
-
-            writer.BaseStream.Position = 946
-            For y = 0 To Objects(x).D2starter.Length - 1 : writer.Write(Objects(x).D2starter(y)) : writer.Write("") : Next
-            For a = writer.BaseStream.Position To 1010 : writer.Write("") : Next
+            For index = 0 To ByteArray.Count - 1
+                writer.Write(Chr(ByteArray(index)))
+            Next
 
             writer.Close()
         Catch ex As Exception
-            MessageBox.Show("Error mmf - ?mmf still open")
+            Form1.RichTextBox3.AppendText(ex.Message & vbCrLf)
             Return False
-
-        End Try
-        Form1.dataGridView1.Rows(x).Cells(1).Value = currentcdkey
-        Return True
-
-
-    End Function
-
-    Function MemFile2(ByVal x)
-        Try
-            Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateOrOpen("D2NT Profile", 1010)
-            Dim Stream As MemoryMappedViewStream = mmf.CreateViewStream()
-            Dim writer As BinaryWriter = New BinaryWriter(Stream)
-
-            For y = 0 To Objects(x).AccountName.Length - 1 : writer.Write(Objects(x).AccountName(y)) : Next
-            For a = writer.BaseStream.Position To 25 : writer.Write("") : Next
-
-            For y = 0 To Objects(x).AccPass.Length - 1 : writer.Write(Objects(x).AccPass(y)) : Next
-            For a = writer.BaseStream.Position To 13 : writer.Write("") : Next
-
-            For y = 0 To Objects(x).ProfileName.Length - 1 : writer.Write(Objects(x).AccPass(y)) : Next
-            For a = writer.BaseStream.Position To 13 : writer.Write("") : Next
-
-            writer.Write(Chr(Objects(x).Realm))
-            writer.Write(Chr(0))
-
-            Dim temp = "Mulelogger.ntj"
-            For y = 0 To temp.Length - 1 : writer.Write(temp(y)) : Next
-            For a = writer.BaseStream.Position To 33 : writer.Write("") : Next
-
-            writer.Close()
-        Catch ex As Exception
-            MessageBox.Show("Error mmf - ?mmf still open")
-        Return False
-
         End Try
 
         Return True
 
     End Function
+
+
 End Module
