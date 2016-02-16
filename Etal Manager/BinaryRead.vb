@@ -127,10 +127,7 @@ Module BinaryRead
         reader.Close()
 
         For x = 0 To Objects.Count - 1
-            Form1.dataGridView1.Rows(x).Cells(0).Value = Objects(x).ProfileName
-            Form1.dataGridView1.Rows(x).Cells(2).Value = Objects(x).Run
-            Form1.dataGridView1.Rows(x).Cells(3).Value = Objects(x).Restarts
-            Form1.dataGridView1.Rows(x).Cells(4).Value = Objects(x).Chickens
+            Form1.dataGridView1.Rows(x).SetValues(Objects(x).ProfileName, "", Objects(x).Run, Objects(x).Restarts, Objects(x).Deaths, Objects(x).Chickens, "")
         Next
 
 

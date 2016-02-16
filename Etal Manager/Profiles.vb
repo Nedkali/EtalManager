@@ -24,10 +24,9 @@
     Public Run As Integer = 0
     Public Chickens As Integer = 0
     Public Restarts As Integer = 0
-    Public Running As Boolean = False
+    Public Deaths As Integer = 0
     Public Flags As String
 End Class
-
 
 
 

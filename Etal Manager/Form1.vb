@@ -31,23 +31,23 @@ Public Class Form1
 
                 Select Case y
                     Case D2NT_MGR_LOADING
-                        dataGridView1.Rows(x).Cells(5).Value = temp
+                        dataGridView1.Rows(x).Cells(6).Value = temp
                     Case D2NT_MGR_READY
-                        dataGridView1.Rows(x).Cells(5).Value = temp
+                        dataGridView1.Rows(x).Cells(6).Value = temp
                     Case D2NT_MGR_LOGIN
-                        dataGridView1.Rows(x).Cells(5).Value = "Login"
+                        dataGridView1.Rows(x).Cells(6).Value = "Login"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] Login" & vbCrLf)
                     Case D2NT_MGR_CREATE_GAME
-                        dataGridView1.Rows(x).Cells(5).Value = "Game Create"
+                        dataGridView1.Rows(x).Cells(6).Value = "Game Create"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] Game Create" & vbCrLf)
                     Case D2NT_MGR_INGAME
                         y = Convert.ToInt32(dataGridView1.Rows(x).Cells(2).Value)
                         y = y + 1
                         dataGridView1.Rows(x).Cells(2).Value = y
-                        dataGridView1.Rows(x).Cells(5).Value = "In Game"
+                        dataGridView1.Rows(x).Cells(6).Value = "In Game"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")" & vbCrLf)
                     Case D2NT_MGR_RESTART
-                        dataGridView1.Rows(x).Cells(5).Value = "Restarting"
+                        dataGridView1.Rows(x).Cells(6).Value = "Restarting"
                     Case D2NT_MGR_CHICKEN
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
                     Case D2NT_MGR_PRINT_STATUS
@@ -74,6 +74,7 @@ Public Class Form1
         dataGridView1.Rows.Add(9)
         'LoadProfiles()
         ReadBinary()
+
     End Sub
 
     Private Sub button4_Click(sender As Object, e As EventArgs) Handles AddButton.Click
@@ -90,9 +91,9 @@ Public Class Form1
     End Sub
 
     Private Sub button5_Click(sender As Object, e As EventArgs) Handles Editbutton.Click
-        If dataGridView1.CurrentRow.Index > Objects.Count - 1 Then Return
-        If dataGridView1.CurrentRow.Index < 0 Then Return
-        If Objects.Count = 0 Then Return
+        Dim a = dataGridView1.CurrentRow.Index
+        If a > Objects.Count - 1 Or a < 0 Or Objects.Count = 0 Then Return
+        If Objects(a).D2PID > 0 Then Return
         form2action = "edit"
         Form2.ShowDialog()
     End Sub
@@ -100,10 +101,14 @@ Public Class Form1
 
     Private Sub button6_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
         Dim x As Integer = dataGridView1.CurrentRow.Index
-        If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
+        If x < 0 Or x > Objects.Count-1 Or Objects.Count = 0 Then Return
+        For index = 0 To Objects.Count - 1
+            If Objects(index).D2PID > 0 Then Return
+        Next
         dataGridView1.Rows.RemoveAt(x)
-        If dataGridView1.RowCount < 9 Then dataGridView1.Rows.Add(1)
         Objects.RemoveAt(x)
+        If dataGridView1.RowCount < 9 Then dataGridView1.Rows.Add(1)
+
     End Sub
 
     Private Sub button7_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
@@ -302,62 +307,34 @@ Public Class Form1
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles MoveUp.Click
         Dim x As Integer = dataGridView1.CurrentRow.Index
         If x < 1 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
+
+        For index = 0 To Objects.Count - 1
+            If Objects(index).D2PID > 0 Then Return
+        Next
+
         Dim NewObject As New Profiles
 
-
-        NewObject.ProfileName = Objects(x).ProfileName
-        NewObject.D2Path = Objects(x).D2Path
-        NewObject.WindowMode = Objects(x).WindowMode
-        NewObject.D2Sound = Objects(x).D2Sound
-        NewObject.D2Quality = Objects(x).D2Quality
-        NewObject.D2DirectText = Objects(x).D2DirectText
-        NewObject.D2Minimized = Objects(x).D2Minimized
-        NewObject.CDkeys = Objects(x).CDkeys
-        NewObject.CDkeySwap = Objects(x).CDkeySwap
-        NewObject.AccountName = Objects(x).AccountName
-        NewObject.AccPass = Objects(x).AccPass
-        NewObject.D2PlayType = Objects(x).D2PlayType
-        NewObject.D2Difficulty = Objects(x).D2Difficulty
-        NewObject.Realm = Objects(x).Realm
-        NewObject.GameName = Objects(x).GameName
-        NewObject.GamePass = Objects(x).GamePass
-        NewObject.CharPosition = Objects(x).CharPosition
-        NewObject.D2starter = Objects(x).D2starter
-
+        NewObject = Objects(x)
         Objects.RemoveAt(x)
         Objects.Insert(x - 1, NewObject)
 
         For y = 0 To Objects.Count - 1
             dataGridView1.Rows(y).Cells(0).Value = Objects(y).ProfileName
         Next
-        dataGridView1.Rows(x).Selected = True
+        dataGridView1.Rows(x - 1).Selected = True
+        dataGridView1.CurrentCell = dataGridView1.Item(0, x - 1)
     End Sub
 
     Private Sub MoveDown_Click(sender As Object, e As EventArgs) Handles MoveDown.Click
         Dim x As Integer = dataGridView1.CurrentRow.Index
         If x < 0 Or x > Objects.Count - 2 Or Objects.Count = 0 Then Return
+
+        For index = 0 To Objects.Count - 1
+            If Objects(index).D2PID > 0 Then Return
+        Next
+
         Dim NewObject As New Profiles
-
-
-        NewObject.ProfileName = Objects(x).ProfileName
-        NewObject.D2Path = Objects(x).D2Path
-        NewObject.WindowMode = Objects(x).WindowMode
-        NewObject.D2Sound = Objects(x).D2Sound
-        NewObject.D2Quality = Objects(x).D2Quality
-        NewObject.D2DirectText = Objects(x).D2DirectText
-        NewObject.D2Minimized = Objects(x).D2Minimized
-        NewObject.CDkeys = Objects(x).CDkeys
-        NewObject.CDkeySwap = Objects(x).CDkeySwap
-        NewObject.AccountName = Objects(x).AccountName
-        NewObject.AccPass = Objects(x).AccPass
-        NewObject.D2PlayType = Objects(x).D2PlayType
-        NewObject.D2Difficulty = Objects(x).D2Difficulty
-        NewObject.Realm = Objects(x).Realm
-        NewObject.GameName = Objects(x).GameName
-        NewObject.GamePass = Objects(x).GamePass
-        NewObject.CharPosition = Objects(x).CharPosition
-        NewObject.D2starter = Objects(x).D2starter
-
+        NewObject = Objects(x)
         Objects.RemoveAt(x)
         Objects.Insert(x + 1, NewObject)
 
@@ -365,21 +342,23 @@ Public Class Form1
             dataGridView1.Rows(y).Cells(0).Value = Objects(y).ProfileName
         Next
 
-        dataGridView1.Rows(x).Selected = True
+        dataGridView1.Rows(x + 1).Selected = True
+        dataGridView1.CurrentCell = dataGridView1.Item(0, x + 1)
+
     End Sub
 
     Private Sub button3_Click(sender As Object, e As EventArgs) Handles StopButton.Click
         Dim a As Integer = dataGridView1.CurrentRow.Index
-        'Dim d2app = Process.GetProcessesByName("Game")
+
         For Each proc As Process In Process.GetProcessesByName("Game")
             If proc.Id = Objects(a).D2PID Then
                 proc.Kill()
                 Objects(a).D2PID = 0
-                dataGridView1.Rows(a).Cells(5).Value = ""
             End If
         Next
-        dataGridView1.Rows(a).Cells(5).Value = ""
         dataGridView1.Rows(a).Cells(1).Value = ""
+        dataGridView1.Rows(a).Cells(6).Value = ""
+
     End Sub
 
     Private Sub CopyButton_Click(sender As Object, e As EventArgs) Handles CopyButton.Click

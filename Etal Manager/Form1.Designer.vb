@@ -45,13 +45,14 @@ Partial Class Form1
         Me.MoveDown = New System.Windows.Forms.Button()
         Me.MoveUp = New System.Windows.Forms.Button()
         Me.pictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CopyButton = New System.Windows.Forms.Button()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KeyFile = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Deaths = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CopyButton = New System.Windows.Forms.Button()
         Me.tabPage2.SuspendLayout()
         Me.CommonLog.SuspendLayout()
         Me.tabControl1.SuspendLayout()
@@ -82,7 +83,7 @@ Partial Class Form1
         Me.tabPage2.Location = New System.Drawing.Point(4, 22)
         Me.tabPage2.Name = "tabPage2"
         Me.tabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabPage2.Size = New System.Drawing.Size(512, 243)
+        Me.tabPage2.Size = New System.Drawing.Size(585, 243)
         Me.tabPage2.TabIndex = 1
         Me.tabPage2.Text = "Item Log"
         Me.tabPage2.UseVisualStyleBackColor = True
@@ -92,7 +93,7 @@ Partial Class Form1
         Me.RichTextBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RichTextBox2.Location = New System.Drawing.Point(3, 3)
         Me.RichTextBox2.Name = "RichTextBox2"
-        Me.RichTextBox2.Size = New System.Drawing.Size(506, 237)
+        Me.RichTextBox2.Size = New System.Drawing.Size(579, 237)
         Me.RichTextBox2.TabIndex = 0
         Me.RichTextBox2.Text = ""
         '
@@ -132,7 +133,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(512, 243)
+        Me.TabPage1.Size = New System.Drawing.Size(585, 243)
         Me.TabPage1.TabIndex = 2
         Me.TabPage1.Text = "Error Reports"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -142,7 +143,7 @@ Partial Class Form1
         Me.RichTextBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RichTextBox3.Location = New System.Drawing.Point(3, 3)
         Me.RichTextBox3.Name = "RichTextBox3"
-        Me.RichTextBox3.Size = New System.Drawing.Size(506, 237)
+        Me.RichTextBox3.Size = New System.Drawing.Size(579, 237)
         Me.RichTextBox3.TabIndex = 0
         Me.RichTextBox3.Text = ""
         '
@@ -224,7 +225,7 @@ Partial Class Form1
         Me.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control
         Me.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.KeyFile, Me.Column2, Me.Column3, Me.Column4, Me.Column5})
+        Me.dataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.KeyFile, Me.Column2, Me.Column3, Me.Deaths, Me.Column4, Me.Column5})
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -282,18 +283,30 @@ Partial Class Form1
         Me.pictureBox1.TabIndex = 52
         Me.pictureBox1.TabStop = False
         '
+        'CopyButton
+        '
+        Me.CopyButton.Location = New System.Drawing.Point(469, 321)
+        Me.CopyButton.Name = "CopyButton"
+        Me.CopyButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CopyButton.Size = New System.Drawing.Size(61, 25)
+        Me.CopyButton.TabIndex = 65
+        Me.CopyButton.Text = "Copy"
+        Me.CopyButton.UseVisualStyleBackColor = True
+        '
         'Column1
         '
         Me.Column1.HeaderText = "Profile Name"
         Me.Column1.Name = "Column1"
         Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column1.Width = 165
+        Me.Column1.Width = 120
         '
         'KeyFile
         '
+        Me.KeyFile.FillWeight = 80.0!
         Me.KeyFile.HeaderText = "Key File"
         Me.KeyFile.Name = "KeyFile"
         Me.KeyFile.ReadOnly = True
+        Me.KeyFile.Width = 80
         '
         'Column2
         '
@@ -309,6 +322,13 @@ Partial Class Form1
         Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.Column3.Width = 60
         '
+        'Deaths
+        '
+        Me.Deaths.FillWeight = 60.0!
+        Me.Deaths.HeaderText = "Deaths"
+        Me.Deaths.Name = "Deaths"
+        Me.Deaths.Width = 60
+        '
         'Column4
         '
         Me.Column4.HeaderText = "Chickens"
@@ -322,16 +342,6 @@ Partial Class Form1
         Me.Column5.Name = "Column5"
         Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.Column5.Width = 175
-        '
-        'CopyButton
-        '
-        Me.CopyButton.Location = New System.Drawing.Point(469, 321)
-        Me.CopyButton.Name = "CopyButton"
-        Me.CopyButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.CopyButton.Size = New System.Drawing.Size(61, 25)
-        Me.CopyButton.TabIndex = 65
-        Me.CopyButton.Text = "Copy"
-        Me.CopyButton.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -352,6 +362,7 @@ Partial Class Form1
         Me.Controls.Add(Me.dataGridView1)
         Me.Controls.Add(Me.menuStrip1)
         Me.Controls.Add(Me.pictureBox1)
+        Me.MaximumSize = New System.Drawing.Size(633, 703)
         Me.MinimumSize = New System.Drawing.Size(561, 703)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -389,11 +400,12 @@ Partial Class Form1
     Friend WithEvents RichTextBox2 As System.Windows.Forms.RichTextBox
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents RichTextBox3 As RichTextBox
+    Private WithEvents CopyButton As Button
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents KeyFile As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Deaths As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Private WithEvents CopyButton As Button
 End Class
