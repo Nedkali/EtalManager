@@ -396,10 +396,24 @@ Public Class Form1
         dataGridView1.FirstDisplayedScrollingRowIndex = a
     End Sub
 
+    Public Function GenerateRandomString(ByRef iLength As Integer) As String
+        Dim rdm As New Random()
+        Dim allowChrs() As Char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLOMNOPQRSTUVWXYZ0123456789".ToCharArray()
+        Dim sResult As String = ""
+
+        For i As Integer = 0 To iLength - 1
+            sResult += allowChrs(rdm.Next(0, allowChrs.Length))
+        Next
+
+        Return sResult
+
+    End Function
+
     Private Sub SetMpq(ByRef x)
         ' later need some kind of calc to enable key switching
 
         Dim keys = Objects(x).CDkeys.Split(";")
         dataGridView1.Rows(x).Cells(1).Value = keys(0)
+
     End Sub
 End Class

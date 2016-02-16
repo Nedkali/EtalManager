@@ -212,12 +212,29 @@ Module BinaryRead
 
         prof.Account = Objects(x).AccountName
         prof.AccPass = Objects(x).AccPass
+        prof.MpqFile = Form1.dataGridView1.Rows(x).Cells(1).Value
         prof.Charloc = Chr(Objects(x).CharPosition)
-        prof.Difficulty = Chr(0)
         prof.Realm = Chr(Objects(x).Realm + 1)
+        prof.RandomGameName = Chr(Objects(x).randomGame)
+        prof.RandomGamePass = Chr(Objects(x).randompass)
+        prof.Difficulty = Chr(0)
         prof.ScriptFile = Objects(x).D2starter
         If Objects(x).D2PlayType = 0 Then
             prof.Realm = Chr(0)
+        End If
+
+        'random game needs to be moved to dll later?
+        If Objects(x).randomGame = 0 Then
+            prof.GameName = Objects(x).GameName
+        Else
+            prof.GameName = Form1.GenerateRandomString(8)
+        End If
+
+        'random password needs to be moved to dll later?
+        If Objects(x).randompass = 0 Then
+            prof.GamePass = Objects(x).GamePass
+        Else
+            prof.GamePass = Form1.GenerateRandomString(6)
         End If
 
         Dim Ptr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(prof))

@@ -44,8 +44,16 @@ Module Module1
         Public Account As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=12)>
         Public AccPass As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Public MpqFile As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=8)>
+        Public GameName As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=6)>
+        Public GamePass As String
         Public Charloc As Char
         Public Realm As Char
+        Public RandomGameName As Char
+        Public RandomGamePass As Char
         Public Difficulty As Char
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public ScriptFile As String
