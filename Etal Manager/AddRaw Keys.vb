@@ -34,7 +34,7 @@
             Dim expans = Objects(a).CDkeyExpansion
             Objects(a).CDkeyOwner = temp + ";" + TextBox1.Text
             Objects(a).CDkeyClassic = classic + ";" + TextBox2.Text
-            Objects(a).CDkeyExpansion = expans + ";" + TextBox1.Text
+            Objects(a).CDkeyExpansion = expans + ";" + TextBox3.Text
         End If
         Me.Close()
     End Sub

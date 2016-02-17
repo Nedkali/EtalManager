@@ -256,6 +256,9 @@ Public Class Form2
 
     Private Sub displaykeys(ByVal x)
 
+        ListBox1.Items.Clear()
+        ListBox2.Items.Clear()
+        ListBox3.Items.Clear()
         If Objects(x).CDkeyOwner = Nothing Then Return
 
         Dim temp = Objects(x).CDkeyOwner.Split(";")
@@ -272,5 +275,58 @@ Public Class Form2
         For index = 0 To temp.Length - 1
             ListBox3.Items.Add(temp(index))
         Next
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim keyindex = ListBox1.SelectedIndex
+        Dim x As Integer = Form1.dataGridView1.CurrentRow.Index
+        If ListBox1.SelectedItem.ToString() <> Nothing Then
+
+            Dim temp As String = ListBox1.SelectedItem.ToString()
+            Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.Replace(temp, "")
+            Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.Replace(";;", "")
+            temp = ListBox2.Items(keyindex).ToString()
+            Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.Replace(temp, "")
+            Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.Replace(";;", "")
+            temp = ListBox3.Items(keyindex).ToString()
+            Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.Replace(temp, "")
+            Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.Replace(";;", "")
+            CleanKeys(x)
+
+        End If
+        displaykeys(x)
+        If ListBox1.Items.Count > 0 Then
+            ListBox1.SelectedIndex = 0
+        End If
+
+
+    End Sub
+    Private Sub CleanKeys(ByVal x)
+
+        Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.TrimEnd(";")
+        Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.TrimStart(";")
+
+        Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.TrimEnd(";")
+        Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.TrimStart(";")
+
+        Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.TrimEnd(";")
+        Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.TrimStart(";")
+
+
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        ListBox2.SelectedIndex = ListBox1.SelectedIndex
+        ListBox3.SelectedIndex = ListBox1.SelectedIndex
+    End Sub
+
+    Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
+        ListBox1.SelectedIndex = ListBox2.SelectedIndex
+        ListBox3.SelectedIndex = ListBox2.SelectedIndex
+    End Sub
+
+    Private Sub ListBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox3.SelectedIndexChanged
+        ListBox1.SelectedIndex = ListBox3.SelectedIndex
+        ListBox2.SelectedIndex = ListBox3.SelectedIndex
     End Sub
 End Class
