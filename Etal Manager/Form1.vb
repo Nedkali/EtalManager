@@ -358,9 +358,9 @@ Public Class Form1
         For Each proc As Process In Process.GetProcessesByName("Game")
             If proc.Id = Objects(a).D2PID Then
                 proc.Kill()
-                Objects(a).D2PID = 0
             End If
         Next
+        Objects(a).D2PID = 0
         dataGridView1.Rows(a).Cells(1).Value = ""
         dataGridView1.Rows(a).Cells(6).Value = ""
 

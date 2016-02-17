@@ -49,9 +49,9 @@ Module Module1
         Public MpqFile As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public KeyOwner As String
-        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=30)>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public Classic As String
-        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=30)>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public Lod As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=8)>
         Public GameName As String
