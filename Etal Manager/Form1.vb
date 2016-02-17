@@ -369,7 +369,39 @@ Public Class Form1
     Private Sub CopyButton_Click(sender As Object, e As EventArgs) Handles CopyButton.Click
         Dim a As Integer = dataGridView1.CurrentRow.Index
         If a < 0 Then Return
-        Objects.Add(Objects(a))
+        Dim newobject = New Profiles
+
+        newobject.ProfileName = Objects(a).ProfileName
+        newobject.D2Path = Objects(a).D2Path
+        newobject.WindowMode = Objects(a).WindowMode
+        newobject.D2Sound = Objects(a).D2Sound
+        newobject.D2Quality = Objects(a).D2Quality
+        newobject.D2DirectText = Objects(a).D2DirectText
+        newobject.D2Minimized = Objects(a).D2Minimized
+        newobject.CDkeys = Objects(a).CDkeys
+        newobject.CDkeySwap = Objects(a).CDkeySwap
+        newobject.AccountName = Objects(a).AccountName
+        newobject.AccPass = Objects(a).AccPass
+        newobject.D2PlayType = Objects(a).D2PlayType
+        newobject.D2Difficulty = Objects(a).D2Difficulty
+        newobject.Realm = Objects(a).Realm
+        newobject.randomGame = Objects(a).randomGame
+        newobject.randompass = Objects(a).randompass
+        newobject.GameName = Objects(a).GameName
+        newobject.GamePass = Objects(a).GamePass
+        newobject.CharPosition = Objects(a).CharPosition
+        newobject.D2starter = Objects(a).D2starter
+        newobject.D2PID = 0
+        newobject.Run = 0
+        newobject.Chickens = 0
+        newobject.Restarts = 0
+        newobject.Deaths = 0
+        newobject.Flags = Objects(a).Flags
+        newobject.CDkeyOwner = Objects(a).CDkeyOwner
+        newobject.CDkeyClassic = Objects(a).CDkeyClassic
+        newobject.CDkeyExpansion = Objects(a).CDkeyExpansion
+
+        Objects.Add(newobject)
         a = Objects.Count - 1
         dataGridView1.Rows(a).Cells(0).Value = Objects(a).ProfileName
         dataGridView1.Rows(a).Cells(2).Value = Objects(a).Run
@@ -378,6 +410,9 @@ Public Class Form1
         If a > 5 Then a = a - 5
         If a < 5 Then a = 0
         dataGridView1.FirstDisplayedScrollingRowIndex = a
+        dataGridView1.CurrentCell = dataGridView1.Item(0, Objects.Count - 1)
+
+
     End Sub
 
     Public Function GenerateRandomString(ByRef iLength As Integer) As String
