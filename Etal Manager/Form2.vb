@@ -48,6 +48,8 @@ Public Class Form2
             Return
         End If
 
+
+
         If form2action = "edit" Then
             Dim x As Integer = Form1.dataGridView1.CurrentRow.Index
             Objects(x).ProfileName = textBox1.Text
@@ -96,6 +98,7 @@ Public Class Form2
             Return
         End If
 
+        Return
         If textBox1.Text = Nothing Then Return
         Dim NewObject As New Profiles
         NewObject.ProfileName = textBox1.Text
@@ -160,8 +163,8 @@ Public Class Form2
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.Left = Form1.Left + 20
-        Me.Top = Form1.Top + 80
+        'Me.Left = Form1.Left + 20
+        'Me.Top = Form1.Top + 80
         comboBox1.Items.Clear()
         comboBox1.Items.Add("Loader only")
         comboBox1.SelectedIndex = 0
@@ -173,6 +176,13 @@ Public Class Form2
             End If
 
         Next
+
+        If form2action <> "edit" Then
+            Objects.Add(New Profiles)
+            Form1.dataGridView1.Rows(Objects.Count - 1).Selected = True
+            Form1.dataGridView1.CurrentCell = Form1.dataGridView1.Item(0, Objects.Count - 1)
+            form2action = "edit"
+        End If
 
         If form2action = "edit" Then
 
@@ -210,6 +220,9 @@ Public Class Form2
             Next
             If comboBox1.SelectedIndex < 0 Then comboBox1.Text = "Loader Only"
 
+            displaykeys(x)
+
+
             Return
         End If
         textBox1.Clear()
@@ -231,5 +244,31 @@ Public Class Form2
         checkBox6.Checked = True
         checkBox7.Checked = True
         radioButton1.Checked = True
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim x = Form1.dataGridView1.CurrentRow.Index
+        AddRawKeys.ShowDialog()
+        displaykeys(x)
+    End Sub
+
+    Private Sub displaykeys(ByVal x)
+
+        If Objects(x).CDkeyOwner = Nothing Then Return
+
+        Dim temp = Objects(x).CDkeyOwner.Split(";")
+        For index = 0 To temp.Length - 1
+            ListBox1.Items.Add(temp(index))
+        Next
+
+        temp = Objects(x).CDkeyClassic.Split(";")
+        For index = 0 To temp.Length - 1
+            ListBox2.Items.Add(temp(index))
+        Next
+
+        temp = Objects(x).CDkeyExpansion.Split(";")
+        For index = 0 To temp.Length - 1
+            ListBox3.Items.Add(temp(index))
+        Next
     End Sub
 End Class

@@ -89,6 +89,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRaw Keys.Designer.vb">
+      <DependentUpon>AddRaw Keys.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddRaw Keys.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BinaryRead.vb" />
     <Compile Include="Enterpassword.Designer.vb">
       <DependentUpon>Enterpassword.vb</DependentUpon>
@@ -130,6 +136,9 @@
     <Compile Include="Profiles.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddRaw Keys.resx">
+      <DependentUpon>AddRaw Keys.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Enterpassword.resx">
       <DependentUpon>Enterpassword.vb</DependentUpon>
     </EmbeddedResource>

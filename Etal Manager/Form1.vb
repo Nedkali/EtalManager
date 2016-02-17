@@ -30,34 +30,34 @@ Public Class Form1
                 temp1 = temp1 & tnow.Second.ToString() & " "
 
                 Select Case y
-                    Case D2NT_MGR_LOADING
+                    Case ETAL_MGR_LOADING
                         dataGridView1.Rows(x).Cells(6).Value = temp
-                    Case D2NT_MGR_READY
+                    Case ETAL_MGR_READY
                         dataGridView1.Rows(x).Cells(6).Value = temp
-                    Case D2NT_MGR_LOGIN
+                    Case ETAL_MGR_LOGIN
                         dataGridView1.Rows(x).Cells(6).Value = "Login"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] Login" & vbCrLf)
-                    Case D2NT_MGR_CREATE_GAME
+                    Case ETAL_MGR_CREATE_GAME
                         dataGridView1.Rows(x).Cells(6).Value = "Game Create"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] Game Create" & vbCrLf)
-                    Case D2NT_MGR_INGAME
+                    Case ETAL_MGR_INGAME
                         y = Convert.ToInt32(dataGridView1.Rows(x).Cells(2).Value)
                         y = y + 1
                         dataGridView1.Rows(x).Cells(2).Value = y
                         dataGridView1.Rows(x).Cells(6).Value = "In Game"
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")" & vbCrLf)
-                    Case D2NT_MGR_RESTART
+                    Case ETAL_MGR_RESTART
                         dataGridView1.Rows(x).Cells(6).Value = "Restarting"
-                    Case D2NT_MGR_CHICKEN
+                    Case ETAL_MGR_CHICKEN
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
-                    Case D2NT_MGR_PRINT_STATUS
+                    Case ETAL_MGR_PRINT_STATUS
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
-                    Case D2NT_MGR_COMMON
+                    Case ETAL_MGR_COMMON
                         richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
-                    Case D2NT_MGR_ITEM_LOG
+                    Case ETAL_MGR_ITEM_LOG
                         RichTextBox2.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
 
-                    Case D2NT_MGR_ERROR_LOG
+                    Case ETAL_MGR_ERROR_LOG
                         RichTextBox3.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp + vbCrLf)
                         RichTextBox3.AppendText(vbCrLf)
                     Case Else
@@ -72,8 +72,8 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         dataGridView1.Rows.Add(9)
-        'LoadProfiles()
-        ReadBinary()
+        LoadProfiles()
+        'ReadBinary()
 
     End Sub
 
@@ -112,51 +112,56 @@ Public Class Form1
     End Sub
 
     Private Sub button7_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
-        BWrite()
-        Return
+        'BWrite()
+        'Return
         If Objects.Count = 0 Then Return
-        Dim myfile = Application.StartupPath & "\D2NT Manager.cfg"
+        Dim myfile = Application.StartupPath & "\Etal Manager.cfg"
         Try
 
             Dim LogWriter = My.Computer.FileSystem.OpenTextFileWriter(myfile, False)
 
             For x = 0 To Objects.Count - 1
 
-                LogWriter.Write(Objects(x).ProfileName + ",")
-                LogWriter.Write(Objects(x).D2Path + ",")
-                LogWriter.Write(Objects(x).WindowMode + ",")
-                LogWriter.Write(Objects(x).D2Sound + ",")
-                LogWriter.Write(Objects(x).D2Quality + ",")
-                LogWriter.Write(Objects(x).D2DirectText + ",")
-                LogWriter.Write(Objects(x).D2Minimized + ",")
-                LogWriter.Write(Objects(x).CDkeys + ",")
-                LogWriter.Write(Objects(x).CDkeySwap + ",")
-                LogWriter.Write(Objects(x).AccountName + ",")
+                LogWriter.Write(Objects(x).ProfileName & ",")
+                LogWriter.Write(Objects(x).D2Path & ",")
+                LogWriter.Write(Objects(x).WindowMode & ",")
+                LogWriter.Write(Objects(x).D2Sound & ",")
+                LogWriter.Write(Objects(x).D2Quality & ",")
+                LogWriter.Write(Objects(x).D2DirectText & ",")
+                LogWriter.Write(Objects(x).D2Minimized & ",")
+                LogWriter.Write(Objects(x).CDkeys & ",")
+                LogWriter.Write(Objects(x).CDkeySwap & ",")
+                LogWriter.Write(Objects(x).AccountName & ",")
                 LogWriter.Write(",")
-                LogWriter.Write(Objects(x).D2PlayType + ",")
-                LogWriter.Write(Objects(x).D2Difficulty + ",")
-                LogWriter.Write(Objects(x).Realm + ",")
-                LogWriter.Write(Objects(x).GameName + ",")
-                LogWriter.Write(Objects(x).GamePass + ",")
-                LogWriter.Write(Objects(x).CharPosition + ",")
-                LogWriter.Write(Objects(x).D2starter & vbCrLf)
+                LogWriter.Write(Objects(x).D2PlayType & ",")
+                LogWriter.Write(Objects(x).D2Difficulty & ",")
+                LogWriter.Write(Objects(x).Realm & ",")
+                LogWriter.Write(Objects(x).GameName & ",")
+                LogWriter.Write(Objects(x).GamePass & ",")
+                LogWriter.Write(Objects(x).CharPosition & ",")
+                LogWriter.Write(Objects(x).D2starter & ",")
+                LogWriter.Write(Objects(x).CDkeyOwner & ",")
+                LogWriter.Write(Objects(x).CDkeyClassic & ",")
+                LogWriter.Write(Objects(x).CDkeyExpansion & vbCrLf)
+
 
             Next
 
             LogWriter.Close()
 
         Catch ex As Exception
-            richTextBox1.AppendText("File Write Error")
+            RichTextBox3.AppendText(ex.Message)
         End Try
 
 
     End Sub
     Private Sub LoadProfiles()
-        Dim myfile = Application.StartupPath & "\D2NT Manager.cfg"
+        Dim myfile = Application.StartupPath & "\Etal Manager.cfg"
 
         If My.Computer.FileSystem.FileExists(myfile) = False Then
             Dim LogWriter = My.Computer.FileSystem.OpenTextFileWriter(myfile, False)
             LogWriter.Close()
+            Return
         End If
         Try
 
@@ -165,7 +170,7 @@ Public Class Form1
             While CfgReader.EndOfStream = False
                 Dim temp = CfgReader.ReadLine
                 Dim myarray = Split(temp, ",")
-                If myarray.Length <> 18 Then
+                If myarray.Length <> 21 Then
                     CfgReader.Close()
                     Exit Try
                 End If
@@ -189,7 +194,9 @@ Public Class Form1
                 NewObject.GamePass = myarray(15)
                 NewObject.CharPosition = myarray(16)
                 NewObject.D2starter = myarray(17)
-
+                NewObject.CDkeyOwner = myarray(18)
+                NewObject.CDkeyClassic = myarray(19)
+                NewObject.CDkeyExpansion = myarray(20)
                 Objects.Add(NewObject)
             End While
 
@@ -393,6 +400,7 @@ Public Class Form1
 
         Dim keys = Objects(x).CDkeys.Split(";")
         dataGridView1.Rows(x).Cells(1).Value = keys(0)
-
+        dataGridView1.Rows(x).Cells(6).Value = "Loading"
+        Application.DoEvents()
     End Sub
 End Class

@@ -26,6 +26,9 @@
     Public Restarts As Integer = 0
     Public Deaths As Integer = 0
     Public Flags As String
+    Public CDkeyOwner As String
+    Public CDkeyClassic As String
+    Public CDkeyExpansion As String
 End Class
 
 

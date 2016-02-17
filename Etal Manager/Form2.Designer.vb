@@ -70,9 +70,16 @@ Partial Class Form2
         Me.textBox3 = New System.Windows.Forms.TextBox()
         Me.checkBox5 = New System.Windows.Forms.CheckBox()
         Me.checkBox4 = New System.Windows.Forms.CheckBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.groupBox2.SuspendLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupBox1.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'button4
@@ -552,11 +559,69 @@ Partial Class Form2
         Me.checkBox4.Text = "Direct Txt"
         Me.checkBox4.UseVisualStyleBackColor = True
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(9, 19)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(145, 95)
+        Me.ListBox1.TabIndex = 28
+        '
+        'ListBox2
+        '
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.Location = New System.Drawing.Point(159, 19)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(150, 95)
+        Me.ListBox2.TabIndex = 29
+        '
+        'ListBox3
+        '
+        Me.ListBox3.FormattingEnabled = True
+        Me.ListBox3.Location = New System.Drawing.Point(314, 19)
+        Me.ListBox3.Name = "ListBox3"
+        Me.ListBox3.Size = New System.Drawing.Size(160, 95)
+        Me.ListBox3.TabIndex = 30
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(84, 120)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(101, 23)
+        Me.Button5.TabIndex = 31
+        Me.Button5.Text = "Remove Key Set"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(257, 120)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(100, 23)
+        Me.Button6.TabIndex = 32
+        Me.Button6.Text = "Add Key Set"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.GroupBox3.Controls.Add(Me.ListBox1)
+        Me.GroupBox3.Controls.Add(Me.Button6)
+        Me.GroupBox3.Controls.Add(Me.ListBox2)
+        Me.GroupBox3.Controls.Add(Me.Button5)
+        Me.GroupBox3.Controls.Add(Me.ListBox3)
+        Me.GroupBox3.Location = New System.Drawing.Point(12, 460)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(480, 151)
+        Me.GroupBox3.TabIndex = 33
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Raw Keys"
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(504, 462)
+        Me.ClientSize = New System.Drawing.Size(504, 623)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.button4)
         Me.Controls.Add(Me.button3)
         Me.Controls.Add(Me.groupBox2)
@@ -565,12 +630,14 @@ Partial Class Form2
         Me.Controls.Add(Me.textBox1)
         Me.Controls.Add(Me.groupBox1)
         Me.Name = "Form2"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Form2"
         Me.groupBox2.ResumeLayout(False)
         Me.groupBox2.PerformLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -622,4 +689,10 @@ Partial Class Form2
     Private WithEvents textBox3 As System.Windows.Forms.TextBox
     Private WithEvents checkBox5 As System.Windows.Forms.CheckBox
     Private WithEvents checkBox4 As System.Windows.Forms.CheckBox
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents ListBox2 As ListBox
+    Friend WithEvents ListBox3 As ListBox
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents GroupBox3 As GroupBox
 End Class
