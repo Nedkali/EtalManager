@@ -12,7 +12,9 @@ Public Class Form2
         End If
 
         Dim D2Path As String = key.GetValue("InstallPath").ToString()
-        textBox2.Text = D2Path & "\Game.exe"
+        D2Path = D2Path & "\Game.exe"
+        D2Path.Replace("\\", "\")
+        textBox2.Text = D2Path
     End Sub
 
     Private Sub RegErrorAck()

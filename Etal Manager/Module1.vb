@@ -47,6 +47,12 @@ Module Module1
         Public AccPass As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public MpqFile As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Public KeyOwner As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=30)>
+        Public Classic As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=30)>
+        Public Lod As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=8)>
         Public GameName As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=6)>

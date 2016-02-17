@@ -244,7 +244,7 @@ Public Class Form1
             Return
         End If
 
-        SetMpq(a)
+        Dim str2 = SetMpq(a)
 
         Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateNew("D2NT Profile", 71)
         If MemFile(mmf, a) = False Then Return
@@ -252,8 +252,6 @@ Public Class Form1
         ' mpq setting ?????
 
 
-        Dim objArray = New Object() {" -mpq ", dataGridView1.Rows(a).Cells(1).Value}
-        Dim str2 = String.Concat(objArray)
 
         Dim ApArgs As String = str2
         If Objects(a).WindowMode = 1 Then ApArgs = ApArgs & " -w"
@@ -274,14 +272,14 @@ Public Class Form1
         p = PInvoke.Extensions.StartSuspended(p, p.StartInfo) 'loads D2 into memory
         Objects(a).D2PID = p.Id
 
-        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2M.dll") Then RichTextBox3.AppendText(" Failed to load D2M.dll")
+        'If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2M.dll") Then RichTextBox3.AppendText(" Failed to load D2M.dll")
 
         'blocks 2nd instance check
         Dim oldValue(1) As Byte
         Dim newvalue() As Byte = {&HEB, &H45}
         Dim address As New IntPtr(&H6FA80000 + &HB6B0)
         Try 'a287
-            If Not PInvoke.Kernel32.LoadRemoteLibrary(p, d2RelPath & "D2Gfx.dll") Then RichTextBox3.AppendText(" Failed to load d2gfx")
+            If Not PInvoke.Kernel32.LoadRemoteLibrary(p, d2RelPath & "D2gfx.dll") Then RichTextBox3.AppendText(" Failed to load d2gfx")
             If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then RichTextBox3.AppendText(" failed to read window fix")
             If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then RichTextBox3.AppendText(" failed to write window fix")
         Catch
@@ -395,12 +393,24 @@ Public Class Form1
 
     End Function
 
-    Private Sub SetMpq(ByRef x)
+    Function SetMpq(ByRef x)
         ' later need some kind of calc to enable key switching
+        Dim str2 As String = ""
+        If Objects(x).CDkeys = Nothing Then
+            Dim keys = Objects(x).CDkeys.Split(";")
+            Dim objArray = New Object() {" -mpq ", dataGridView1.Rows(x).Cells(1).Value}
+            str2 = String.Concat(objArray)
+            dataGridView1.Rows(x).Cells(1).Value = keys(0)
+        Else
 
-        Dim keys = Objects(x).CDkeys.Split(";")
-        dataGridView1.Rows(x).Cells(1).Value = keys(0)
+
+
+        End If
+
         dataGridView1.Rows(x).Cells(6).Value = "Loading"
         Application.DoEvents()
-    End Sub
+        Return str2
+
+
+    End Function
 End Class

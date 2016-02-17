@@ -220,6 +220,13 @@ Module BinaryRead
             prof.Realm = Chr(0)
         End If
 
+        If prof.MpqFile = Nothing Then
+            prof.KeyOwner = Objects(x).CDkeyOwner.Split(";")(0)
+            prof.Classic = Objects(x).CDkeyClassic.Split(";")(0)
+            prof.Lod = Objects(x).CDkeyExpansion.Split(";")(0)
+            Form1.dataGridView1.Rows(x).Cells(1).Value = "Raw Key 0"
+        End If
+
         'random game needs to be moved to dll later?
         If Objects(x).randomGame = 0 Then
             prof.GameName = Objects(x).GameName
