@@ -431,9 +431,9 @@ Public Class Form1
     Function SetMpq(ByRef x)
         ' later need some kind of calc to enable key switching
         Dim str2 As String = ""
-        If Objects(x).CDkeys = Nothing Then
+        If Objects(x).CDkeys <> Nothing Then
             Dim keys = Objects(x).CDkeys.Split(";")
-            Dim objArray = New Object() {" -mpq ", dataGridView1.Rows(x).Cells(1).Value}
+            Dim objArray = New Object() {" -mpq ", keys(0)}
             str2 = String.Concat(objArray)
             dataGridView1.Rows(x).Cells(1).Value = keys(0)
         Else

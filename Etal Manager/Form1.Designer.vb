@@ -302,14 +302,15 @@ Partial Class Form1
         '
         'KeyFile
         '
-        Me.KeyFile.FillWeight = 80.0!
-        Me.KeyFile.HeaderText = "Key File"
+        Me.KeyFile.FillWeight = 90.0!
+        Me.KeyFile.HeaderText = "Raw/Key Name"
         Me.KeyFile.Name = "KeyFile"
         Me.KeyFile.ReadOnly = True
-        Me.KeyFile.Width = 80
+        Me.KeyFile.Width = 90
         '
         'Column2
         '
+        Me.Column2.FillWeight = 60.0!
         Me.Column2.HeaderText = "Runs"
         Me.Column2.Name = "Column2"
         Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -317,20 +318,22 @@ Partial Class Form1
         '
         'Column3
         '
+        Me.Column3.FillWeight = 50.0!
         Me.Column3.HeaderText = "Restarts"
         Me.Column3.Name = "Column3"
         Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column3.Width = 60
+        Me.Column3.Width = 50
         '
         'Deaths
         '
-        Me.Deaths.FillWeight = 60.0!
+        Me.Deaths.FillWeight = 50.0!
         Me.Deaths.HeaderText = "Deaths"
         Me.Deaths.Name = "Deaths"
-        Me.Deaths.Width = 60
+        Me.Deaths.Width = 50
         '
         'Column4
         '
+        Me.Column4.FillWeight = 60.0!
         Me.Column4.HeaderText = "Chickens"
         Me.Column4.Name = "Column4"
         Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable

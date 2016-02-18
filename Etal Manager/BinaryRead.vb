@@ -224,7 +224,7 @@ Module BinaryRead
             prof.KeyOwner = Objects(x).CDkeyOwner.Split(";")(0)
             prof.Classic = Objects(x).CDkeyClassic.Split(";")(0)
             prof.Lod = Objects(x).CDkeyExpansion.Split(";")(0)
-            Form1.dataGridView1.Rows(x).Cells(1).Value = "Raw Key 0"
+            Form1.dataGridView1.Rows(x).Cells(1).Value = prof.KeyOwner
         End If
 
         'random game needs to be moved to dll later?
