@@ -564,28 +564,28 @@ Partial Class Form2
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(9, 19)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(145, 95)
+        Me.ListBox1.Size = New System.Drawing.Size(105, 95)
         Me.ListBox1.TabIndex = 28
         '
         'ListBox2
         '
         Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(159, 19)
+        Me.ListBox2.Location = New System.Drawing.Point(119, 19)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(150, 95)
+        Me.ListBox2.Size = New System.Drawing.Size(174, 95)
         Me.ListBox2.TabIndex = 29
         '
         'ListBox3
         '
         Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(314, 19)
+        Me.ListBox3.Location = New System.Drawing.Point(298, 19)
         Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(160, 95)
+        Me.ListBox3.Size = New System.Drawing.Size(174, 95)
         Me.ListBox3.TabIndex = 30
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(84, 120)
+        Me.Button5.Location = New System.Drawing.Point(84, 123)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(101, 23)
         Me.Button5.TabIndex = 31
@@ -594,7 +594,7 @@ Partial Class Form2
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(257, 120)
+        Me.Button6.Location = New System.Drawing.Point(257, 123)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(100, 23)
         Me.Button6.TabIndex = 32
@@ -603,7 +603,7 @@ Partial Class Form2
         '
         'GroupBox3
         '
-        Me.GroupBox3.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.GroupBox3.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox3.Controls.Add(Me.ListBox1)
         Me.GroupBox3.Controls.Add(Me.Button6)
         Me.GroupBox3.Controls.Add(Me.ListBox2)

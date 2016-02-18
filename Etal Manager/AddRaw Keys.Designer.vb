@@ -29,8 +29,8 @@ Partial Class AddRawKeys
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -38,7 +38,7 @@ Partial Class AddRawKeys
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(38, 21)
+        Me.Label1.Location = New System.Drawing.Point(23, 21)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(59, 13)
         Me.Label1.TabIndex = 6
@@ -47,7 +47,7 @@ Partial Class AddRawKeys
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(178, 21)
+        Me.Label2.Location = New System.Drawing.Point(160, 21)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(61, 13)
         Me.Label2.TabIndex = 7
@@ -56,7 +56,7 @@ Partial Class AddRawKeys
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(328, 21)
+        Me.Label3.Location = New System.Drawing.Point(313, 21)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 13)
         Me.Label3.TabIndex = 8
@@ -66,23 +66,23 @@ Partial Class AddRawKeys
         '
         Me.TextBox1.Location = New System.Drawing.Point(8, 37)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(106, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(89, 20)
         Me.TextBox1.TabIndex = 9
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(141, 37)
+        Me.TextBox2.Location = New System.Drawing.Point(111, 37)
         Me.TextBox2.MaxLength = 26
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(128, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(155, 20)
         Me.TextBox2.TabIndex = 10
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(299, 37)
+        Me.TextBox3.Location = New System.Drawing.Point(276, 37)
         Me.TextBox3.MaxLength = 26
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(128, 20)
+        Me.TextBox3.Size = New System.Drawing.Size(155, 20)
         Me.TextBox3.TabIndex = 11
         '
         'GroupBox1
@@ -102,6 +102,15 @@ Partial Class AddRawKeys
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(255, 80)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 13
+        Me.Button2.Text = "Add Key"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'Button1
         '
         Me.Button1.Location = New System.Drawing.Point(87, 80)
@@ -112,15 +121,6 @@ Partial Class AddRawKeys
         Me.Button1.TabIndex = 12
         Me.Button1.Text = "Cancel"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(255, 80)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 13
-        Me.Button2.Text = "Add Key"
-        Me.Button2.UseVisualStyleBackColor = True
         '
         'Label4
         '

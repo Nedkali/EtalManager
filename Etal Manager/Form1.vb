@@ -368,7 +368,7 @@ Public Class Form1
 
     Private Sub CopyButton_Click(sender As Object, e As EventArgs) Handles CopyButton.Click
         Dim a As Integer = dataGridView1.CurrentRow.Index
-        If a < 0 Then Return
+        If a < 0 Or a > Objects.Count - 1 Then Return
         Dim newobject = New Profiles
 
         newobject.ProfileName = Objects(a).ProfileName

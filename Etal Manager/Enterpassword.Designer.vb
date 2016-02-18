@@ -35,7 +35,7 @@ Partial Class Enterpassword
         Me.TextBox1.MinimumSize = New System.Drawing.Size(103, 20)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBox1.Size = New System.Drawing.Size(103, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(103, 22)
         Me.TextBox1.TabIndex = 0
         '
         'Button1
