@@ -59,8 +59,10 @@ Module Module1
         Public GamePass As String
         Public Charloc As Char
         Public Realm As Char
-        Public RandomGameName As Char
-        Public RandomGamePass As Char
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=8)>
+        Public RandomGameName As String
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=6)>
+        Public RandomGamePass As String
         Public Difficulty As Char
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public ScriptFile As String
