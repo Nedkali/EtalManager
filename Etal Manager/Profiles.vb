@@ -31,6 +31,12 @@
     Public CDkeyExpansion As String
 End Class
 
+Public Class keyholder
+    Public name As String
+    Public classic As String
+    Public lod As String
+End Class
+
 
 
 

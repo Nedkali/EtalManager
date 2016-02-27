@@ -33,6 +33,10 @@ Public Class Form1
                     Case ETAL_MGR_LOADING
                         dataGridView1.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_READY
+                        Dim keyfile = assignkeys(x)(0)
+                        If keyfile <> dataGridView1.Rows(x).Cells(1).Value Then
+                            restart(x)
+                        End If
                         dataGridView1.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_LOGIN
                         dataGridView1.Rows(x).Cells(6).Value = "Login"
@@ -45,7 +49,9 @@ Public Class Form1
                         y = y + 1
                         dataGridView1.Rows(x).Cells(2).Value = y
                         dataGridView1.Rows(x).Cells(6).Value = "In Game"
-                        richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")" & vbCrLf)
+                        'richTextBox1.Select(0, 0) : richTextBox1.SelectedText = vbCrLf
+                        richTextBox1.Select(0, 0)
+                        richTextBox1.SelectedText = "[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")" & vbCrLf
                     Case ETAL_MGR_RESTART
                         dataGridView1.Rows(x).Cells(6).Value = "Restarting"
                     Case ETAL_MGR_CHICKEN
@@ -58,10 +64,12 @@ Public Class Form1
                         RichTextBox2.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
 
                     Case ETAL_MGR_ERROR_LOG
-                        RichTextBox3.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp + vbCrLf)
-                        RichTextBox3.AppendText(vbCrLf)
+                        RichTextBox3.Select(0, 0) : RichTextBox3.SelectedText = vbCrLf
+                        RichTextBox3.Select(0, 0)
+                        RichTextBox3.SelectedText = ("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+
                     Case Else
-                        RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
+                            RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
                         RichTextBox3.AppendText("" & vbCrLf)
                 End Select
                 cds = Nothing
@@ -212,100 +220,16 @@ Public Class Form1
             dataGridView1.Rows(x).Cells(2).Value = 0
             dataGridView1.Rows(x).Cells(3).Value = 0
             dataGridView1.Rows(x).Cells(4).Value = 0
+            dataGridView1.Rows(x).Cells(5).Value = 0
         Next
     End Sub
 
+
     Private Sub button2_Click(sender As Object, e As EventArgs) Handles RunButton.Click
 
-
         Dim a As Integer = dataGridView1.CurrentRow.Index
-        If a < 0 Then RichTextBox3.AppendText("no profile selected") : Return
-        If Objects(a).D2PID > 0 Then
-            Dim d2app = Process.GetProcessesByName("Game")
-            For Each process In d2app
-                If process.Id = Objects(a).D2PID Then
-                    RichTextBox3.AppendText("Profile already running") : Return
-                    Return
-                End If
-            Next
-        End If
-
-        'set account password
-        If Objects(a).D2PlayType <> 0 And Objects(a).AccPass = Nothing Then
-            Dim dr = Enterpassword.ShowDialog()
-            If dr = DialogResult.Cancel Then Return
-        End If
-
-
-        Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
-
-        If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
-            RichTextBox3.AppendText("Unable to locate Game.exe")
-            Return
-        End If
-
-        Dim str2 = SetMpq(a)
-
-        Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateNew("D2NT Profile", 71)
-        If MemFile(mmf, a) = False Then Return
-
-        ' mpq setting ?????
-
-
-
-        Dim ApArgs As String = str2
-        If Objects(a).WindowMode = 1 Then ApArgs = ApArgs & " -w"
-        If Objects(a).D2Sound = 1 Then ApArgs = ApArgs & " -ns"
-        If Objects(a).D2Quality = 1 Then ApArgs = ApArgs & " -lq"
-        If Objects(a).D2DirectText = 1 Then ApArgs = ApArgs & " -direct -txt"
-
-
-        Dim procstartinfo As ProcessStartInfo = New ProcessStartInfo()
-        procstartinfo.Arguments = ApArgs
-        procstartinfo.FileName = Objects(0).D2Path
-        procstartinfo.UseShellExecute = False
-        procstartinfo.WorkingDirectory = d2RelPath
-
-        Dim p As Process = New Process()
-        p.EnableRaisingEvents = True
-        p.StartInfo = procstartinfo
-        p = PInvoke.Extensions.StartSuspended(p, p.StartInfo) 'loads D2 into memory
-        Objects(a).D2PID = p.Id
-
-        'If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2M.dll") Then RichTextBox3.AppendText(" Failed to load D2M.dll")
-
-        'blocks 2nd instance check
-        Dim oldValue(1) As Byte
-        Dim newvalue() As Byte = {&HEB, &H45}
-        Dim address As New IntPtr(&H6FA80000 + &HB6B0)
-        Try 'a287
-            If Not PInvoke.Kernel32.LoadRemoteLibrary(p, d2RelPath & "D2gfx.dll") Then RichTextBox3.AppendText(" Failed to load d2gfx")
-            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then RichTextBox3.AppendText(" failed to read window fix")
-            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then RichTextBox3.AppendText(" failed to write window fix")
-        Catch
-            RichTextBox3.AppendText(" error on window fix " & address.ToString)
-
-        End Try
-
-        'loads/injects dll
-        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then RichTextBox3.AppendText(" Failed to load D2Etal.dll")
-
-        'resume/start process
-        PInvoke.Kernel32.ResumeProcess(p)
-        p.WaitForInputIdle(5000)
-        mmf.Dispose()
-        'removes instance check
-        Try
-            PInvoke.Kernel32.SuspendProcess(p)
-            PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
-            PInvoke.Kernel32.ResumeProcess(p)
-        Catch ex As Exception
-            RichTextBox3.AppendText("Error reverting d2gfx patch")
-        End Try
-
-        If Objects(a).D2Minimized = 1 Then
-            ShowWindow(p.MainWindowHandle, 2)
-        End If
+        If a < 0 Or Objects.Count = 0 Then Return
+        launchd2(a)
 
     End Sub
 
@@ -428,24 +352,117 @@ Public Class Form1
 
     End Function
 
-    Function SetMpq(ByRef x)
-        ' later need some kind of calc to enable key switching
-        Dim str2 As String = ""
-        If Objects(x).CDkeys <> Nothing Then
-            Dim keys = Objects(x).CDkeys.Split(";")
-            Dim objArray = New Object() {" -mpq ", keys(0)}
-            str2 = String.Concat(objArray)
-            dataGridView1.Rows(x).Cells(1).Value = keys(0)
-        Else
 
+    Private Sub restart(ByVal a)
+        For Each proc As Process In Process.GetProcessesByName("Game")
+            If proc.Id = Objects(a).D2PID Then
+                proc.Kill()
+            End If
+        Next
+        Objects(a).D2PID = 0
+        dataGridView1.Rows(a).Cells(1).Value = ""
+        dataGridView1.Rows(a).Cells(6).Value = ""
+        Thread.Sleep(2000)
+        launchd2(a)
 
+    End Sub
 
+    Private Sub launchd2(ByVal a)
+
+        If Objects(a).D2PID > 0 Then
+            Dim d2app = Process.GetProcessesByName("Game")
+            For Each process In d2app
+                If process.Id = Objects(a).D2PID Then
+                    RichTextBox3.AppendText("Profile already running") : Return
+                    Return
+                End If
+            Next
         End If
 
-        dataGridView1.Rows(x).Cells(6).Value = "Loading"
-        Application.DoEvents()
-        Return str2
+        'set account password
+        If Objects(a).D2PlayType <> 0 And Objects(a).AccPass = Nothing Then
+            Dim dr = Enterpassword.ShowDialog()
+            If dr = DialogResult.Cancel Then Return
+        End If
 
 
-    End Function
+        Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
+
+        If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
+            RichTextBox3.AppendText("Unable to locate Game.exe")
+            Return
+        End If
+
+
+
+        Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateNew("D2NT Profile", 71)
+        If MemFile(mmf, a) = False Then Return
+
+        ' mpq setting ?????
+
+
+
+        Dim ApArgs As String = ""
+        If Objects(a).WindowMode = 1 Then ApArgs = ApArgs & " -w"
+        If Objects(a).D2Sound = 1 Then ApArgs = ApArgs & " -ns"
+        If Objects(a).D2Quality = 1 Then ApArgs = ApArgs & " -lq"
+        If Objects(a).D2DirectText = 1 Then ApArgs = ApArgs & " -direct -txt"
+
+
+        Dim procstartinfo As ProcessStartInfo = New ProcessStartInfo()
+        procstartinfo.Arguments = ApArgs
+        procstartinfo.FileName = Objects(0).D2Path
+        procstartinfo.UseShellExecute = False
+        procstartinfo.WorkingDirectory = d2RelPath
+
+        Dim p As Process = New Process()
+        p.EnableRaisingEvents = True
+        p.StartInfo = procstartinfo
+        p = PInvoke.Extensions.StartSuspended(p, p.StartInfo) 'loads D2 into memory
+        Objects(a).D2PID = p.Id
+
+        'If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2M.dll") Then RichTextBox3.AppendText(" Failed to load D2M.dll")
+
+        'blocks 2nd instance check
+        Dim oldValue(1) As Byte
+        Dim newvalue() As Byte = {&HEB, &H45}
+        Dim address As New IntPtr(&H6FA80000 + &HB6B0)
+        Try 'a287
+            If Not PInvoke.Kernel32.LoadRemoteLibrary(p, d2RelPath & "D2gfx.dll") Then RichTextBox3.AppendText(" Failed to load d2gfx")
+            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then RichTextBox3.AppendText(" failed to read window fix")
+            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then RichTextBox3.AppendText(" failed to write window fix")
+        Catch
+            RichTextBox3.AppendText(" error on window fix " & address.ToString)
+
+        End Try
+
+        'loads/injects dll
+        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then RichTextBox3.AppendText(" Failed to load D2Etal.dll")
+
+        'resume/start process
+        PInvoke.Kernel32.ResumeProcess(p)
+        Try
+            p.WaitForInputIdle(3000)
+        Catch ex As Exception
+            If (ex.Message.Contains("exited") = True) Then dataGridView1.Rows(a).Cells(6).Value = "Exited"
+            'MessageBox.Show(ex.Message)
+        End Try
+
+
+        mmf.Dispose()
+        'removes instance check
+        Try
+            PInvoke.Kernel32.SuspendProcess(p)
+            PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
+            PInvoke.Kernel32.ResumeProcess(p)
+        Catch ex As Exception
+            RichTextBox3.AppendText("Error reverting d2gfx patch")
+        End Try
+
+        If Objects(a).D2Minimized = 1 Then
+            ShowWindow(p.MainWindowHandle, 2)
+        End If
+
+
+    End Sub
 End Class

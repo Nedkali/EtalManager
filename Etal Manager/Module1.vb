@@ -3,7 +3,7 @@
 Module Module1
 
     Public Objects As List(Of Profiles) = New List(Of Profiles)
-
+    Public totalkeys As List(Of keyholder) = New List(Of keyholder)
 
     Public form2action As String
 
@@ -67,5 +67,6 @@ Module Module1
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public ScriptFile As String
     End Structure
+
 
 End Module

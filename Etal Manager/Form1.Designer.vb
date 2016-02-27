@@ -41,11 +41,6 @@ Partial Class Form1
         Me.StopButton = New System.Windows.Forms.Button()
         Me.RunButton = New System.Windows.Forms.Button()
         Me.dataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.MoveDown = New System.Windows.Forms.Button()
-        Me.MoveUp = New System.Windows.Forms.Button()
-        Me.pictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.CopyButton = New System.Windows.Forms.Button()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KeyFile = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -53,6 +48,11 @@ Partial Class Form1
         Me.Deaths = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.MoveDown = New System.Windows.Forms.Button()
+        Me.MoveUp = New System.Windows.Forms.Button()
+        Me.pictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CopyButton = New System.Windows.Forms.Button()
         Me.tabPage2.SuspendLayout()
         Me.CommonLog.SuspendLayout()
         Me.tabControl1.SuspendLayout()
@@ -143,6 +143,7 @@ Partial Class Form1
         Me.RichTextBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RichTextBox3.Location = New System.Drawing.Point(3, 3)
         Me.RichTextBox3.Name = "RichTextBox3"
+        Me.RichTextBox3.ReadOnly = True
         Me.RichTextBox3.Size = New System.Drawing.Size(579, 237)
         Me.RichTextBox3.TabIndex = 0
         Me.RichTextBox3.Text = ""
@@ -244,55 +245,6 @@ Partial Class Form1
         Me.dataGridView1.Size = New System.Drawing.Size(590, 188)
         Me.dataGridView1.TabIndex = 53
         '
-        'menuStrip1
-        '
-        Me.menuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.linksToolStripMenuItem})
-        Me.menuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.menuStrip1.Name = "menuStrip1"
-        Me.menuStrip1.Size = New System.Drawing.Size(617, 24)
-        Me.menuStrip1.TabIndex = 62
-        Me.menuStrip1.Text = "menuStrip1"
-        '
-        'MoveDown
-        '
-        Me.MoveDown.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowDown
-        Me.MoveDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.MoveDown.Location = New System.Drawing.Point(50, 321)
-        Me.MoveDown.Name = "MoveDown"
-        Me.MoveDown.Size = New System.Drawing.Size(28, 25)
-        Me.MoveDown.TabIndex = 64
-        Me.MoveDown.UseVisualStyleBackColor = True
-        '
-        'MoveUp
-        '
-        Me.MoveUp.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowUp
-        Me.MoveUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.MoveUp.Location = New System.Drawing.Point(14, 321)
-        Me.MoveUp.Name = "MoveUp"
-        Me.MoveUp.Size = New System.Drawing.Size(28, 25)
-        Me.MoveUp.TabIndex = 63
-        Me.MoveUp.UseVisualStyleBackColor = True
-        '
-        'pictureBox1
-        '
-        Me.pictureBox1.Image = CType(resources.GetObject("pictureBox1.Image"), System.Drawing.Image)
-        Me.pictureBox1.Location = New System.Drawing.Point(1, 30)
-        Me.pictureBox1.Name = "pictureBox1"
-        Me.pictureBox1.Size = New System.Drawing.Size(616, 85)
-        Me.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pictureBox1.TabIndex = 52
-        Me.pictureBox1.TabStop = False
-        '
-        'CopyButton
-        '
-        Me.CopyButton.Location = New System.Drawing.Point(469, 321)
-        Me.CopyButton.Name = "CopyButton"
-        Me.CopyButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.CopyButton.Size = New System.Drawing.Size(61, 25)
-        Me.CopyButton.TabIndex = 65
-        Me.CopyButton.Text = "Copy"
-        Me.CopyButton.UseVisualStyleBackColor = True
-        '
         'Column1
         '
         Me.Column1.HeaderText = "Profile Name"
@@ -345,6 +297,55 @@ Partial Class Form1
         Me.Column5.Name = "Column5"
         Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.Column5.Width = 175
+        '
+        'menuStrip1
+        '
+        Me.menuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.linksToolStripMenuItem})
+        Me.menuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.menuStrip1.Name = "menuStrip1"
+        Me.menuStrip1.Size = New System.Drawing.Size(617, 24)
+        Me.menuStrip1.TabIndex = 62
+        Me.menuStrip1.Text = "menuStrip1"
+        '
+        'MoveDown
+        '
+        Me.MoveDown.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowDown
+        Me.MoveDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.MoveDown.Location = New System.Drawing.Point(50, 321)
+        Me.MoveDown.Name = "MoveDown"
+        Me.MoveDown.Size = New System.Drawing.Size(28, 25)
+        Me.MoveDown.TabIndex = 64
+        Me.MoveDown.UseVisualStyleBackColor = True
+        '
+        'MoveUp
+        '
+        Me.MoveUp.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowUp
+        Me.MoveUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.MoveUp.Location = New System.Drawing.Point(14, 321)
+        Me.MoveUp.Name = "MoveUp"
+        Me.MoveUp.Size = New System.Drawing.Size(28, 25)
+        Me.MoveUp.TabIndex = 63
+        Me.MoveUp.UseVisualStyleBackColor = True
+        '
+        'pictureBox1
+        '
+        Me.pictureBox1.Image = CType(resources.GetObject("pictureBox1.Image"), System.Drawing.Image)
+        Me.pictureBox1.Location = New System.Drawing.Point(1, 30)
+        Me.pictureBox1.Name = "pictureBox1"
+        Me.pictureBox1.Size = New System.Drawing.Size(616, 85)
+        Me.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pictureBox1.TabIndex = 52
+        Me.pictureBox1.TabStop = False
+        '
+        'CopyButton
+        '
+        Me.CopyButton.Location = New System.Drawing.Point(469, 321)
+        Me.CopyButton.Name = "CopyButton"
+        Me.CopyButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CopyButton.Size = New System.Drawing.Size(61, 25)
+        Me.CopyButton.TabIndex = 65
+        Me.CopyButton.Text = "Copy"
+        Me.CopyButton.UseVisualStyleBackColor = True
         '
         'Form1
         '
