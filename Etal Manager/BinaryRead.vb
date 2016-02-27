@@ -288,8 +288,11 @@ Module BinaryRead
             newkeys.lod = Objects(x).CDkeyExpansion.Split(";")(index)
             totalkeys.Add(newkeys)
         Next
+        Dim gamesperkey = 0  ' games per key
+        If Objects(x).CDkeySwap <> Nothing Then
+            gamesperkey = Convert.ToInt32(Objects(x).CDkeySwap)
+        End If
 
-        Dim gamesperkey = Convert.ToInt32(Objects(x).CDkeySwap) ' games per key
         Dim gamecount = Convert.ToInt32(Form1.dataGridView1.Rows(x).Cells(2).Value) 'current game count
 
         If totalkeys.Count = 0 Then Return ",,"

@@ -55,6 +55,7 @@ Public Class Form2
         If form2action = "edit" Then
             Dim x As Integer = Form1.dataGridView1.CurrentRow.Index
             Objects(x).ProfileName = textBox1.Text
+            Objects(x).AccPass = ""
             Objects(x).D2Path = textBox2.Text
             If checkBox1.Checked = True Then Objects(x).WindowMode = 1
             If checkBox1.Checked = False Then Objects(x).WindowMode = 0
@@ -92,7 +93,9 @@ Public Class Form2
             Else
                 Objects(x).D2starter = comboBox1.Text
             End If
-
+            If Objects(x).CDkeySwap = Nothing Then
+                Objects(x).CDkeySwap = 0
+            End If
 
 
             Form1.dataGridView1.Rows(x).Cells(0).Value = Objects(x).ProfileName
