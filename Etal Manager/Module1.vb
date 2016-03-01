@@ -5,6 +5,7 @@ Module Module1
 
     Public Objects As List(Of Profiles) = New List(Of Profiles)
     Public totalkeys As List(Of keyholder) = New List(Of keyholder)
+    Public bw As BackgroundWorker1 = New BackgroundWorker1
 
     Public form2action As String
 
@@ -73,6 +74,6 @@ Module Module1
         Public ScriptFile As String
     End Structure
 
-
-
+    Public Class BackgroundWorker1
+    End Class
 End Module
