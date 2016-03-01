@@ -558,5 +558,15 @@ Namespace PInvoke
         Public Function Compose(ByVal format As String, ByVal ParamArray args As Object()) As String
             Return [String].Format(format, args)
         End Function
+
+        <StructLayout(LayoutKind.Sequential)>
+        Structure COPYDATASTRUCT
+            Public dwData As IntPtr
+            Public cdData As Integer
+            Public lpData As IntPtr
+        End Structure
+
+
+
     End Module
 End Namespace

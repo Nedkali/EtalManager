@@ -143,7 +143,6 @@ Partial Class Form1
         Me.RichTextBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RichTextBox3.Location = New System.Drawing.Point(3, 3)
         Me.RichTextBox3.Name = "RichTextBox3"
-        Me.RichTextBox3.ReadOnly = True
         Me.RichTextBox3.Size = New System.Drawing.Size(579, 237)
         Me.RichTextBox3.TabIndex = 0
         Me.RichTextBox3.Text = ""

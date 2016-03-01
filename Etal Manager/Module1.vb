@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports System.Security
 
 Module Module1
 
@@ -8,6 +9,10 @@ Module Module1
     Public form2action As String
 
 
+    ''' <summary>
+    ''' An application sends the WM_COPYDATA message to pass data to another 
+    ''' application.
+    ''' </summary>
     Friend Const WM_COPYDATA As Integer = &H4A
     Friend Const ETAL_MGR_LOADING As Integer = 1
     Friend Const ETAL_MGR_READY As Integer = 2
@@ -67,6 +72,7 @@ Module Module1
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public ScriptFile As String
     End Structure
+
 
 
 End Module

@@ -2,7 +2,15 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 
+
+
 Public Class Form1
+
+    Private Declare Auto Function SendMessage Lib "user32" _
+        (ByVal hWnd As IntPtr, ByVal Msg As Integer, ByVal wParam As IntPtr, ByRef lParam As CopyData) As Boolean
+
+
+
     Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
 
         Select Case m.Msg
@@ -24,10 +32,7 @@ Public Class Form1
                     End If
                 Next
                 If x < 0 Then MessageBox.Show("exiting") : Return
-                Dim tnow As System.DateTime = System.DateTime.Now
-                Dim temp1 As String = tnow.Hour.ToString() & "."
-                temp1 = temp1 & tnow.Minute.ToString() & "."
-                temp1 = temp1 & tnow.Second.ToString() & " "
+                Dim temp1 = timesetter()
 
                 Select Case y
                     Case ETAL_MGR_LOADING
@@ -40,36 +45,38 @@ Public Class Form1
                         dataGridView1.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_LOGIN
                         dataGridView1.Rows(x).Cells(6).Value = "Login"
-                        richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] Login" & vbCrLf)
+                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] Login")
                     Case ETAL_MGR_CREATE_GAME
                         dataGridView1.Rows(x).Cells(6).Value = "Game Create"
-                        richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] Game Create" & vbCrLf)
+                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] Game Create")
                     Case ETAL_MGR_INGAME
                         y = Convert.ToInt32(dataGridView1.Rows(x).Cells(2).Value)
                         y = y + 1
                         dataGridView1.Rows(x).Cells(2).Value = y
                         dataGridView1.Rows(x).Cells(6).Value = "In Game"
-                        'richTextBox1.Select(0, 0) : richTextBox1.SelectedText = vbCrLf
-                        richTextBox1.Select(0, 0)
-                        richTextBox1.SelectedText = "[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")" & vbCrLf
+                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")")
                     Case ETAL_MGR_RESTART
                         dataGridView1.Rows(x).Cells(6).Value = "Restarting"
                     Case ETAL_MGR_CHICKEN
-                        richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
+                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_PRINT_STATUS
-                        richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
+                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_COMMON
-                        richTextBox1.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
+                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_ITEM_LOG
-                        RichTextBox2.AppendText("[" & temp1 + Objects(x).ProfileName & "] " & temp & vbCrLf)
-
+                        ColorSetter2("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_ERROR_LOG
-                        RichTextBox3.Select(0, 0) : RichTextBox3.SelectedText = vbCrLf
-                        RichTextBox3.Select(0, 0)
-                        RichTextBox3.SelectedText = ("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+                        ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] " & temp)
 
+                    Case 555
+                        Dim cdss As New CopyData
+                        cdss.dwData = 556
+                        cdss.lpData = vbNull
+                        cdss.cbData = vbNull
+                        SendMessage(Objects(x).D2PID, WM_COPYDATA, Me.Handle, cdss)
                     Case Else
-                            RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
+
+                        RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
                         RichTextBox3.AppendText("" & vbCrLf)
                 End Select
                 cds = Nothing
@@ -464,5 +471,163 @@ Public Class Form1
         End If
 
 
+    End Sub
+
+    Function timesetter()
+
+        Dim tnow As System.DateTime = System.DateTime.Now
+        Dim temp1 As String = tnow.Hour.ToString()
+        If temp1.Length = 1 Then temp1 = "0" & temp1
+        temp1 = temp1 & "."
+
+        Dim temp2 = tnow.Minute.ToString()
+        If temp2.Length = 1 Then temp2 = "0" & temp2
+        temp2 = temp2 & "."
+        Dim temp3 = tnow.Second.ToString()
+        If temp3.Length = 1 Then temp3 = "0" & temp3
+        temp3 = temp3 & "."
+        temp1 = temp1 & temp2 & temp3 & " "
+        Return temp1
+    End Function
+
+    Private Sub ColorSetter3(ByVal text As String)
+
+        If text.ToString().Contains("Ã¿c") = False Then
+            RichTextBox3.Select(0, 0) : RichTextBox3.SelectedText = vbCrLf
+            RichTextBox3.Select(0, 0)
+            RichTextBox3.SelectedText = text
+            RichTextBox3.SelectionColor = Color.Black
+            Return
+        End If
+
+        Dim temp1 = Split(text, "Ã¿c")
+        RichTextBox3.Select(0, 0) : RichTextBox3.SelectedText = vbCrLf : RichTextBox3.Select(0, 0)
+        For index = 0 To temp1.Length - 1
+            Dim clr = temp1(index).Substring(0, 1)
+
+            Select Case clr
+                Case 0
+                    RichTextBox3.SelectionColor = Color.LightGray
+                Case 1
+                    RichTextBox3.SelectionColor = Color.Red
+                Case 2
+                    RichTextBox3.SelectionColor = Color.Green
+                Case 3
+                    RichTextBox3.SelectionColor = Color.Blue
+                Case 4
+                    RichTextBox3.SelectionColor = Color.Goldenrod
+                Case 5
+                    RichTextBox3.SelectionColor = Color.Gray
+                Case 6
+                    RichTextBox3.SelectionColor = Color.Goldenrod
+                Case 7
+                    RichTextBox3.SelectionColor = Color.Goldenrod
+                Case 8
+                    RichTextBox3.SelectionColor = Color.DarkGreen
+                Case 9
+                    RichTextBox3.SelectionColor = Color.Yellow
+                Case Else
+                    RichTextBox3.SelectionColor = Color.Black
+            End Select
+            If clr = "[" Then
+                RichTextBox3.SelectedText = temp1(index)
+            Else
+                RichTextBox3.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+            End If
+        Next
+
+    End Sub
+
+    Private Sub ColorSetter2(ByVal text As String)
+
+        If text.ToString().Contains("Ã¿c") = False Then
+            RichTextBox2.Select(0, 0) : RichTextBox2.SelectedText = vbCrLf
+            RichTextBox2.Select(0, 0)
+            RichTextBox2.SelectedText = text
+            RichTextBox2.SelectionColor = Color.Black
+            Return
+        End If
+
+        Dim temp1 = Split(text, "Ã¿c")
+        RichTextBox2.Select(0, 0) : RichTextBox2.SelectedText = vbCrLf : RichTextBox2.Select(0, 0)
+        For index = 0 To temp1.Length - 1
+            Dim clr = temp1(index).Substring(0, 1)
+
+            Select Case clr
+                Case 0
+                    RichTextBox2.SelectionColor = Color.LightGray
+                Case 1
+                    RichTextBox2.SelectionColor = Color.Red
+                Case 2
+                    RichTextBox2.SelectionColor = Color.Green
+                Case 3
+                    RichTextBox2.SelectionColor = Color.Blue
+                Case 4
+                    RichTextBox2.SelectionColor = Color.Goldenrod
+                Case 5
+                    RichTextBox2.SelectionColor = Color.Gray
+                Case 6
+                    RichTextBox2.SelectionColor = Color.Goldenrod
+                Case 7
+                    RichTextBox2.SelectionColor = Color.Goldenrod
+                Case 8
+                    RichTextBox2.SelectionColor = Color.DarkGreen
+                Case 9
+                    RichTextBox2.SelectionColor = Color.Yellow
+                Case Else
+                    RichTextBox2.SelectionColor = Color.Black
+            End Select
+            If clr = "[" Then
+                RichTextBox2.SelectedText = temp1(index)
+            Else
+                RichTextBox2.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+            End If
+        Next
+    End Sub
+    Private Sub ColorSetter1(ByVal text As String)
+
+        If text.ToString().Contains("Ã¿c") = False Then
+            richTextBox1.Select(0, 0) : richTextBox1.SelectedText = vbCrLf
+            richTextBox1.Select(0, 0)
+            richTextBox1.SelectedText = text
+            richTextBox1.SelectionColor = Color.Black
+            Return
+        End If
+
+        Dim temp1 = Split(text, "Ã¿c")
+        richTextBox1.Select(0, 0) : richTextBox1.SelectedText = vbCrLf : richTextBox1.Select(0, 0)
+        For index = 0 To temp1.Length - 1
+            Dim clr = temp1(index).Substring(0, 1)
+
+            Select Case clr
+                Case 0
+                    richTextBox1.SelectionColor = Color.LightGray
+                Case 1
+                    richTextBox1.SelectionColor = Color.Red
+                Case 2
+                    richTextBox1.SelectionColor = Color.Green
+                Case 3
+                    richTextBox1.SelectionColor = Color.Blue
+                Case 4
+                    richTextBox1.SelectionColor = Color.Goldenrod
+                Case 5
+                    richTextBox1.SelectionColor = Color.Gray
+                Case 6
+                    richTextBox1.SelectionColor = Color.Goldenrod
+                Case 7
+                    richTextBox1.SelectionColor = Color.Goldenrod
+                Case 8
+                    richTextBox1.SelectionColor = Color.DarkGreen
+                Case 9
+                    richTextBox1.SelectionColor = Color.Yellow
+                Case Else
+                    richTextBox1.SelectionColor = Color.Black
+            End Select
+            If clr = "[" Then
+                richTextBox1.SelectedText = temp1(index)
+            Else
+                richTextBox1.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+            End If
+        Next
     End Sub
 End Class
