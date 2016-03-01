@@ -6,8 +6,14 @@ Imports System.Threading
 
 Public Class Form1
 
-    Private Declare Auto Function SendMessage Lib "user32" _
-        (ByVal hWnd As IntPtr, ByVal Msg As Integer, ByVal wParam As IntPtr, ByRef lParam As CopyData) As Boolean
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Public Shared Function SendMessage(
+            ByVal hWnd As IntPtr,
+            ByVal Msg As Integer,
+            ByVal wParam As IntPtr,
+            ByRef lParam As PInvoke.COPYDATASTRUCT) _
+            As IntPtr
+    End Function
 
 
 
@@ -16,14 +22,14 @@ Public Class Form1
         Select Case m.Msg
             Case WM_COPYDATA
 
-                Dim cds As CopyData
+                Dim cds As PInvoke.COPYDATASTRUCT
                 Dim nOption As Integer = Fix(m.WParam.ToInt32)
                 cds = Marshal.PtrToStructure(m.LParam, cds.GetType())
-                Dim nLength As Integer = cds.cbData
+                Dim nLength As Integer = cds.cdData
                 Dim temp As String = Marshal.PtrToStringAnsi(cds.lpData, nLength)
                 Dim y As Integer = cds.dwData
                 Dim a As Integer = m.WParam
-
+                'MessageBox.Show("sending Id = " & a)
 
                 Dim x As Integer = -1
                 For i = 0 To Objects.Count - 1
@@ -69,11 +75,8 @@ Public Class Form1
                         ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] " & temp)
 
                     Case 555
-                        Dim cdss As New CopyData
-                        cdss.dwData = 556
-                        cdss.lpData = vbNull
-                        cdss.cbData = vbNull
-                        SendMessage(Objects(x).D2PID, WM_COPYDATA, Me.Handle, cdss)
+                        'MessageBox.Show("code 555 received", "manager")
+                        datasend(a)
                     Case Else
 
                         RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
@@ -660,5 +663,24 @@ Public Class Form1
         Next
     End Sub
 
+    Public Sub datasend(ByVal a As Int32)
 
+
+        Dim pcd As New PInvoke.COPYDATASTRUCT
+        Dim myStruct As PInvoke.MyStruct
+
+        pcd.dwData = CType(556, IntPtr)
+        myStruct.Message = "boo"
+
+        Dim myStructSize As Integer = Marshal.SizeOf(myStruct)
+        Dim pMyStruct As IntPtr = Marshal.AllocHGlobal(myStructSize)
+
+        myStructSize = Marshal.SizeOf(myStruct)
+        pMyStruct = Marshal.AllocHGlobal(myStructSize)
+
+        pcd.cdData = myStructSize
+        pcd.lpData = pMyStruct
+
+        SendMessage(a, WM_COPYDATA, Me.Handle, pcd)
+    End Sub
 End Class

@@ -28,13 +28,6 @@ Module Module1
     Friend Const ETAL_MGR_ERROR_LOG As Integer = 11
 
 
-    <StructLayout(LayoutKind.Sequential)>
-    Friend Structure CopyData
-        Public dwData As IntPtr
-        Public cbData As Integer
-        Public lpData As IntPtr
-    End Structure
-
 
     Const SW_HIDE As Integer = 0
     Const SW_RESTORE As Integer = 1

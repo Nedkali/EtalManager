@@ -566,7 +566,13 @@ Namespace PInvoke
             Public lpData As IntPtr
         End Structure
 
+        <StructLayout(LayoutKind.Sequential, CharSet:=CharSet.Ansi)>
+        Friend Structure MyStruct
+            'Public Number As Integer
 
+            <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=&H100)>
+            Public Message As String
+        End Structure
 
     End Module
 End Namespace
