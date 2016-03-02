@@ -1,9 +1,9 @@
-﻿Imports System.Collections.Generic
-Imports System.Diagnostics
-Imports System.Runtime.InteropServices
+﻿Imports System.Runtime.InteropServices
 Imports System.ComponentModel
 Imports System.IO
 Imports System.Reflection
+Imports System.Security
+Imports System.Security.Principal
 
 Namespace PInvoke
 
@@ -559,20 +559,53 @@ Namespace PInvoke
             Return [String].Format(format, args)
         End Function
 
-        <StructLayout(LayoutKind.Sequential)>
-        Structure COPYDATASTRUCT
-            Public dwData As IntPtr
-            Public cdData As Integer
-            Public lpData As IntPtr
-        End Structure
-
-        <StructLayout(LayoutKind.Sequential, CharSet:=CharSet.Ansi)>
-        Friend Structure MyStruct
-            'Public Number As Integer
-
-            <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=&H100)>
-            Public Message As String
-        End Structure
 
     End Module
 End Namespace
+
+<SuppressUnmanagedCodeSecurity()>
+Friend Class NativeMethod
+
+    ''' <summary>
+    ''' Sends the specified message to a window or windows. The SendMessage 
+    ''' function calls the window procedure for the specified window and does 
+    ''' not return until the window procedure has processed the message. 
+    ''' </summary>
+    ''' <param name="hWnd">
+    ''' Handle to the window whose window procedure will receive the message.
+    ''' </param>
+    ''' <param name="Msg">Specifies the message to be sent.</param>
+    ''' <param name="wParam">
+    ''' Specifies additional message-specific information.
+    ''' </param>
+    ''' <param name="lParam">
+    ''' Specifies additional message-specific information.
+    ''' </param>
+    ''' <returns></returns>
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Public Shared Function SendMessage(
+            ByVal hWnd As IntPtr,
+            ByVal Msg As Integer,
+            ByVal wParam As IntPtr,
+            ByRef lParam As COPYDATASTRUCT) _
+            As IntPtr
+    End Function
+
+
+    ''' <summary>
+    ''' The FindWindow function retrieves a handle to the top-level window 
+    ''' whose class name and window name match the specified strings. This 
+    ''' function does not search child windows. This function does not 
+    ''' perform a case-sensitive search.
+    ''' </summary>
+    ''' <param name="lpClassName">Class name</param>
+    ''' <param name="lpWindowName">Window caption</param>
+    ''' <returns></returns>
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Public Shared Function FindWindow(
+            ByVal lpClassName As String,
+            ByVal lpWindowName As String) _
+            As IntPtr
+    End Function
+
+End Class

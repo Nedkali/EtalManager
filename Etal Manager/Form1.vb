@@ -1,31 +1,26 @@
 ﻿Imports System.IO.MemoryMappedFiles
 Imports System.Runtime.InteropServices
 Imports System.Threading
+Imports System.Security.Principal
+
 
 
 
 Public Class Form1
 
-    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
-    Public Shared Function SendMessage(
-            ByVal hWnd As IntPtr,
-            ByVal Msg As Integer,
-            ByVal wParam As IntPtr,
-            ByRef lParam As PInvoke.COPYDATASTRUCT) _
-            As IntPtr
-    End Function
-
 
 
     Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
-
+        'If sendmsg > 0 Then
+        '    datasend(sendmsg)
+        'End If
         Select Case m.Msg
             Case WM_COPYDATA
 
-                Dim cds As PInvoke.COPYDATASTRUCT
+                Dim cds As COPYDATASTRUCT
                 Dim nOption As Integer = Fix(m.WParam.ToInt32)
                 cds = Marshal.PtrToStructure(m.LParam, cds.GetType())
-                Dim nLength As Integer = cds.cdData
+                Dim nLength As Integer = cds.cbData
                 Dim temp As String = Marshal.PtrToStringAnsi(cds.lpData, nLength)
                 Dim y As Integer = cds.dwData
                 Dim a As Integer = m.WParam
@@ -74,9 +69,10 @@ Public Class Form1
                     Case ETAL_MGR_ERROR_LOG
                         ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] " & temp)
 
-                    Case 555
-                        'MessageBox.Show("code 555 received", "manager")
-                        datasend(a)
+                    Case 6153 ' used for dll to check if manager present
+                        m.Result = 0
+                        ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] Continuing next game")
+
                     Case Else
 
                         RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
@@ -663,24 +659,53 @@ Public Class Form1
         Next
     End Sub
 
-    Public Sub datasend(ByVal a As Int32)
+    Public Sub datasend(ByVal a As Integer)
 
 
-        Dim pcd As New PInvoke.COPYDATASTRUCT
-        Dim myStruct As PInvoke.MyStruct
+        Dim hTargetWnd As IntPtr = a
+        'SendMessageCallback(hTargetWnd, WM_COPYDATA, Me.Handle, 0, 0, 1)
 
-        pcd.dwData = CType(556, IntPtr)
-        myStruct.Message = "boo"
+        'MessageBox.Show("value of Number = " + hTargetWnd)
+        ' Prepare the COPYDATASTRUCT struct with the data to be sent.
+        Dim myStruct As MyStruct
 
+
+
+        myStruct.Number = 2
+        myStruct.Message = "Boo"
+
+        ' Marshal the managed struct to a native block of memory.
         Dim myStructSize As Integer = Marshal.SizeOf(myStruct)
         Dim pMyStruct As IntPtr = Marshal.AllocHGlobal(myStructSize)
+        Try
+            Marshal.StructureToPtr(myStruct, pMyStruct, True)
 
-        myStructSize = Marshal.SizeOf(myStruct)
-        pMyStruct = Marshal.AllocHGlobal(myStructSize)
+            Dim cds As New COPYDATASTRUCT
+            cds.cbData = myStructSize
+            cds.lpData = pMyStruct
 
-        pcd.cdData = myStructSize
-        pcd.lpData = pMyStruct
+            ' Send the COPYDATASTRUCT struct through the WM_COPYDATA message to 
+            ' the receiving window. (The application must use SendMessage, 
+            ' instead of PostMessage to send WM_COPYDATA because the receiving 
+            ' application must accept while it is guaranteed to be valid.)
+            NativeMethod.SendMessage(hTargetWnd, WM_COPYDATA, Me.Handle, cds)
 
-        SendMessage(a, WM_COPYDATA, Me.Handle, pcd)
+            Dim result As Integer = Marshal.GetLastWin32Error
+            If (result <> 0) Then
+                'SendMessageCallback(hTargetWnd, WM_COPYDATA, Me.Handle, 0, 1, 0)
+                MessageBox.Show(String.Format(
+                    "SendMessage(WM_COPYDATA) failed w/err 0x{0:X}", result))
+            End If
+        Finally
+            Marshal.FreeHGlobal(pMyStruct)
+        End Try
+
+
+    End Sub
+
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs) 
+
+        Dim hTargetWnd As IntPtr = NativeMethod.FindWindow(Nothing, "Ned")
+        datasend(hTargetWnd)
     End Sub
 End Class

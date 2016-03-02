@@ -1,12 +1,11 @@
 ﻿Imports System.Runtime.InteropServices
-Imports System.Security
 
 Module Module1
 
     Public Objects As List(Of Profiles) = New List(Of Profiles)
     Public totalkeys As List(Of keyholder) = New List(Of keyholder)
     Public bw As BackgroundWorker1 = New BackgroundWorker1
-
+    Public sendmsg As Integer = 0
     Public form2action As String
 
 
@@ -66,6 +65,23 @@ Module Module1
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public ScriptFile As String
     End Structure
+
+    <StructLayout(LayoutKind.Sequential)>
+    Friend Structure COPYDATASTRUCT
+        Public dwData As IntPtr
+        Public cbData As Integer
+        Public lpData As IntPtr
+    End Structure
+
+    <StructLayout(LayoutKind.Sequential, CharSet:=CharSet.Unicode)>
+    Friend Structure MyStruct
+        Public Number As Integer
+
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=&H100)>
+        Public Message As String
+    End Structure
+    Declare Function SendMessageCallback Lib "user32" Alias "SendMessageCallbackA" (ByVal hwnd As Integer, ByVal MSG As Integer, ByVal wParam As Integer, ByVal lParam As Integer, ByVal lpResultCallBack As Integer, ByVal dwData As Integer) As Integer
+
 
     Public Class BackgroundWorker1
     End Class
