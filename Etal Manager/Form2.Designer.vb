@@ -84,7 +84,7 @@ Partial Class Form2
         '
         'button4
         '
-        Me.button4.Location = New System.Drawing.Point(397, 426)
+        Me.button4.Location = New System.Drawing.Point(393, 429)
         Me.button4.Name = "button4"
         Me.button4.Size = New System.Drawing.Size(85, 28)
         Me.button4.TabIndex = 27
@@ -93,7 +93,7 @@ Partial Class Form2
         '
         'button3
         '
-        Me.button3.Location = New System.Drawing.Point(26, 426)
+        Me.button3.Location = New System.Drawing.Point(26, 429)
         Me.button3.Name = "button3"
         Me.button3.Size = New System.Drawing.Size(85, 28)
         Me.button3.TabIndex = 26
@@ -103,7 +103,7 @@ Partial Class Form2
         'label14
         '
         Me.label14.AutoSize = True
-        Me.label14.Location = New System.Drawing.Point(16, 95)
+        Me.label14.Location = New System.Drawing.Point(16, 82)
         Me.label14.Name = "label14"
         Me.label14.Size = New System.Drawing.Size(113, 13)
         Me.label14.TabIndex = 47
@@ -112,7 +112,7 @@ Partial Class Form2
         'checkBox6
         '
         Me.checkBox6.AutoSize = True
-        Me.checkBox6.Location = New System.Drawing.Point(337, 114)
+        Me.checkBox6.Location = New System.Drawing.Point(337, 111)
         Me.checkBox6.Name = "checkBox6"
         Me.checkBox6.Size = New System.Drawing.Size(66, 17)
         Me.checkBox6.TabIndex = 42
@@ -122,7 +122,7 @@ Partial Class Form2
         'label12
         '
         Me.label12.AutoSize = True
-        Me.label12.Location = New System.Drawing.Point(159, 114)
+        Me.label12.Location = New System.Drawing.Point(159, 113)
         Me.label12.Name = "label12"
         Me.label12.Size = New System.Drawing.Size(56, 13)
         Me.label12.TabIndex = 46
@@ -131,7 +131,7 @@ Partial Class Form2
         'checkBox7
         '
         Me.checkBox7.AutoSize = True
-        Me.checkBox7.Location = New System.Drawing.Point(337, 76)
+        Me.checkBox7.Location = New System.Drawing.Point(337, 80)
         Me.checkBox7.Name = "checkBox7"
         Me.checkBox7.Size = New System.Drawing.Size(66, 17)
         Me.checkBox7.TabIndex = 41
@@ -166,7 +166,7 @@ Partial Class Form2
         Me.groupBox2.Controls.Add(Me.label7)
         Me.groupBox2.Controls.Add(Me.label6)
         Me.groupBox2.Controls.Add(Me.textBox5)
-        Me.groupBox2.Location = New System.Drawing.Point(12, 274)
+        Me.groupBox2.Location = New System.Drawing.Point(12, 273)
         Me.groupBox2.Name = "groupBox2"
         Me.groupBox2.Size = New System.Drawing.Size(480, 146)
         Me.groupBox2.TabIndex = 25
@@ -175,7 +175,7 @@ Partial Class Form2
         '
         'textBox6
         '
-        Me.textBox6.Location = New System.Drawing.Point(221, 111)
+        Me.textBox6.Location = New System.Drawing.Point(221, 109)
         Me.textBox6.MaxLength = 7
         Me.textBox6.Name = "textBox6"
         Me.textBox6.Size = New System.Drawing.Size(100, 20)
@@ -184,7 +184,7 @@ Partial Class Form2
         'label13
         '
         Me.label13.AutoSize = True
-        Me.label13.Location = New System.Drawing.Point(149, 80)
+        Me.label13.Location = New System.Drawing.Point(149, 82)
         Me.label13.Name = "label13"
         Me.label13.Size = New System.Drawing.Size(66, 13)
         Me.label13.TabIndex = 45
@@ -192,7 +192,7 @@ Partial Class Form2
         '
         'textBox7
         '
-        Me.textBox7.Location = New System.Drawing.Point(221, 73)
+        Me.textBox7.Location = New System.Drawing.Point(221, 78)
         Me.textBox7.Name = "textBox7"
         Me.textBox7.Size = New System.Drawing.Size(100, 20)
         Me.textBox7.TabIndex = 43
@@ -202,7 +202,7 @@ Partial Class Form2
         Me.comboBox1.BackColor = System.Drawing.SystemColors.Control
         Me.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboBox1.FormattingEnabled = True
-        Me.comboBox1.Location = New System.Drawing.Point(14, 111)
+        Me.comboBox1.Location = New System.Drawing.Point(16, 109)
         Me.comboBox1.Name = "comboBox1"
         Me.comboBox1.Size = New System.Drawing.Size(121, 21)
         Me.comboBox1.TabIndex = 40
@@ -211,7 +211,7 @@ Partial Class Form2
         '
         Me.radioButton1.AutoSize = True
         Me.radioButton1.Checked = True
-        Me.radioButton1.Location = New System.Drawing.Point(412, 45)
+        Me.radioButton1.Location = New System.Drawing.Point(412, 48)
         Me.radioButton1.Name = "radioButton1"
         Me.radioButton1.Size = New System.Drawing.Size(31, 17)
         Me.radioButton1.TabIndex = 28
@@ -222,7 +222,7 @@ Partial Class Form2
         'radioButton3
         '
         Me.radioButton3.AutoSize = True
-        Me.radioButton3.Location = New System.Drawing.Point(412, 69)
+        Me.radioButton3.Location = New System.Drawing.Point(412, 71)
         Me.radioButton3.Name = "radioButton3"
         Me.radioButton3.Size = New System.Drawing.Size(31, 17)
         Me.radioButton3.TabIndex = 30
@@ -232,7 +232,7 @@ Partial Class Form2
         'radioButton5
         '
         Me.radioButton5.AutoSize = True
-        Me.radioButton5.Location = New System.Drawing.Point(412, 95)
+        Me.radioButton5.Location = New System.Drawing.Point(412, 94)
         Me.radioButton5.Name = "radioButton5"
         Me.radioButton5.Size = New System.Drawing.Size(31, 17)
         Me.radioButton5.TabIndex = 32
@@ -242,7 +242,7 @@ Partial Class Form2
         'radioButton8
         '
         Me.radioButton8.AutoSize = True
-        Me.radioButton8.Location = New System.Drawing.Point(449, 118)
+        Me.radioButton8.Location = New System.Drawing.Point(443, 117)
         Me.radioButton8.Name = "radioButton8"
         Me.radioButton8.Size = New System.Drawing.Size(31, 17)
         Me.radioButton8.TabIndex = 35
@@ -252,7 +252,7 @@ Partial Class Form2
         'radioButton2
         '
         Me.radioButton2.AutoSize = True
-        Me.radioButton2.Location = New System.Drawing.Point(449, 46)
+        Me.radioButton2.Location = New System.Drawing.Point(443, 48)
         Me.radioButton2.Name = "radioButton2"
         Me.radioButton2.Size = New System.Drawing.Size(31, 17)
         Me.radioButton2.TabIndex = 29
@@ -262,7 +262,7 @@ Partial Class Form2
         'radioButton7
         '
         Me.radioButton7.AutoSize = True
-        Me.radioButton7.Location = New System.Drawing.Point(412, 118)
+        Me.radioButton7.Location = New System.Drawing.Point(412, 117)
         Me.radioButton7.Name = "radioButton7"
         Me.radioButton7.Size = New System.Drawing.Size(31, 17)
         Me.radioButton7.TabIndex = 34
@@ -272,7 +272,7 @@ Partial Class Form2
         'radioButton4
         '
         Me.radioButton4.AutoSize = True
-        Me.radioButton4.Location = New System.Drawing.Point(449, 69)
+        Me.radioButton4.Location = New System.Drawing.Point(443, 71)
         Me.radioButton4.Name = "radioButton4"
         Me.radioButton4.Size = New System.Drawing.Size(31, 17)
         Me.radioButton4.TabIndex = 31
@@ -282,7 +282,7 @@ Partial Class Form2
         'radioButton6
         '
         Me.radioButton6.AutoSize = True
-        Me.radioButton6.Location = New System.Drawing.Point(449, 95)
+        Me.radioButton6.Location = New System.Drawing.Point(443, 94)
         Me.radioButton6.Name = "radioButton6"
         Me.radioButton6.Size = New System.Drawing.Size(31, 17)
         Me.radioButton6.TabIndex = 33
@@ -295,7 +295,7 @@ Partial Class Form2
         Me.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboBox3.FormattingEnabled = True
         Me.comboBox3.Items.AddRange(New Object() {"U.S. West", "U.S. East", "Asia 1", "Asia 2", "Asia 3", "Europe"})
-        Me.comboBox3.Location = New System.Drawing.Point(307, 46)
+        Me.comboBox3.Location = New System.Drawing.Point(307, 48)
         Me.comboBox3.Name = "comboBox3"
         Me.comboBox3.Size = New System.Drawing.Size(76, 21)
         Me.comboBox3.TabIndex = 27
@@ -317,7 +317,7 @@ Partial Class Form2
         Me.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboBox2.FormattingEnabled = True
         Me.comboBox2.Items.AddRange(New Object() {"Single Player", "Battle.Net"})
-        Me.comboBox2.Location = New System.Drawing.Point(132, 44)
+        Me.comboBox2.Location = New System.Drawing.Point(131, 48)
         Me.comboBox2.Name = "comboBox2"
         Me.comboBox2.Size = New System.Drawing.Size(101, 21)
         Me.comboBox2.TabIndex = 25
@@ -325,7 +325,7 @@ Partial Class Form2
         'label11
         '
         Me.label11.AutoSize = True
-        Me.label11.Location = New System.Drawing.Point(413, 25)
+        Me.label11.Location = New System.Drawing.Point(419, 29)
         Me.label11.Name = "label11"
         Me.label11.Size = New System.Drawing.Size(44, 13)
         Me.label11.TabIndex = 24
@@ -334,7 +334,7 @@ Partial Class Form2
         'label10
         '
         Me.label10.AutoSize = True
-        Me.label10.Location = New System.Drawing.Point(409, 10)
+        Me.label10.Location = New System.Drawing.Point(415, 10)
         Me.label10.Name = "label10"
         Me.label10.Size = New System.Drawing.Size(53, 13)
         Me.label10.TabIndex = 23
@@ -344,7 +344,7 @@ Partial Class Form2
         'label9
         '
         Me.label9.AutoSize = True
-        Me.label9.Location = New System.Drawing.Point(254, 44)
+        Me.label9.Location = New System.Drawing.Point(254, 52)
         Me.label9.Name = "label9"
         Me.label9.Size = New System.Drawing.Size(38, 13)
         Me.label9.TabIndex = 21
@@ -379,7 +379,7 @@ Partial Class Form2
         '
         'textBox5
         '
-        Me.textBox5.Location = New System.Drawing.Point(14, 44)
+        Me.textBox5.Location = New System.Drawing.Point(16, 48)
         Me.textBox5.Name = "textBox5"
         Me.textBox5.Size = New System.Drawing.Size(100, 20)
         Me.textBox5.TabIndex = 19
@@ -387,7 +387,7 @@ Partial Class Form2
         'checkBox1
         '
         Me.checkBox1.AutoSize = True
-        Me.checkBox1.Location = New System.Drawing.Point(19, 55)
+        Me.checkBox1.Location = New System.Drawing.Point(19, 48)
         Me.checkBox1.Name = "checkBox1"
         Me.checkBox1.Size = New System.Drawing.Size(95, 17)
         Me.checkBox1.TabIndex = 8
@@ -396,7 +396,7 @@ Partial Class Form2
         '
         'button2
         '
-        Me.button2.Location = New System.Drawing.Point(363, 22)
+        Me.button2.Location = New System.Drawing.Point(359, 17)
         Me.button2.Name = "button2"
         Me.button2.Size = New System.Drawing.Size(111, 23)
         Me.button2.TabIndex = 7
@@ -405,7 +405,7 @@ Partial Class Form2
         '
         'button1
         '
-        Me.button1.Location = New System.Drawing.Point(315, 22)
+        Me.button1.Location = New System.Drawing.Point(313, 17)
         Me.button1.Name = "button1"
         Me.button1.Size = New System.Drawing.Size(42, 23)
         Me.button1.TabIndex = 6
@@ -415,7 +415,7 @@ Partial Class Form2
         'label2
         '
         Me.label2.AutoSize = True
-        Me.label2.Location = New System.Drawing.Point(15, 25)
+        Me.label2.Location = New System.Drawing.Point(15, 22)
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(43, 13)
         Me.label2.TabIndex = 5
@@ -424,7 +424,7 @@ Partial Class Form2
         'textBox2
         '
         Me.textBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.textBox2.Location = New System.Drawing.Point(62, 22)
+        Me.textBox2.Location = New System.Drawing.Point(62, 18)
         Me.textBox2.Name = "textBox2"
         Me.textBox2.Size = New System.Drawing.Size(247, 20)
         Me.textBox2.TabIndex = 4
@@ -442,7 +442,7 @@ Partial Class Form2
         'checkBox2
         '
         Me.checkBox2.AutoSize = True
-        Me.checkBox2.Location = New System.Drawing.Point(121, 55)
+        Me.checkBox2.Location = New System.Drawing.Point(124, 48)
         Me.checkBox2.Name = "checkBox2"
         Me.checkBox2.Size = New System.Drawing.Size(74, 17)
         Me.checkBox2.TabIndex = 9
@@ -452,7 +452,7 @@ Partial Class Form2
         'label1
         '
         Me.label1.AutoSize = True
-        Me.label1.Location = New System.Drawing.Point(28, 122)
+        Me.label1.Location = New System.Drawing.Point(18, 116)
         Me.label1.Name = "label1"
         Me.label1.Size = New System.Drawing.Size(67, 13)
         Me.label1.TabIndex = 23
@@ -460,7 +460,7 @@ Partial Class Form2
         '
         'textBox1
         '
-        Me.textBox1.Location = New System.Drawing.Point(101, 119)
+        Me.textBox1.Location = New System.Drawing.Point(101, 113)
         Me.textBox1.Name = "textBox1"
         Me.textBox1.Size = New System.Drawing.Size(205, 20)
         Me.textBox1.TabIndex = 22
@@ -468,7 +468,7 @@ Partial Class Form2
         'checkBox3
         '
         Me.checkBox3.AutoSize = True
-        Me.checkBox3.Location = New System.Drawing.Point(208, 55)
+        Me.checkBox3.Location = New System.Drawing.Point(208, 48)
         Me.checkBox3.Name = "checkBox3"
         Me.checkBox3.Size = New System.Drawing.Size(81, 17)
         Me.checkBox3.TabIndex = 10
@@ -491,7 +491,7 @@ Partial Class Form2
         Me.groupBox1.Controls.Add(Me.button1)
         Me.groupBox1.Controls.Add(Me.label2)
         Me.groupBox1.Controls.Add(Me.textBox2)
-        Me.groupBox1.Location = New System.Drawing.Point(12, 138)
+        Me.groupBox1.Location = New System.Drawing.Point(12, 140)
         Me.groupBox1.Name = "groupBox1"
         Me.groupBox1.Size = New System.Drawing.Size(480, 123)
         Me.groupBox1.TabIndex = 24
@@ -501,23 +501,24 @@ Partial Class Form2
         'label5
         '
         Me.label5.AutoSize = True
-        Me.label5.Location = New System.Drawing.Point(348, 86)
+        Me.label5.Location = New System.Drawing.Point(347, 79)
         Me.label5.Name = "label5"
-        Me.label5.Size = New System.Drawing.Size(80, 13)
+        Me.label5.Size = New System.Drawing.Size(89, 13)
         Me.label5.TabIndex = 17
-        Me.label5.Text = "Game#/CDKey"
+        Me.label5.Text = "Game # / CDKey"
         '
         'textBox4
         '
-        Me.textBox4.Location = New System.Drawing.Point(434, 83)
+        Me.textBox4.Location = New System.Drawing.Point(440, 75)
         Me.textBox4.Name = "textBox4"
-        Me.textBox4.Size = New System.Drawing.Size(40, 20)
+        Me.textBox4.Size = New System.Drawing.Size(30, 20)
         Me.textBox4.TabIndex = 16
+        Me.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(59, 106)
+        Me.label4.Location = New System.Drawing.Point(62, 105)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(251, 13)
         Me.label4.TabIndex = 15
@@ -526,7 +527,7 @@ Partial Class Form2
         'label3
         '
         Me.label3.AutoSize = True
-        Me.label3.Location = New System.Drawing.Point(15, 86)
+        Me.label3.Location = New System.Drawing.Point(15, 79)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(40, 13)
         Me.label3.TabIndex = 14
@@ -534,15 +535,15 @@ Partial Class Form2
         '
         'textBox3
         '
-        Me.textBox3.Location = New System.Drawing.Point(62, 83)
+        Me.textBox3.Location = New System.Drawing.Point(62, 75)
         Me.textBox3.Name = "textBox3"
-        Me.textBox3.Size = New System.Drawing.Size(247, 20)
+        Me.textBox3.Size = New System.Drawing.Size(280, 20)
         Me.textBox3.TabIndex = 13
         '
         'checkBox5
         '
         Me.checkBox5.AutoSize = True
-        Me.checkBox5.Location = New System.Drawing.Point(385, 55)
+        Me.checkBox5.Location = New System.Drawing.Point(381, 48)
         Me.checkBox5.Name = "checkBox5"
         Me.checkBox5.Size = New System.Drawing.Size(89, 17)
         Me.checkBox5.TabIndex = 12
@@ -552,7 +553,7 @@ Partial Class Form2
         'checkBox4
         '
         Me.checkBox4.AutoSize = True
-        Me.checkBox4.Location = New System.Drawing.Point(300, 55)
+        Me.checkBox4.Location = New System.Drawing.Point(299, 48)
         Me.checkBox4.Name = "checkBox4"
         Me.checkBox4.Size = New System.Drawing.Size(72, 17)
         Me.checkBox4.TabIndex = 11
@@ -585,7 +586,7 @@ Partial Class Form2
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(84, 123)
+        Me.Button5.Location = New System.Drawing.Point(9, 123)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(101, 23)
         Me.Button5.TabIndex = 31
@@ -594,7 +595,7 @@ Partial Class Form2
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(257, 123)
+        Me.Button6.Location = New System.Drawing.Point(372, 123)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(100, 23)
         Me.Button6.TabIndex = 32
@@ -609,7 +610,7 @@ Partial Class Form2
         Me.GroupBox3.Controls.Add(Me.ListBox2)
         Me.GroupBox3.Controls.Add(Me.Button5)
         Me.GroupBox3.Controls.Add(Me.ListBox3)
-        Me.GroupBox3.Location = New System.Drawing.Point(12, 460)
+        Me.GroupBox3.Location = New System.Drawing.Point(12, 467)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(480, 151)
         Me.GroupBox3.TabIndex = 33
@@ -631,7 +632,7 @@ Partial Class Form2
         Me.Controls.Add(Me.groupBox1)
         Me.Name = "Form2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Form2"
+        Me.Text = "Profile Settings"
         Me.groupBox2.ResumeLayout(False)
         Me.groupBox2.PerformLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
