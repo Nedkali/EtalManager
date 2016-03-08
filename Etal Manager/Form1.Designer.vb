@@ -22,7 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.wwwetalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Exitbutton = New System.Windows.Forms.Button()
@@ -71,7 +71,7 @@ Partial Class Form1
         '
         'Exitbutton
         '
-        Me.Exitbutton.Location = New System.Drawing.Point(178, 632)
+        Me.Exitbutton.Location = New System.Drawing.Point(206, 632)
         Me.Exitbutton.Name = "Exitbutton"
         Me.Exitbutton.Size = New System.Drawing.Size(205, 27)
         Me.Exitbutton.TabIndex = 61
@@ -100,9 +100,9 @@ Partial Class Form1
         '
         'richTextBox1
         '
-        Me.richTextBox1.Location = New System.Drawing.Point(0, 0)
+        Me.richTextBox1.Location = New System.Drawing.Point(3, 3)
         Me.richTextBox1.Name = "richTextBox1"
-        Me.richTextBox1.Size = New System.Drawing.Size(589, 243)
+        Me.richTextBox1.Size = New System.Drawing.Size(579, 237)
         Me.richTextBox1.TabIndex = 0
         Me.richTextBox1.Text = ""
         '
@@ -227,14 +227,14 @@ Partial Class Form1
         Me.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control
         Me.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.KeyFile, Me.Column2, Me.Column3, Me.Deaths, Me.Column4, Me.Column5})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dataGridView1.DefaultCellStyle = DataGridViewCellStyle1
         Me.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight
         Me.dataGridView1.Location = New System.Drawing.Point(12, 121)
@@ -354,7 +354,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(617, 665)
+        Me.ClientSize = New System.Drawing.Size(617, 664)
         Me.Controls.Add(Me.CopyButton)
         Me.Controls.Add(Me.MoveDown)
         Me.Controls.Add(Me.MoveUp)
