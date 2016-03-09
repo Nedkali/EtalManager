@@ -7,7 +7,7 @@ Module BinaryRead
     'reads binary file and copy to profile class
     Public Sub ReadBinary()
         Dim fileName = Application.StartupPath & "\D2NT Manager.cfg"
-        'Form1.dataGridView1.Rows.Clear()
+        'Manager.ProfilesDataGrid.Rows.Clear()
 
         Dim temp As String = ""
         Dim bite As Byte = Nothing
@@ -122,12 +122,12 @@ Module BinaryRead
             Objects.Add(NewObject)
 
 
-            Form1.dataGridView1.Rows.Add(1)
+            Manager.ProfilesDataGrid.Rows.Add(1)
         Next
         reader.Close()
 
         For x = 0 To Objects.Count - 1
-            Form1.dataGridView1.Rows(x).SetValues(Objects(x).ProfileName, "", Objects(x).Run, Objects(x).Restarts, Objects(x).Deaths, Objects(x).Chickens, "")
+            Manager.ProfilesDataGrid.Rows(x).SetValues(Objects(x).ProfileName, "", Objects(x).Run, Objects(x).Restarts, Objects(x).Deaths, Objects(x).Chickens, "")
         Next
 
 
@@ -208,7 +208,7 @@ Module BinaryRead
 
         prof.Account = Objects(x).AccountName
         prof.AccPass = Objects(x).AccPass
-        'prof.MpqFile = Form1.dataGridView1.Rows(x).Cells(1).Value
+        'prof.MpqFile = Manager.ProfilesDataGrid.Rows(x).Cells(1).Value
         prof.Charloc = Objects(x).CharPosition
 
         'MessageBox.Show(Marshal.SizeOf(prof))
@@ -235,21 +235,21 @@ Module BinaryRead
             prof.KeyOwner = totalkeys(ckey).name
             prof.Classic = totalkeys(ckey).classic
             prof.Lod = totalkeys(ckey).lod
-            Form1.dataGridView1.Rows(x).Cells(1).Value = totalkeys(ckey).name
+            Manager.ProfilesDataGrid.Rows(x).Cells(1).Value = totalkeys(ckey).name
         End If
 
         'random game needs to be moved to dll later?
         If Objects(x).randomGame = 0 Then
             prof.GameName = Objects(x).GameName
         Else
-            prof.GameName = Form1.GenerateRandomString(8)
+            prof.GameName = Manager.GenerateRandomString(8)
         End If
 
         'random password needs to be moved to dll later?
         If Objects(x).randompass = 0 Then
             prof.GamePass = Objects(x).GamePass
         Else
-            prof.GamePass = Form1.GenerateRandomString(6)
+            prof.GamePass = Manager.GenerateRandomString(6)
         End If
         'MessageBox.Show(prof.MpqFile, "mpq Debug 2")
 
@@ -268,7 +268,7 @@ Module BinaryRead
 
             writer.Close()
         Catch ex As Exception
-            Form1.RichTextBox3.AppendText(ex.Message & vbCrLf)
+            Manager.ErrorTextBox.AppendText(ex.Message & vbCrLf)
             Return False
         End Try
 
@@ -313,7 +313,7 @@ Module BinaryRead
             gamesperkey = Convert.ToInt32(Objects(x).CDkeySwap)
         End If
 
-        Dim gamecount = Convert.ToInt32(Form1.dataGridView1.Rows(x).Cells(2).Value) 'current game count
+        Dim gamecount = Convert.ToInt32(Manager.ProfilesDataGrid.Rows(x).Cells(2).Value) 'current game count
 
         If totalkeys.Count = 0 Then Return -1
 

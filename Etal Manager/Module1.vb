@@ -8,7 +8,7 @@ Module Module1
 
     Public bw As BackgroundWorker1 = New BackgroundWorker1
     Public sendmsg As Integer = 0
-    Public form2action As String
+    Public ProfileEditoraction As String
 
 
     ''' <summary>

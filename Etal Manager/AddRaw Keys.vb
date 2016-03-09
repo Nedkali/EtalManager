@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
-        Dim a = Form1.dataGridView1.CurrentRow.Index
+        Dim a = Manager.ProfilesDataGrid.CurrentRow.Index
 
         If KeyMpqNameTBox.Text.Length = 0 Then
             KeyMpqNameTBox.Focus()
