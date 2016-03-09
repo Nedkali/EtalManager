@@ -4,6 +4,8 @@ Module Module1
 
     Public Objects As List(Of Profiles) = New List(Of Profiles)
     Public totalkeys As List(Of keyholder) = New List(Of keyholder)
+    Public current As List(Of keyholder) = New List(Of keyholder)
+
     Public bw As BackgroundWorker1 = New BackgroundWorker1
     Public sendmsg As Integer = 0
     Public form2action As String
@@ -43,8 +45,8 @@ Module Module1
         Public Account As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=12)>
         Public AccPass As String
-        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
-        Public MpqFile As String
+        '<MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        'Public MpqFile As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public KeyOwner As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
@@ -55,13 +57,13 @@ Module Module1
         Public GameName As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=6)>
         Public GamePass As String
-        Public Charloc As Char
-        Public Realm As Char
+        Public Charloc As Int32
+        Public Realm As Int32
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=8)>
         Public RandomGameName As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=6)>
         Public RandomGamePass As String
-        Public Difficulty As Char
+        Public Difficulty As Int32
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public ScriptFile As String
     End Structure

@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
+Imports System.IO
 
 Public Class Form2
 
@@ -73,7 +74,12 @@ Public Class Form2
             'NewObject.AccPass - deliberately left out - we grab this when user selects run
             Objects(x).D2PlayType = comboBox2.SelectedIndex
             Objects(x).D2Difficulty = comboBox4.SelectedIndex
-            Objects(x).Realm = comboBox3.SelectedIndex
+
+            If comboBox3.Text = "U.S.West" Then Objects(x).Realm = 1
+            If comboBox3.Text = "U.S.East" Then Objects(x).Realm = 2
+            If comboBox3.Text = "Asia" Then Objects(x).Realm = 3
+            If comboBox3.Text = "Europe" Then Objects(x).Realm = 4
+
             If checkBox7.Checked = True Then Objects(x).randomGame = 1
             If checkBox7.Checked = False Then Objects(x).randomGame = 0
             If checkBox6.Checked = True Then Objects(x).randompass = 1
@@ -103,7 +109,6 @@ Public Class Form2
             Return
         End If
 
-        Return
         If textBox1.Text = Nothing Then Return
         Dim NewObject As New Profiles
         NewObject.ProfileName = textBox1.Text
@@ -124,7 +129,12 @@ Public Class Form2
         'NewObject.AccPass - deliberately left out - we grab this when user selects run
         NewObject.D2PlayType = comboBox2.SelectedIndex
         NewObject.D2Difficulty = comboBox4.SelectedIndex
-        NewObject.Realm = comboBox3.SelectedIndex
+
+        If comboBox3.Text = "U.S.West" Then NewObject.Realm = 1
+        If comboBox3.Text = "U.S.East" Then NewObject.Realm = 2
+        If comboBox3.Text = "Asia" Then NewObject.Realm = 3
+        If comboBox3.Text = "Europe" Then NewObject.Realm = 4
+
         If checkBox7.Checked = True Then NewObject.randomGame = 1
         If checkBox7.Checked = False Then NewObject.randomGame = 0
         If checkBox6.Checked = True Then NewObject.randompass = 1
@@ -173,14 +183,16 @@ Public Class Form2
         comboBox1.Items.Clear()
         comboBox1.Items.Add("Loader only")
         comboBox1.SelectedIndex = 0
-        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath + "\scripts", FileIO.SearchOption.SearchTopLevelOnly, "*.ntj")
-            Dim str As Array = foundFile.Split("\")
-            Dim temp As String = str(str.Length - 1)
-            If temp.Length < 62 Then
-                comboBox1.Items.Add(temp)
-            End If
 
-        Next
+        If Directory.Exists(Application.StartupPath & "/scripts") Then
+            For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath + "\scripts", FileIO.SearchOption.SearchTopLevelOnly, "*.ntj")
+                Dim str As Array = foundFile.Split("\")
+                Dim temp As String = str(str.Length - 1)
+                If temp.Length < 62 Then
+                    comboBox1.Items.Add(temp)
+                End If
+            Next
+        End If
 
         If form2action <> "edit" Then
             Objects.Add(New Profiles)
@@ -207,7 +219,7 @@ Public Class Form2
             'NewObject.AccPass - deliberately left out - we grab this when user selects run
             comboBox2.SelectedIndex = Objects(x).D2PlayType
             comboBox4.SelectedIndex = Objects(x).D2Difficulty
-            comboBox3.SelectedIndex = Objects(x).Realm
+            comboBox3.SelectedIndex = Objects(x).Realm - 1
             textBox7.Text = Objects(x).GameName
             textBox6.Text = Objects(x).GamePass
             checkBox7.Checked = Objects(x).randomGame

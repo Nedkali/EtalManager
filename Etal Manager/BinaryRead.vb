@@ -208,25 +208,36 @@ Module BinaryRead
 
         prof.Account = Objects(x).AccountName
         prof.AccPass = Objects(x).AccPass
-        prof.MpqFile = Form1.dataGridView1.Rows(x).Cells(1).Value
-        prof.Charloc = Chr(Objects(x).CharPosition)
-        prof.Realm = Chr(Objects(x).Realm + 1)
-        prof.RandomGameName = Chr(Objects(x).randomGame)
-        prof.RandomGamePass = Chr(Objects(x).randompass)
-        prof.Difficulty = Chr(0)
+        'prof.MpqFile = Form1.dataGridView1.Rows(x).Cells(1).Value
+        prof.Charloc = Objects(x).CharPosition
+
+        'MessageBox.Show(Marshal.SizeOf(prof))
+
+
+
+        prof.RandomGameName = Objects(x).randomGame
+        prof.RandomGamePass = Objects(x).randompass
+
+        prof.Difficulty = 0
         If Objects(x).D2starter <> "Loader only" Then
             prof.ScriptFile = Objects(x).D2starter
         End If
 
         If Objects(x).D2PlayType = 0 Then
-            prof.Realm = Chr(0)
+            prof.Realm = 0
+        Else
+            prof.Realm = Objects(x).Realm
         End If
 
-        Dim temp = assignkeys(x)
-        prof.KeyOwner = temp(0)
-        prof.Classic = temp(1)
-        prof.Lod = temp(2)
-        Form1.dataGridView1.Rows(x).Cells(1).Value = prof.KeyOwner
+        Dim ckey = assignkeys(x)
+
+        If ckey >= 0 Then
+            prof.KeyOwner = totalkeys(ckey).name
+            prof.Classic = totalkeys(ckey).classic
+            prof.Lod = totalkeys(ckey).lod
+            Form1.dataGridView1.Rows(x).Cells(1).Value = totalkeys(ckey).name
+        End If
+
         'random game needs to be moved to dll later?
         If Objects(x).randomGame = 0 Then
             prof.GameName = Objects(x).GameName
@@ -240,6 +251,7 @@ Module BinaryRead
         Else
             prof.GamePass = Form1.GenerateRandomString(6)
         End If
+        'MessageBox.Show(prof.MpqFile, "mpq Debug 2")
 
         Dim Ptr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(prof))
         Dim ByteArray(Marshal.SizeOf(prof) - 1) As Byte
@@ -266,28 +278,36 @@ Module BinaryRead
     Function assignkeys(ByVal x)
         Dim xx = 0
         totalkeys.Clear()
-
+        Dim mpqkeys As Array
+        Dim rawkeys As Array
         Dim usekey As String = ""
-        Dim mpqkeys = Objects(x).CDkeys.Split(";")
-        Dim rawkeys = Objects(x).CDkeyOwner.Split(";")
+        If Objects(x).CDkeys <> Nothing Then
+            mpqkeys = Objects(x).CDkeys.Split(";")
+            'MessageBox.Show("here checking mpq's")
+            For index = 0 To mpqkeys.Length - 1
+                Dim newkeys As New keyholder
+                If mpqkeys(index) = Nothing Then Continue For
+                newkeys.name = mpqkeys(index)
+                newkeys.classic = ""
+                newkeys.lod = ""
+                totalkeys.Add(newkeys)
+            Next
+        End If
+        'MessageBox.Show("here checking totalkeys" & totalkeys.Count)
 
-        For index = 0 To mpqkeys.Length - 1
-            Dim newkeys As New keyholder
-            If mpqkeys(index) = Nothing Then Continue For
-            newkeys.name = mpqkeys(index)
-            newkeys.classic = ""
-            newkeys.lod = ""
-            totalkeys.Add(newkeys)
-        Next
+        If Objects(x).CDkeyOwner <> Nothing Then
+            rawkeys = Objects(x).CDkeyOwner.Split(";")
+            For index = 0 To rawkeys.Length - 1
+                Dim newkeys As New keyholder
+                If Objects(x).CDkeyOwner.Split(";")(index) = Nothing Then Continue For
+                newkeys.name = Objects(x).CDkeyOwner.Split(";")(index)
+                newkeys.classic = Objects(x).CDkeyClassic.Split(";")(index)
+                newkeys.lod = Objects(x).CDkeyExpansion.Split(";")(index)
+                totalkeys.Add(newkeys)
+            Next
+        End If
 
-        For index = 0 To rawkeys.Length - 1
-            Dim newkeys As New keyholder
-            If Objects(x).CDkeyOwner.Split(";")(index) = Nothing Then Continue For
-            newkeys.name = Objects(x).CDkeyOwner.Split(";")(index)
-            newkeys.classic = Objects(x).CDkeyClassic.Split(";")(index)
-            newkeys.lod = Objects(x).CDkeyExpansion.Split(";")(index)
-            totalkeys.Add(newkeys)
-        Next
+
         Dim gamesperkey = 0  ' games per key
         If Objects(x).CDkeySwap <> Nothing Then
             gamesperkey = Convert.ToInt32(Objects(x).CDkeySwap)
@@ -295,16 +315,14 @@ Module BinaryRead
 
         Dim gamecount = Convert.ToInt32(Form1.dataGridView1.Rows(x).Cells(2).Value) 'current game count
 
-        If totalkeys.Count = 0 Then Return ",,"
+        If totalkeys.Count = 0 Then Return -1
 
         If gamesperkey > 0 And gamecount > 0 Then
             Dim d = gamecount / gamesperkey
             xx = Int(d Mod totalkeys.Count)
         End If
 
-        Dim temp As String = totalkeys(xx).name & "," & totalkeys(xx).classic & "," & totalkeys(xx).lod
-        Dim tmp = temp.Split(",")
-        Return tmp
+        Return xx
     End Function
 
 End Module

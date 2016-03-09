@@ -294,7 +294,7 @@ Partial Class Form2
         Me.comboBox3.BackColor = System.Drawing.SystemColors.Control
         Me.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboBox3.FormattingEnabled = True
-        Me.comboBox3.Items.AddRange(New Object() {"U.S. West", "U.S. East", "Asia 1", "Asia 2", "Asia 3", "Europe"})
+        Me.comboBox3.Items.AddRange(New Object() {"U.S. West", "U.S. East", "Asia", "Europe"})
         Me.comboBox3.Location = New System.Drawing.Point(307, 48)
         Me.comboBox3.Name = "comboBox3"
         Me.comboBox3.Size = New System.Drawing.Size(76, 21)

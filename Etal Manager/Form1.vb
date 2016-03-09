@@ -39,10 +39,6 @@ Public Class Form1
                     Case ETAL_MGR_LOADING
                         dataGridView1.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_READY
-                        Dim keyfile = assignkeys(x)(0)
-                        If keyfile <> dataGridView1.Rows(x).Cells(1).Value Then
-                            restart(x)
-                        End If
                         dataGridView1.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_LOGIN
                         dataGridView1.Rows(x).Cells(6).Value = "Login"
@@ -68,6 +64,11 @@ Public Class Form1
                         ColorSetter2("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_ERROR_LOG
                         ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+                    Case 555
+                        Dim ckey = assignkeys(x)
+                        If ckey >= 0 And totalkeys(ckey).name <> dataGridView1.Rows(x).Cells(1).Value Then
+                            restart(x)
+                        End If
 
                     Case 6153 ' used for dll to check if manager present
                         m.Result = 0
@@ -144,7 +145,7 @@ Public Class Form1
 
     Private Sub button6_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
         Dim x As Integer = dataGridView1.CurrentRow.Index
-        If x < 0 Or x > Objects.Count-1 Or Objects.Count = 0 Then Return
+        If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
         For index = 0 To Objects.Count - 1
             If Objects(index).D2PID > 0 Then Return
         Next
@@ -263,7 +264,7 @@ Public Class Form1
     Private Sub button2_Click(sender As Object, e As EventArgs) Handles RunButton.Click
 
         Dim a As Integer = dataGridView1.CurrentRow.Index
-        If a < 0 Or Objects.Count = 0 Then Return
+        If a < 0 Or a > Objects.Count - 1 Then Return
         launchd2(a)
 
     End Sub
@@ -703,9 +704,13 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click_2(sender As Object, e As EventArgs) 
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs)
 
         Dim hTargetWnd As IntPtr = NativeMethod.FindWindow(Nothing, "Ned")
         datasend(hTargetWnd)
+    End Sub
+
+    Private Sub menuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuStrip1.ItemClicked
+
     End Sub
 End Class

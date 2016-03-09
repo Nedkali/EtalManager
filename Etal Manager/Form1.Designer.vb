@@ -41,6 +41,12 @@ Partial Class Form1
         Me.StopButton = New System.Windows.Forms.Button()
         Me.RunButton = New System.Windows.Forms.Button()
         Me.dataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.MoveDown = New System.Windows.Forms.Button()
+        Me.MoveUp = New System.Windows.Forms.Button()
+        Me.pictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CopyButton = New System.Windows.Forms.Button()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KeyFile = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -48,12 +54,6 @@ Partial Class Form1
         Me.Deaths = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.MoveDown = New System.Windows.Forms.Button()
-        Me.MoveUp = New System.Windows.Forms.Button()
-        Me.pictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.CopyButton = New System.Windows.Forms.Button()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.tabPage2.SuspendLayout()
         Me.CommonLog.SuspendLayout()
         Me.tabControl1.SuspendLayout()
@@ -245,59 +245,6 @@ Partial Class Form1
         Me.dataGridView1.Size = New System.Drawing.Size(590, 188)
         Me.dataGridView1.TabIndex = 53
         '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Profile Name"
-        Me.Column1.Name = "Column1"
-        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column1.Width = 120
-        '
-        'KeyFile
-        '
-        Me.KeyFile.FillWeight = 90.0!
-        Me.KeyFile.HeaderText = "Raw/Key Name"
-        Me.KeyFile.Name = "KeyFile"
-        Me.KeyFile.ReadOnly = True
-        Me.KeyFile.Width = 90
-        '
-        'Column2
-        '
-        Me.Column2.FillWeight = 60.0!
-        Me.Column2.HeaderText = "Runs"
-        Me.Column2.Name = "Column2"
-        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column2.Width = 60
-        '
-        'Column3
-        '
-        Me.Column3.FillWeight = 50.0!
-        Me.Column3.HeaderText = "Restarts"
-        Me.Column3.Name = "Column3"
-        Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column3.Width = 50
-        '
-        'Deaths
-        '
-        Me.Deaths.FillWeight = 50.0!
-        Me.Deaths.HeaderText = "Deaths"
-        Me.Deaths.Name = "Deaths"
-        Me.Deaths.Width = 50
-        '
-        'Column4
-        '
-        Me.Column4.FillWeight = 60.0!
-        Me.Column4.HeaderText = "Chickens"
-        Me.Column4.Name = "Column4"
-        Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column4.Width = 60
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Status"
-        Me.Column5.Name = "Column5"
-        Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column5.Width = 175
-        '
         'menuStrip1
         '
         Me.menuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.linksToolStripMenuItem})
@@ -350,11 +297,64 @@ Partial Class Form1
         'BackgroundWorker1
         '
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Profile Name"
+        Me.Column1.Name = "Column1"
+        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column1.Width = 120
+        '
+        'KeyFile
+        '
+        Me.KeyFile.FillWeight = 90.0!
+        Me.KeyFile.HeaderText = "Mpq/Raw key"
+        Me.KeyFile.Name = "KeyFile"
+        Me.KeyFile.ReadOnly = True
+        Me.KeyFile.Width = 90
+        '
+        'Column2
+        '
+        Me.Column2.FillWeight = 60.0!
+        Me.Column2.HeaderText = "Runs"
+        Me.Column2.Name = "Column2"
+        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column2.Width = 60
+        '
+        'Column3
+        '
+        Me.Column3.FillWeight = 50.0!
+        Me.Column3.HeaderText = "Restarts"
+        Me.Column3.Name = "Column3"
+        Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column3.Width = 50
+        '
+        'Deaths
+        '
+        Me.Deaths.FillWeight = 50.0!
+        Me.Deaths.HeaderText = "Deaths"
+        Me.Deaths.Name = "Deaths"
+        Me.Deaths.Width = 50
+        '
+        'Column4
+        '
+        Me.Column4.FillWeight = 60.0!
+        Me.Column4.HeaderText = "Chickens"
+        Me.Column4.Name = "Column4"
+        Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column4.Width = 60
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Status"
+        Me.Column5.Name = "Column5"
+        Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column5.Width = 175
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(617, 664)
+        Me.ClientSize = New System.Drawing.Size(617, 665)
         Me.Controls.Add(Me.CopyButton)
         Me.Controls.Add(Me.MoveDown)
         Me.Controls.Add(Me.MoveUp)
@@ -408,6 +408,7 @@ Partial Class Form1
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents RichTextBox3 As RichTextBox
     Private WithEvents CopyButton As Button
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents KeyFile As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
@@ -415,5 +416,4 @@ Partial Class Form1
     Friend WithEvents Deaths As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class
