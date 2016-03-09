@@ -12,6 +12,20 @@
             Return
         End If
 
+        Dim folder = Objects(a).D2Path
+        folder = folder.Replace("Game.exe", "")
+        If TextBox1.Text.Contains(".mpq") = True Then
+            If My.Computer.FileSystem.FileExists(folder & TextBox1.Text) Then
+                Objects(a).CDkeyOwner = Objects(a).CDkeyOwner & ";" & TextBox1.Text
+                Objects(a).CDkeyClassic = Objects(a).CDkeyClassic & ";"
+                Objects(a).CDkeyExpansion = Objects(a).CDkeyExpansion & ";"
+                Me.Close()
+            Else
+                MessageBox.Show("File must be Diablo II instaltion folder" & vbCrLf & "              or filename is incorrect!!", "Error")
+                Return
+            End If
+
+        End If
         If TextBox2.Text.Length <> 16 And TextBox2.Text.Length <> 26 Then
             TextBox2.Focus()
             Label4.Text = "Invalid Expansion key - must be 16 or 26" & TextBox2.Text.Length : Return

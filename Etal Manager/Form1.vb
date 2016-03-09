@@ -173,7 +173,7 @@ Public Class Form1
                 LogWriter.Write(Objects(x).D2Quality & ",")
                 LogWriter.Write(Objects(x).D2DirectText & ",")
                 LogWriter.Write(Objects(x).D2Minimized & ",")
-                LogWriter.Write(Objects(x).CDkeys & ",")
+                'LogWriter.Write(Objects(x).CDkeys & ",")
                 LogWriter.Write(Objects(x).CDkeySwap & ",")
                 LogWriter.Write(Objects(x).AccountName & ",")
                 LogWriter.Write(",")
@@ -214,7 +214,8 @@ Public Class Form1
             While CfgReader.EndOfStream = False
                 Dim temp = CfgReader.ReadLine
                 Dim myarray = Split(temp, ",")
-                If myarray.Length <> 21 Then
+                If myarray.Length <> 20 Then
+                    MessageBox.Show(myarray.Length)
                     CfgReader.Close()
                     Exit Try
                 End If
@@ -227,20 +228,20 @@ Public Class Form1
                 NewObject.D2Quality = myarray(4)
                 NewObject.D2DirectText = myarray(5)
                 NewObject.D2Minimized = myarray(6)
-                NewObject.CDkeys = myarray(7)
-                NewObject.CDkeySwap = myarray(8)
-                NewObject.AccountName = myarray(9)
-                NewObject.AccPass = myarray(10)
-                NewObject.D2PlayType = myarray(11)
-                NewObject.D2Difficulty = myarray(12)
-                NewObject.Realm = myarray(13)
-                NewObject.GameName = myarray(14)
-                NewObject.GamePass = myarray(15)
-                NewObject.CharPosition = myarray(16)
-                NewObject.D2starter = myarray(17)
-                NewObject.CDkeyOwner = myarray(18)
-                NewObject.CDkeyClassic = myarray(19)
-                NewObject.CDkeyExpansion = myarray(20)
+                'NewObject.CDkeys = myarray(7)
+                NewObject.CDkeySwap = myarray(7)
+                NewObject.AccountName = myarray(8)
+                NewObject.AccPass = myarray(9)
+                NewObject.D2PlayType = myarray(10)
+                NewObject.D2Difficulty = myarray(11)
+                NewObject.Realm = myarray(12)
+                NewObject.GameName = myarray(13)
+                NewObject.GamePass = myarray(14)
+                NewObject.CharPosition = myarray(15)
+                NewObject.D2starter = myarray(16)
+                NewObject.CDkeyOwner = myarray(17)
+                NewObject.CDkeyClassic = myarray(18)
+                NewObject.CDkeyExpansion = myarray(19)
                 Objects.Add(NewObject)
             End While
 

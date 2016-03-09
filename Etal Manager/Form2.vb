@@ -68,7 +68,23 @@ Public Class Form2
             If checkBox4.Checked = False Then Objects(x).D2DirectText = 0
             If checkBox5.Checked = True Then Objects(x).D2Minimized = 1
             If checkBox5.Checked = False Then Objects(x).D2Minimized = 0
-            Objects(x).CDkeys = textBox3.Text
+
+            Objects(x).CDkeyOwner = "" : Objects(x).CDkeyClassic = "" : Objects(x).CDkeyExpansion = ""
+            For index = 0 To DataGridView1.Rows.Count - 1
+                If DataGridView1.Rows(index).Cells(0).Value.ToString() = Nothing Then Continue For
+
+                If Objects(x).CDkeyOwner = Nothing Then
+                    Objects(x).CDkeyOwner = DataGridView1.Rows(index).Cells(0).Value
+                    Objects(x).CDkeyClassic = DataGridView1.Rows(index).Cells(1).Value
+                    Objects(x).CDkeyExpansion = DataGridView1.Rows(index).Cells(2).Value
+                Else
+                    Objects(x).CDkeyOwner = Objects(x).CDkeyOwner & ";" & DataGridView1.Rows(index).Cells(0).Value
+                    Objects(x).CDkeyClassic = Objects(x).CDkeyClassic & ";" & DataGridView1.Rows(index).Cells(1).Value
+                    Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion & ";" & DataGridView1.Rows(index).Cells(2).Value
+                End If
+            Next
+
+            'Objects(x).CDkeys = textBox3.Text
             Objects(x).CDkeySwap = textBox4.Text
             Objects(x).AccountName = textBox5.Text
             'NewObject.AccPass - deliberately left out - we grab this when user selects run
@@ -123,7 +139,7 @@ Public Class Form2
         If checkBox4.Checked = False Then NewObject.D2DirectText = 0
         If checkBox5.Checked = True Then NewObject.D2Minimized = 1
         If checkBox5.Checked = False Then NewObject.D2Minimized = 0
-        NewObject.CDkeys = textBox3.Text
+        'NewObject.CDkeys = textBox3.Text
         NewObject.CDkeySwap = textBox4.Text
         NewObject.AccountName = textBox5.Text
         'NewObject.AccPass - deliberately left out - we grab this when user selects run
@@ -154,7 +170,7 @@ Public Class Form2
 
         Objects.Add(NewObject)
 
-        Form1.dataGridView1.Rows(Objects.Count - 1).Cells(0).Value = Objects(Objects.Count - 1).ProfileName ' testing purpose only
+        Form1.dataGridView1.Rows(Objects.Count - 1).Cells(0).Value = Objects(Objects.Count - 1).ProfileName
 
         Me.Close()
     End Sub
@@ -180,6 +196,8 @@ Public Class Form2
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles Me.Load
         'Me.Left = Form1.Left + 20
         'Me.Top = Form1.Top + 80
+        DataGridView1.Rows.Clear()
+
         comboBox1.Items.Clear()
         comboBox1.Items.Add("Loader only")
         comboBox1.SelectedIndex = 0
@@ -194,12 +212,6 @@ Public Class Form2
             Next
         End If
 
-        If form2action <> "edit" Then
-            Objects.Add(New Profiles)
-            Form1.dataGridView1.Rows(Objects.Count - 1).Selected = True
-            Form1.dataGridView1.CurrentCell = Form1.dataGridView1.Item(0, Objects.Count - 1)
-            form2action = "edit"
-        End If
 
         If form2action = "edit" Then
 
@@ -213,7 +225,7 @@ Public Class Form2
             checkBox3.Checked = Objects(x).D2Quality
             checkBox4.Checked = Objects(x).D2DirectText
             checkBox5.Checked = Objects(x).D2Minimized
-            textBox3.Text = Objects(x).CDkeys
+            'textBox3.Text = Objects(x).CDkeys
             textBox4.Text = Objects(x).CDkeySwap
             textBox5.Text = Objects(x).AccountName
             'NewObject.AccPass - deliberately left out - we grab this when user selects run
@@ -238,13 +250,10 @@ Public Class Form2
             If comboBox1.SelectedIndex < 0 Then comboBox1.Text = "Loader Only"
 
             displaykeys(x)
-
-
             Return
         End If
         textBox1.Clear()
         textBox2.Clear()
-        textBox3.Clear()
         checkBox1.Checked = True
         checkBox2.Checked = False
         checkBox3.Checked = False
@@ -271,77 +280,27 @@ Public Class Form2
 
     Private Sub displaykeys(ByVal x)
 
-        ListBox1.Items.Clear()
-        ListBox2.Items.Clear()
-        ListBox3.Items.Clear()
+
         If Objects(x).CDkeyOwner = Nothing Then Return
+        DataGridView1.Rows.Clear()
 
         Dim temp = Objects(x).CDkeyOwner.Split(";")
+        Dim temp1 = Objects(x).CDkeyClassic.Split(";")
+        Dim temp2 = Objects(x).CDkeyExpansion.Split(";")
         For index = 0 To temp.Length - 1
-            ListBox1.Items.Add(temp(index))
+            DataGridView1.Rows.Add(temp(index), temp1(index), temp2(index))
         Next
 
-        temp = Objects(x).CDkeyClassic.Split(";")
-        For index = 0 To temp.Length - 1
-            ListBox2.Items.Add(temp(index))
-        Next
-
-        temp = Objects(x).CDkeyExpansion.Split(";")
-        For index = 0 To temp.Length - 1
-            ListBox3.Items.Add(temp(index))
-        Next
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Dim keyindex = ListBox1.SelectedIndex
-        Dim x As Integer = Form1.dataGridView1.CurrentRow.Index
-        If ListBox1.SelectedItem.ToString() <> Nothing Then
-
-            Dim temp As String = ListBox1.SelectedItem.ToString()
-            Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.Replace(temp, "")
-            Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.Replace(";;", "")
-            temp = ListBox2.Items(keyindex).ToString()
-            Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.Replace(temp, "")
-            Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.Replace(";;", "")
-            temp = ListBox3.Items(keyindex).ToString()
-            Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.Replace(temp, "")
-            Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.Replace(";;", "")
-            CleanKeys(x)
-
+        If DataGridView1.Rows.Count = 0 Then
+            Return
         End If
-        displaykeys(x)
-        If ListBox1.Items.Count > 0 Then
-            ListBox1.SelectedIndex = 0
-        End If
-
-
-    End Sub
-    Private Sub CleanKeys(ByVal x)
-
-        Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.TrimEnd(";")
-        Objects(x).CDkeyOwner = Objects(x).CDkeyOwner.TrimStart(";")
-
-        Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.TrimEnd(";")
-        Objects(x).CDkeyClassic = Objects(x).CDkeyClassic.TrimStart(";")
-
-        Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.TrimEnd(";")
-        Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion.TrimStart(";")
-
+        Dim x = DataGridView1.CurrentRow.Index
+        DataGridView1.Rows.RemoveAt(x)
 
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
-        ListBox2.SelectedIndex = ListBox1.SelectedIndex
-        ListBox3.SelectedIndex = ListBox1.SelectedIndex
-    End Sub
 
-    Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
-        ListBox1.SelectedIndex = ListBox2.SelectedIndex
-        ListBox3.SelectedIndex = ListBox2.SelectedIndex
-    End Sub
-
-    Private Sub ListBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox3.SelectedIndexChanged
-        ListBox1.SelectedIndex = ListBox3.SelectedIndex
-        ListBox2.SelectedIndex = ListBox3.SelectedIndex
-    End Sub
 End Class

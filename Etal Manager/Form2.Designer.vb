@@ -23,6 +23,7 @@ Partial Class Form2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.button4 = New System.Windows.Forms.Button()
         Me.button3 = New System.Windows.Forms.Button()
         Me.label14 = New System.Windows.Forms.Label()
@@ -63,28 +64,25 @@ Partial Class Form2
         Me.textBox1 = New System.Windows.Forms.TextBox()
         Me.checkBox3 = New System.Windows.Forms.CheckBox()
         Me.groupBox1 = New System.Windows.Forms.GroupBox()
-        Me.label5 = New System.Windows.Forms.Label()
-        Me.textBox4 = New System.Windows.Forms.TextBox()
-        Me.label4 = New System.Windows.Forms.Label()
-        Me.label3 = New System.Windows.Forms.Label()
-        Me.textBox3 = New System.Windows.Forms.TextBox()
         Me.checkBox5 = New System.Windows.Forms.CheckBox()
         Me.checkBox4 = New System.Windows.Forms.CheckBox()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.label5 = New System.Windows.Forms.Label()
+        Me.textBox4 = New System.Windows.Forms.TextBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.groupBox2.SuspendLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupBox1.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'button4
         '
-        Me.button4.Location = New System.Drawing.Point(393, 429)
+        Me.button4.Location = New System.Drawing.Point(389, 585)
         Me.button4.Name = "button4"
         Me.button4.Size = New System.Drawing.Size(85, 28)
         Me.button4.TabIndex = 27
@@ -93,7 +91,7 @@ Partial Class Form2
         '
         'button3
         '
-        Me.button3.Location = New System.Drawing.Point(26, 429)
+        Me.button3.Location = New System.Drawing.Point(22, 585)
         Me.button3.Name = "button3"
         Me.button3.Size = New System.Drawing.Size(85, 28)
         Me.button3.TabIndex = 26
@@ -166,7 +164,7 @@ Partial Class Form2
         Me.groupBox2.Controls.Add(Me.label7)
         Me.groupBox2.Controls.Add(Me.label6)
         Me.groupBox2.Controls.Add(Me.textBox5)
-        Me.groupBox2.Location = New System.Drawing.Point(12, 273)
+        Me.groupBox2.Location = New System.Drawing.Point(12, 231)
         Me.groupBox2.Name = "groupBox2"
         Me.groupBox2.Size = New System.Drawing.Size(480, 146)
         Me.groupBox2.TabIndex = 25
@@ -477,11 +475,6 @@ Partial Class Form2
         '
         'groupBox1
         '
-        Me.groupBox1.Controls.Add(Me.label5)
-        Me.groupBox1.Controls.Add(Me.textBox4)
-        Me.groupBox1.Controls.Add(Me.label4)
-        Me.groupBox1.Controls.Add(Me.label3)
-        Me.groupBox1.Controls.Add(Me.textBox3)
         Me.groupBox1.Controls.Add(Me.checkBox5)
         Me.groupBox1.Controls.Add(Me.checkBox4)
         Me.groupBox1.Controls.Add(Me.checkBox3)
@@ -493,52 +486,10 @@ Partial Class Form2
         Me.groupBox1.Controls.Add(Me.textBox2)
         Me.groupBox1.Location = New System.Drawing.Point(12, 140)
         Me.groupBox1.Name = "groupBox1"
-        Me.groupBox1.Size = New System.Drawing.Size(480, 123)
+        Me.groupBox1.Size = New System.Drawing.Size(480, 85)
         Me.groupBox1.TabIndex = 24
         Me.groupBox1.TabStop = False
         Me.groupBox1.Text = "Loader Settings"
-        '
-        'label5
-        '
-        Me.label5.AutoSize = True
-        Me.label5.Location = New System.Drawing.Point(347, 79)
-        Me.label5.Name = "label5"
-        Me.label5.Size = New System.Drawing.Size(89, 13)
-        Me.label5.TabIndex = 17
-        Me.label5.Text = "Game # / CDKey"
-        '
-        'textBox4
-        '
-        Me.textBox4.Location = New System.Drawing.Point(440, 75)
-        Me.textBox4.Name = "textBox4"
-        Me.textBox4.Size = New System.Drawing.Size(30, 20)
-        Me.textBox4.TabIndex = 16
-        Me.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'label4
-        '
-        Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(62, 105)
-        Me.label4.Name = "label4"
-        Me.label4.Size = New System.Drawing.Size(251, 13)
-        Me.label4.TabIndex = 15
-        Me.label4.Text = "(Example: CDKey1.mpq;CDKey2.mpq;CDKey3.mpq)"
-        '
-        'label3
-        '
-        Me.label3.AutoSize = True
-        Me.label3.Location = New System.Drawing.Point(15, 79)
-        Me.label3.Name = "label3"
-        Me.label3.Size = New System.Drawing.Size(40, 13)
-        Me.label3.TabIndex = 14
-        Me.label3.Text = "CDKey"
-        '
-        'textBox3
-        '
-        Me.textBox3.Location = New System.Drawing.Point(62, 75)
-        Me.textBox3.Name = "textBox3"
-        Me.textBox3.Size = New System.Drawing.Size(280, 20)
-        Me.textBox3.TabIndex = 13
         '
         'checkBox5
         '
@@ -560,33 +511,26 @@ Partial Class Form2
         Me.checkBox4.Text = "Direct Txt"
         Me.checkBox4.UseVisualStyleBackColor = True
         '
-        'ListBox1
+        'label5
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(9, 19)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(105, 95)
-        Me.ListBox1.TabIndex = 28
+        Me.label5.AutoSize = True
+        Me.label5.Location = New System.Drawing.Point(171, 388)
+        Me.label5.Name = "label5"
+        Me.label5.Size = New System.Drawing.Size(89, 13)
+        Me.label5.TabIndex = 17
+        Me.label5.Text = "Game # / CDKey"
         '
-        'ListBox2
+        'textBox4
         '
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(119, 19)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(174, 95)
-        Me.ListBox2.TabIndex = 29
-        '
-        'ListBox3
-        '
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(298, 19)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(174, 95)
-        Me.ListBox3.TabIndex = 30
+        Me.textBox4.Location = New System.Drawing.Point(264, 384)
+        Me.textBox4.Name = "textBox4"
+        Me.textBox4.Size = New System.Drawing.Size(30, 20)
+        Me.textBox4.TabIndex = 16
+        Me.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(9, 123)
+        Me.Button5.Location = New System.Drawing.Point(25, 381)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(101, 23)
         Me.Button5.TabIndex = 31
@@ -595,36 +539,74 @@ Partial Class Form2
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(372, 123)
+        Me.Button6.Location = New System.Drawing.Point(380, 381)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(100, 23)
         Me.Button6.TabIndex = 32
         Me.Button6.Text = "Add Key Set"
         Me.Button6.UseVisualStyleBackColor = True
         '
-        'GroupBox3
+        'DataGridView1
         '
-        Me.GroupBox3.BackColor = System.Drawing.SystemColors.Control
-        Me.GroupBox3.Controls.Add(Me.ListBox1)
-        Me.GroupBox3.Controls.Add(Me.Button6)
-        Me.GroupBox3.Controls.Add(Me.ListBox2)
-        Me.GroupBox3.Controls.Add(Me.Button5)
-        Me.GroupBox3.Controls.Add(Me.ListBox3)
-        Me.GroupBox3.Location = New System.Drawing.Point(12, 467)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(480, 151)
-        Me.GroupBox3.TabIndex = 33
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Raw Keys"
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3})
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridView1.Location = New System.Drawing.Point(12, 415)
+        Me.DataGridView1.MultiSelect = False
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(480, 156)
+        Me.DataGridView1.TabIndex = 33
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Mpq/owner"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.FillWeight = 210.0!
+        Me.Column2.HeaderText = "Classic"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 210
+        '
+        'Column3
+        '
+        Me.Column3.FillWeight = 210.0!
+        Me.Column3.HeaderText = "Expansion"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        Me.Column3.Width = 210
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(504, 623)
-        Me.Controls.Add(Me.GroupBox3)
+        Me.Controls.Add(Me.label5)
+        Me.Controls.Add(Me.textBox4)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.button4)
         Me.Controls.Add(Me.button3)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.groupBox2)
         Me.Controls.Add(Me.pictureBox1)
         Me.Controls.Add(Me.label1)
@@ -638,7 +620,7 @@ Partial Class Form2
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -685,15 +667,12 @@ Partial Class Form2
     Private WithEvents groupBox1 As System.Windows.Forms.GroupBox
     Private WithEvents label5 As System.Windows.Forms.Label
     Private WithEvents textBox4 As System.Windows.Forms.TextBox
-    Private WithEvents label4 As System.Windows.Forms.Label
-    Private WithEvents label3 As System.Windows.Forms.Label
-    Private WithEvents textBox3 As System.Windows.Forms.TextBox
     Private WithEvents checkBox5 As System.Windows.Forms.CheckBox
     Private WithEvents checkBox4 As System.Windows.Forms.CheckBox
-    Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents ListBox2 As ListBox
-    Friend WithEvents ListBox3 As ListBox
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
-    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
 End Class
