@@ -31,7 +31,7 @@ Partial Class AddRawKeys
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.AddButton = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.WarningsLabel = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -122,15 +122,15 @@ Partial Class AddRawKeys
         Me.Button1.Text = "Cancel"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label4
+        'WarningsLabel
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.ForeColor = System.Drawing.Color.Crimson
-        Me.Label4.Location = New System.Drawing.Point(135, 133)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(10, 13)
-        Me.Label4.TabIndex = 13
-        Me.Label4.Text = " "
+        Me.WarningsLabel.AutoSize = True
+        Me.WarningsLabel.ForeColor = System.Drawing.Color.Crimson
+        Me.WarningsLabel.Location = New System.Drawing.Point(135, 133)
+        Me.WarningsLabel.Name = "WarningsLabel"
+        Me.WarningsLabel.Size = New System.Drawing.Size(10, 13)
+        Me.WarningsLabel.TabIndex = 13
+        Me.WarningsLabel.Text = " "
         '
         'AddRawKeys
         '
@@ -138,7 +138,7 @@ Partial Class AddRawKeys
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(469, 172)
         Me.ControlBox = False
-        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.WarningsLabel)
         Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(485, 210)
@@ -163,5 +163,5 @@ Partial Class AddRawKeys
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Button1 As Button
     Friend WithEvents AddButton As Button
-    Friend WithEvents Label4 As Label
+    Friend WithEvents WarningsLabel As Label
 End Class

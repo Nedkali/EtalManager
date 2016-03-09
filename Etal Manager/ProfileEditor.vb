@@ -37,7 +37,7 @@ Public Class ProfileEditor
     End Sub
 
 
-    Private Sub button3_Click(sender As Object, e As EventArgs) Handles OkAcceptButton.Click
+    Private Sub OkAcceptButton_Click(sender As Object, e As EventArgs) Handles OkAcceptButton.Click
         If ProfileNameTBox.Text = "" Then
             MessageBox.Show("Profile name not set", "Error")
             Return
@@ -51,7 +51,7 @@ Public Class ProfileEditor
             Return
         End If
 
-        If GameNameTBox.Text = "" Then
+        If GameNameTBox.Text = "" And RandomGameNameCBox.Checked = False Then
             MessageBox.Show("Game Name not Entered", "Error")
             Return
         End If
@@ -179,7 +179,7 @@ Public Class ProfileEditor
         Me.Close()
     End Sub
 
-    Private Sub checkBox7_CheckedChanged(sender As Object, e As EventArgs) Handles RandomGameNameCBox.CheckedChanged
+    Private Sub RandomGameNameCBox_CheckedChanged(sender As Object, e As EventArgs) Handles RandomGameNameCBox.CheckedChanged
         If RandomGameNameCBox.Checked = True Then
             GameNameTBox.Enabled = False
         End If
@@ -188,7 +188,7 @@ Public Class ProfileEditor
         End If
     End Sub
 
-    Private Sub checkBox6_CheckedChanged(sender As Object, e As EventArgs) Handles RandomGamePasswordCBox.CheckedChanged
+    Private Sub RandomGamePasswordCBox_CheckedChanged(sender As Object, e As EventArgs) Handles RandomGamePasswordCBox.CheckedChanged
         If RandomGamePasswordCBox.Checked = True Then
             GamePasswordTBox.Enabled = False
         End If

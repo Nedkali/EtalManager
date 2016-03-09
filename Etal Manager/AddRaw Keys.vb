@@ -8,7 +8,7 @@
 
         If KeyMpqNameTBox.Text.Length = 0 Then
             KeyMpqNameTBox.Focus()
-            Label4.Text = "Must enter a Name" : Return
+            WarningsLabel.Text = "Must enter a Name" : Return
             Return
         End If
 
@@ -23,20 +23,20 @@
                 Objects(a).CDkeyExpansion = Objects(a).CDkeyExpansion & ";"
                 Me.Close()
             Else
-                Label4.Text = "File must be Diablo II instaltion folder" & vbCrLf & "              or filename is incorrect!!"
+                WarningsLabel.Text = "File must be Diablo II instaltion folder" & vbCrLf & "              or filename is incorrect!!"
                 Return
             End If
 
         End If
         If ClassicKeyTBox.Text.Length <> 16 And ClassicKeyTBox.Text.Length <> 26 Then
             ClassicKeyTBox.Focus()
-            Label4.Text = "Invalid Expansion key - must be 16 or 26" & ClassicKeyTBox.Text.Length : Return
+            WarningsLabel.Text = "Invalid Classic key - must be 16 or 26 - (" & ClassicKeyTBox.Text.Length & ")" : Return
             Return
         End If
 
         If ExpansionKeyTBox.Text.Length <> 16 And ExpansionKeyTBox.Text.Length <> 26 Then
             ExpansionKeyTBox.Focus()
-            Label4.Text = "Invalid Expansion key - must be 16 or 26" & ExpansionKeyTBox.Text.Length : Return
+            WarningsLabel.Text = "Invalid Expansion key - must be 16 or 26 - (" & ExpansionKeyTBox.Text.Length & ")" : Return
         End If
 
 
