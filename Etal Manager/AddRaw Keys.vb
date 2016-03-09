@@ -3,53 +3,62 @@
         Me.Close()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
         Dim a = Form1.dataGridView1.CurrentRow.Index
 
-        If TextBox1.Text.Length = 0 Then
-            TextBox1.Focus()
+        If KeyMpqNameTBox.Text.Length = 0 Then
+            KeyMpqNameTBox.Focus()
             Label4.Text = "Must enter a Name" : Return
             Return
         End If
 
         Dim folder = Objects(a).D2Path
         folder = folder.Replace("Game.exe", "")
-        If TextBox1.Text.Contains(".mpq") = True Then
-            If My.Computer.FileSystem.FileExists(folder & TextBox1.Text) Then
-                Objects(a).CDkeyOwner = Objects(a).CDkeyOwner & ";" & TextBox1.Text
+
+        If KeyMpqNameTBox.Text.Contains(".mpq") = True Then
+
+            If My.Computer.FileSystem.FileExists(folder & KeyMpqNameTBox.Text) Then
+                Objects(a).CDkeyOwner = Objects(a).CDkeyOwner & ";" & KeyMpqNameTBox.Text
                 Objects(a).CDkeyClassic = Objects(a).CDkeyClassic & ";"
                 Objects(a).CDkeyExpansion = Objects(a).CDkeyExpansion & ";"
                 Me.Close()
             Else
-                MessageBox.Show("File must be Diablo II instaltion folder" & vbCrLf & "              or filename is incorrect!!", "Error")
+                Label4.Text = "File must be Diablo II instaltion folder" & vbCrLf & "              or filename is incorrect!!"
                 Return
             End If
 
         End If
-        If TextBox2.Text.Length <> 16 And TextBox2.Text.Length <> 26 Then
-            TextBox2.Focus()
-            Label4.Text = "Invalid Expansion key - must be 16 or 26" & TextBox2.Text.Length : Return
+        If ClassicKeyTBox.Text.Length <> 16 And ClassicKeyTBox.Text.Length <> 26 Then
+            ClassicKeyTBox.Focus()
+            Label4.Text = "Invalid Expansion key - must be 16 or 26" & ClassicKeyTBox.Text.Length : Return
             Return
         End If
 
-        If TextBox3.Text.Length <> 16 And TextBox3.Text.Length <> 26 Then
-            TextBox3.Focus()
-            Label4.Text = "Invalid Expansion key - must be 16 or 26" & TextBox3.Text.Length : Return
+        If ExpansionKeyTBox.Text.Length <> 16 And ExpansionKeyTBox.Text.Length <> 26 Then
+            ExpansionKeyTBox.Focus()
+            Label4.Text = "Invalid Expansion key - must be 16 or 26" & ExpansionKeyTBox.Text.Length : Return
         End If
 
 
         If Objects(a).CDkeyOwner = Nothing Then
-            Objects(a).CDkeyOwner = TextBox1.Text
-            Objects(a).CDkeyClassic = TextBox2.Text
-            Objects(a).CDkeyExpansion = TextBox3.Text
+            Objects(a).CDkeyOwner = KeyMpqNameTBox.Text
+            Objects(a).CDkeyClassic = ClassicKeyTBox.Text
+            Objects(a).CDkeyExpansion = ExpansionKeyTBox.Text
         Else
             Dim temp = Objects(a).CDkeyOwner
             Dim classic = Objects(a).CDkeyClassic
             Dim expans = Objects(a).CDkeyExpansion
-            Objects(a).CDkeyOwner = temp + ";" + TextBox1.Text
-            Objects(a).CDkeyClassic = classic + ";" + TextBox2.Text
-            Objects(a).CDkeyExpansion = expans + ";" + TextBox3.Text
+            Objects(a).CDkeyOwner = temp + ";" + KeyMpqNameTBox.Text
+            Objects(a).CDkeyClassic = classic + ";" + ClassicKeyTBox.Text
+            Objects(a).CDkeyExpansion = expans + ";" + ExpansionKeyTBox.Text
         End If
         Me.Close()
+    End Sub
+
+    Private Sub AddRawKeys_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        KeyMpqNameTBox.Clear()
+        ClassicKeyTBox.Clear()
+        ExpansionKeyTBox.Clear()
+        KeyMpqNameTBox.Focus()
     End Sub
 End Class

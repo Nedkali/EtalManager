@@ -22,16 +22,17 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.wwwetalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Exitbutton = New System.Windows.Forms.Button()
-        Me.tabPage2 = New System.Windows.Forms.TabPage()
+        Me.ItemLog = New System.Windows.Forms.TabPage()
         Me.RichTextBox2 = New System.Windows.Forms.RichTextBox()
-        Me.richTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.CommonLogRTB = New System.Windows.Forms.RichTextBox()
         Me.CommonLog = New System.Windows.Forms.TabPage()
-        Me.tabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.ErrorReports = New System.Windows.Forms.TabPage()
         Me.RichTextBox3 = New System.Windows.Forms.RichTextBox()
         Me.linksToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveButton = New System.Windows.Forms.Button()
@@ -41,12 +42,6 @@ Partial Class Form1
         Me.StopButton = New System.Windows.Forms.Button()
         Me.RunButton = New System.Windows.Forms.Button()
         Me.dataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.MoveDown = New System.Windows.Forms.Button()
-        Me.MoveUp = New System.Windows.Forms.Button()
-        Me.pictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.CopyButton = New System.Windows.Forms.Button()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KeyFile = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -54,10 +49,17 @@ Partial Class Form1
         Me.Deaths = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tabPage2.SuspendLayout()
+        Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.MoveDown = New System.Windows.Forms.Button()
+        Me.MoveUp = New System.Windows.Forms.Button()
+        Me.pictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CopyButton = New System.Windows.Forms.Button()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ItemLog.SuspendLayout()
         Me.CommonLog.SuspendLayout()
-        Me.tabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.ErrorReports.SuspendLayout()
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menuStrip1.SuspendLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,20 +76,21 @@ Partial Class Form1
         Me.Exitbutton.Location = New System.Drawing.Point(206, 632)
         Me.Exitbutton.Name = "Exitbutton"
         Me.Exitbutton.Size = New System.Drawing.Size(205, 27)
-        Me.Exitbutton.TabIndex = 61
+        Me.Exitbutton.TabIndex = 15
         Me.Exitbutton.Text = "Exit"
+        Me.ToolTip1.SetToolTip(Me.Exitbutton, "Closes Etal Manager")
         Me.Exitbutton.UseVisualStyleBackColor = True
         '
-        'tabPage2
+        'ItemLog
         '
-        Me.tabPage2.Controls.Add(Me.RichTextBox2)
-        Me.tabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.tabPage2.Name = "tabPage2"
-        Me.tabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabPage2.Size = New System.Drawing.Size(585, 243)
-        Me.tabPage2.TabIndex = 1
-        Me.tabPage2.Text = "Item Log"
-        Me.tabPage2.UseVisualStyleBackColor = True
+        Me.ItemLog.Controls.Add(Me.RichTextBox2)
+        Me.ItemLog.Location = New System.Drawing.Point(4, 22)
+        Me.ItemLog.Name = "ItemLog"
+        Me.ItemLog.Padding = New System.Windows.Forms.Padding(3)
+        Me.ItemLog.Size = New System.Drawing.Size(585, 243)
+        Me.ItemLog.TabIndex = 1
+        Me.ItemLog.Text = "Item Log"
+        Me.ItemLog.UseVisualStyleBackColor = True
         '
         'RichTextBox2
         '
@@ -95,20 +98,20 @@ Partial Class Form1
         Me.RichTextBox2.Location = New System.Drawing.Point(3, 3)
         Me.RichTextBox2.Name = "RichTextBox2"
         Me.RichTextBox2.Size = New System.Drawing.Size(579, 237)
-        Me.RichTextBox2.TabIndex = 0
+        Me.RichTextBox2.TabIndex = 13
         Me.RichTextBox2.Text = ""
         '
-        'richTextBox1
+        'CommonLogRTB
         '
-        Me.richTextBox1.Location = New System.Drawing.Point(3, 3)
-        Me.richTextBox1.Name = "richTextBox1"
-        Me.richTextBox1.Size = New System.Drawing.Size(579, 237)
-        Me.richTextBox1.TabIndex = 0
-        Me.richTextBox1.Text = ""
+        Me.CommonLogRTB.Location = New System.Drawing.Point(3, 3)
+        Me.CommonLogRTB.Name = "CommonLogRTB"
+        Me.CommonLogRTB.Size = New System.Drawing.Size(579, 237)
+        Me.CommonLogRTB.TabIndex = 11
+        Me.CommonLogRTB.Text = ""
         '
         'CommonLog
         '
-        Me.CommonLog.Controls.Add(Me.richTextBox1)
+        Me.CommonLog.Controls.Add(Me.CommonLogRTB)
         Me.CommonLog.Location = New System.Drawing.Point(4, 22)
         Me.CommonLog.Name = "CommonLog"
         Me.CommonLog.Padding = New System.Windows.Forms.Padding(3)
@@ -117,27 +120,28 @@ Partial Class Form1
         Me.CommonLog.Text = "Common Log"
         Me.CommonLog.UseVisualStyleBackColor = True
         '
-        'tabControl1
+        'TabControl1
         '
-        Me.tabControl1.Controls.Add(Me.CommonLog)
-        Me.tabControl1.Controls.Add(Me.tabPage2)
-        Me.tabControl1.Controls.Add(Me.TabPage1)
-        Me.tabControl1.Location = New System.Drawing.Point(12, 357)
-        Me.tabControl1.Name = "tabControl1"
-        Me.tabControl1.SelectedIndex = 0
-        Me.tabControl1.Size = New System.Drawing.Size(593, 269)
-        Me.tabControl1.TabIndex = 60
+        Me.TabControl1.Controls.Add(Me.CommonLog)
+        Me.TabControl1.Controls.Add(Me.ItemLog)
+        Me.TabControl1.Controls.Add(Me.ErrorReports)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 357)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(593, 269)
+        Me.TabControl1.TabIndex = 11
+        Me.TabControl1.TabStop = False
         '
-        'TabPage1
+        'ErrorReports
         '
-        Me.TabPage1.Controls.Add(Me.RichTextBox3)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(585, 243)
-        Me.TabPage1.TabIndex = 2
-        Me.TabPage1.Text = "Error Reports"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.ErrorReports.Controls.Add(Me.RichTextBox3)
+        Me.ErrorReports.Location = New System.Drawing.Point(4, 22)
+        Me.ErrorReports.Name = "ErrorReports"
+        Me.ErrorReports.Padding = New System.Windows.Forms.Padding(3)
+        Me.ErrorReports.Size = New System.Drawing.Size(585, 243)
+        Me.ErrorReports.TabIndex = 2
+        Me.ErrorReports.Text = "Error Reports"
+        Me.ErrorReports.UseVisualStyleBackColor = True
         '
         'RichTextBox3
         '
@@ -145,7 +149,7 @@ Partial Class Form1
         Me.RichTextBox3.Location = New System.Drawing.Point(3, 3)
         Me.RichTextBox3.Name = "RichTextBox3"
         Me.RichTextBox3.Size = New System.Drawing.Size(579, 237)
-        Me.RichTextBox3.TabIndex = 0
+        Me.RichTextBox3.TabIndex = 14
         Me.RichTextBox3.Text = ""
         '
         'linksToolStripMenuItem
@@ -161,8 +165,9 @@ Partial Class Form1
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.SaveButton.Size = New System.Drawing.Size(61, 25)
-        Me.SaveButton.TabIndex = 59
+        Me.SaveButton.TabIndex = 9
         Me.SaveButton.Text = "Save"
+        Me.ToolTip1.SetToolTip(Me.SaveButton, "Saves all profile settings")
         Me.SaveButton.UseVisualStyleBackColor = True
         '
         'RemoveButton
@@ -171,8 +176,9 @@ Partial Class Form1
         Me.RemoveButton.Name = "RemoveButton"
         Me.RemoveButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.RemoveButton.Size = New System.Drawing.Size(60, 25)
-        Me.RemoveButton.TabIndex = 58
+        Me.RemoveButton.TabIndex = 7
         Me.RemoveButton.Text = "Remove"
+        Me.ToolTip1.SetToolTip(Me.RemoveButton, "Deletes a profile")
         Me.RemoveButton.UseVisualStyleBackColor = True
         '
         'Editbutton
@@ -181,8 +187,10 @@ Partial Class Form1
         Me.Editbutton.Name = "Editbutton"
         Me.Editbutton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Editbutton.Size = New System.Drawing.Size(62, 25)
-        Me.Editbutton.TabIndex = 57
+        Me.Editbutton.TabIndex = 6
         Me.Editbutton.Text = "Edit"
+        Me.ToolTip1.SetToolTip(Me.Editbutton, "Edit settings on selected profile" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This will reset selected profiles account pass" &
+        "word")
         Me.Editbutton.UseVisualStyleBackColor = True
         '
         'AddButton
@@ -191,8 +199,9 @@ Partial Class Form1
         Me.AddButton.Name = "AddButton"
         Me.AddButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.AddButton.Size = New System.Drawing.Size(61, 25)
-        Me.AddButton.TabIndex = 56
+        Me.AddButton.TabIndex = 5
         Me.AddButton.Text = "Add"
+        Me.ToolTip1.SetToolTip(Me.AddButton, "Adds a new Profile to list")
         Me.AddButton.UseVisualStyleBackColor = True
         '
         'StopButton
@@ -201,18 +210,20 @@ Partial Class Form1
         Me.StopButton.Name = "StopButton"
         Me.StopButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.StopButton.Size = New System.Drawing.Size(65, 25)
-        Me.StopButton.TabIndex = 55
+        Me.StopButton.TabIndex = 4
         Me.StopButton.Text = "Stop"
+        Me.ToolTip1.SetToolTip(Me.StopButton, "Stop d2 based on selected profile")
         Me.StopButton.UseVisualStyleBackColor = True
         '
         'RunButton
         '
-        Me.RunButton.Location = New System.Drawing.Point(94, 321)
+        Me.RunButton.Location = New System.Drawing.Point(95, 321)
         Me.RunButton.Name = "RunButton"
         Me.RunButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.RunButton.Size = New System.Drawing.Size(65, 25)
-        Me.RunButton.TabIndex = 54
+        Me.RunButton.TabIndex = 3
         Me.RunButton.Text = "Run"
+        Me.ToolTip1.SetToolTip(Me.RunButton, "Launch D2 based on selected profile")
         Me.RunButton.UseVisualStyleBackColor = True
         '
         'dataGridView1
@@ -244,58 +255,7 @@ Partial Class Form1
         Me.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dataGridView1.Size = New System.Drawing.Size(590, 188)
         Me.dataGridView1.TabIndex = 53
-        '
-        'menuStrip1
-        '
-        Me.menuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.linksToolStripMenuItem})
-        Me.menuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.menuStrip1.Name = "menuStrip1"
-        Me.menuStrip1.Size = New System.Drawing.Size(617, 24)
-        Me.menuStrip1.TabIndex = 62
-        Me.menuStrip1.Text = "menuStrip1"
-        '
-        'MoveDown
-        '
-        Me.MoveDown.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowDown
-        Me.MoveDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.MoveDown.Location = New System.Drawing.Point(50, 321)
-        Me.MoveDown.Name = "MoveDown"
-        Me.MoveDown.Size = New System.Drawing.Size(28, 25)
-        Me.MoveDown.TabIndex = 64
-        Me.MoveDown.UseVisualStyleBackColor = True
-        '
-        'MoveUp
-        '
-        Me.MoveUp.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowUp
-        Me.MoveUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.MoveUp.Location = New System.Drawing.Point(14, 321)
-        Me.MoveUp.Name = "MoveUp"
-        Me.MoveUp.Size = New System.Drawing.Size(28, 25)
-        Me.MoveUp.TabIndex = 63
-        Me.MoveUp.UseVisualStyleBackColor = True
-        '
-        'pictureBox1
-        '
-        Me.pictureBox1.Image = CType(resources.GetObject("pictureBox1.Image"), System.Drawing.Image)
-        Me.pictureBox1.Location = New System.Drawing.Point(1, 30)
-        Me.pictureBox1.Name = "pictureBox1"
-        Me.pictureBox1.Size = New System.Drawing.Size(616, 85)
-        Me.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pictureBox1.TabIndex = 52
-        Me.pictureBox1.TabStop = False
-        '
-        'CopyButton
-        '
-        Me.CopyButton.Location = New System.Drawing.Point(469, 321)
-        Me.CopyButton.Name = "CopyButton"
-        Me.CopyButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.CopyButton.Size = New System.Drawing.Size(61, 25)
-        Me.CopyButton.TabIndex = 65
-        Me.CopyButton.Text = "Copy"
-        Me.CopyButton.UseVisualStyleBackColor = True
-        '
-        'BackgroundWorker1
-        '
+        Me.dataGridView1.TabStop = False
         '
         'Column1
         '
@@ -310,6 +270,7 @@ Partial Class Form1
         Me.KeyFile.HeaderText = "Mpq/Raw key"
         Me.KeyFile.Name = "KeyFile"
         Me.KeyFile.ReadOnly = True
+        Me.KeyFile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.KeyFile.Width = 90
         '
         'Column2
@@ -333,6 +294,7 @@ Partial Class Form1
         Me.Deaths.FillWeight = 50.0!
         Me.Deaths.HeaderText = "Deaths"
         Me.Deaths.Name = "Deaths"
+        Me.Deaths.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.Deaths.Width = 50
         '
         'Column4
@@ -350,6 +312,61 @@ Partial Class Form1
         Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.Column5.Width = 175
         '
+        'menuStrip1
+        '
+        Me.menuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.linksToolStripMenuItem})
+        Me.menuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.menuStrip1.Name = "menuStrip1"
+        Me.menuStrip1.Size = New System.Drawing.Size(617, 24)
+        Me.menuStrip1.TabIndex = 62
+        Me.menuStrip1.Text = "menuStrip1"
+        '
+        'MoveDown
+        '
+        Me.MoveDown.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowDown
+        Me.MoveDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.MoveDown.Location = New System.Drawing.Point(50, 321)
+        Me.MoveDown.Name = "MoveDown"
+        Me.MoveDown.Size = New System.Drawing.Size(28, 25)
+        Me.MoveDown.TabIndex = 2
+        Me.ToolTip1.SetToolTip(Me.MoveDown, "Move a profile lower in list")
+        Me.MoveDown.UseVisualStyleBackColor = True
+        '
+        'MoveUp
+        '
+        Me.MoveUp.BackgroundImage = Global.Etal_Manager.My.Resources.Resources.ArrowUp
+        Me.MoveUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.MoveUp.Location = New System.Drawing.Point(14, 321)
+        Me.MoveUp.Name = "MoveUp"
+        Me.MoveUp.Size = New System.Drawing.Size(28, 25)
+        Me.MoveUp.TabIndex = 1
+        Me.ToolTip1.SetToolTip(Me.MoveUp, "Move a profile higher in list")
+        Me.MoveUp.UseVisualStyleBackColor = True
+        '
+        'pictureBox1
+        '
+        Me.pictureBox1.Image = CType(resources.GetObject("pictureBox1.Image"), System.Drawing.Image)
+        Me.pictureBox1.Location = New System.Drawing.Point(1, 30)
+        Me.pictureBox1.Name = "pictureBox1"
+        Me.pictureBox1.Size = New System.Drawing.Size(616, 85)
+        Me.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pictureBox1.TabIndex = 52
+        Me.pictureBox1.TabStop = False
+        '
+        'CopyButton
+        '
+        Me.CopyButton.Location = New System.Drawing.Point(469, 321)
+        Me.CopyButton.Name = "CopyButton"
+        Me.CopyButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CopyButton.Size = New System.Drawing.Size(61, 25)
+        Me.CopyButton.TabIndex = 8
+        Me.CopyButton.Text = "Copy"
+        Me.ToolTip1.SetToolTip(Me.CopyButton, "Copies selected to a new profile")
+        Me.CopyButton.UseVisualStyleBackColor = True
+        '
+        'BackgroundWorker1
+        '
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -359,7 +376,7 @@ Partial Class Form1
         Me.Controls.Add(Me.MoveDown)
         Me.Controls.Add(Me.MoveUp)
         Me.Controls.Add(Me.Exitbutton)
-        Me.Controls.Add(Me.tabControl1)
+        Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.SaveButton)
         Me.Controls.Add(Me.RemoveButton)
         Me.Controls.Add(Me.Editbutton)
@@ -374,10 +391,10 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Etal Manager"
-        Me.tabPage2.ResumeLayout(False)
+        Me.ItemLog.ResumeLayout(False)
         Me.CommonLog.ResumeLayout(False)
-        Me.tabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
+        Me.TabControl1.ResumeLayout(False)
+        Me.ErrorReports.ResumeLayout(False)
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.menuStrip1.ResumeLayout(False)
         Me.menuStrip1.PerformLayout()
@@ -388,9 +405,9 @@ Partial Class Form1
     End Sub
     Private WithEvents wwwetalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents Exitbutton As System.Windows.Forms.Button
-    Private WithEvents tabPage2 As System.Windows.Forms.TabPage
+    Private WithEvents ItemLog As System.Windows.Forms.TabPage
     Private WithEvents CommonLog As System.Windows.Forms.TabPage
-    Private WithEvents tabControl1 As System.Windows.Forms.TabControl
+    Private WithEvents TabControl1 As System.Windows.Forms.TabControl
     Private WithEvents linksToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents SaveButton As System.Windows.Forms.Button
     Private WithEvents RemoveButton As System.Windows.Forms.Button
@@ -401,11 +418,11 @@ Partial Class Form1
     Public WithEvents dataGridView1 As System.Windows.Forms.DataGridView
     Private WithEvents menuStrip1 As System.Windows.Forms.MenuStrip
     Private WithEvents pictureBox1 As System.Windows.Forms.PictureBox
-    Public WithEvents richTextBox1 As System.Windows.Forms.RichTextBox
+    Public WithEvents CommonLogRTB As System.Windows.Forms.RichTextBox
     Friend WithEvents MoveUp As System.Windows.Forms.Button
     Friend WithEvents MoveDown As System.Windows.Forms.Button
     Friend WithEvents RichTextBox2 As System.Windows.Forms.RichTextBox
-    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents ErrorReports As TabPage
     Friend WithEvents RichTextBox3 As RichTextBox
     Private WithEvents CopyButton As Button
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
@@ -416,4 +433,5 @@ Partial Class Form1
     Friend WithEvents Deaths As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

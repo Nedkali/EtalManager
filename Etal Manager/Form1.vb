@@ -121,12 +121,12 @@ Public Class Form1
     End Sub
 
 
-    Private Sub button4_Click(sender As Object, e As EventArgs) Handles AddButton.Click
+    Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
         form2action = ""
         Form2.ShowDialog()
     End Sub
 
-    Private Sub button1_Click(sender As Object, e As EventArgs) Handles Exitbutton.Click
+    Private Sub Exitbutton_Click(sender As Object, e As EventArgs) Handles Exitbutton.Click
         Application.Exit()
     End Sub
 
@@ -134,7 +134,7 @@ Public Class Form1
         Process.Start("www.projectetal.com")
     End Sub
 
-    Private Sub button5_Click(sender As Object, e As EventArgs) Handles Editbutton.Click
+    Private Sub Editbutton_Click(sender As Object, e As EventArgs) Handles Editbutton.Click
         Dim a = dataGridView1.CurrentRow.Index
         If a > Objects.Count - 1 Or a < 0 Or Objects.Count = 0 Then Return
         If Objects(a).D2PID > 0 Then Return
@@ -143,7 +143,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub button6_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
+    Private Sub RemoveButton_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
         Dim x As Integer = dataGridView1.CurrentRow.Index
         If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
         For index = 0 To Objects.Count - 1
@@ -155,7 +155,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub button7_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
+    Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
         'BWrite()
         'Return
         If Objects.Count = 0 Then Return
@@ -248,7 +248,7 @@ Public Class Form1
             CfgReader.Close()
 
         Catch ex As Exception
-            richTextBox1.AppendText("File Read Error")
+            CommonLogRTB.AppendText("File Read Error")
 
         End Try
         For x = 0 To Objects.Count - 1
@@ -262,7 +262,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub button2_Click(sender As Object, e As EventArgs) Handles RunButton.Click
+    Private Sub RunButton_Click(sender As Object, e As EventArgs) Handles RunButton.Click
 
         Dim a As Integer = dataGridView1.CurrentRow.Index
         If a < 0 Or a > Objects.Count - 1 Then Return
@@ -270,7 +270,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles MoveUp.Click
+    Private Sub MoveUp_Click(sender As Object, e As EventArgs) Handles MoveUp.Click
         Dim x As Integer = dataGridView1.CurrentRow.Index
         If x < 1 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
 
@@ -313,8 +313,9 @@ Public Class Form1
 
     End Sub
 
-    Private Sub button3_Click(sender As Object, e As EventArgs) Handles StopButton.Click
+    Private Sub StopButton_Click(sender As Object, e As EventArgs) Handles StopButton.Click
         Dim a As Integer = dataGridView1.CurrentRow.Index
+        If a > Objects.Count - 1 Then Return
 
         For Each proc As Process In Process.GetProcessesByName("Game")
             If proc.Id = Objects(a).D2PID Then
@@ -617,46 +618,46 @@ Public Class Form1
     Private Sub ColorSetter1(ByVal text As String)
 
         If text.ToString().Contains("Ã¿c") = False Then
-            richTextBox1.Select(0, 0) : richTextBox1.SelectedText = vbCrLf
-            richTextBox1.Select(0, 0)
-            richTextBox1.SelectedText = text
-            richTextBox1.SelectionColor = Color.Black
+            CommonLogRTB.Select(0, 0) : CommonLogRTB.SelectedText = vbCrLf
+            CommonLogRTB.Select(0, 0)
+            CommonLogRTB.SelectedText = text
+            CommonLogRTB.SelectionColor = Color.Black
             Return
         End If
 
         Dim temp1 = Split(text, "Ã¿c")
-        richTextBox1.Select(0, 0) : richTextBox1.SelectedText = vbCrLf : richTextBox1.Select(0, 0)
+        CommonLogRTB.Select(0, 0) : CommonLogRTB.SelectedText = vbCrLf : CommonLogRTB.Select(0, 0)
         For index = 0 To temp1.Length - 1
             Dim clr = temp1(index).Substring(0, 1)
 
             Select Case clr
                 Case 0
-                    richTextBox1.SelectionColor = Color.LightGray
+                    CommonLogRTB.SelectionColor = Color.LightGray
                 Case 1
-                    richTextBox1.SelectionColor = Color.Red
+                    CommonLogRTB.SelectionColor = Color.Red
                 Case 2
-                    richTextBox1.SelectionColor = Color.Green
+                    CommonLogRTB.SelectionColor = Color.Green
                 Case 3
-                    richTextBox1.SelectionColor = Color.Blue
+                    CommonLogRTB.SelectionColor = Color.Blue
                 Case 4
-                    richTextBox1.SelectionColor = Color.Goldenrod
+                    CommonLogRTB.SelectionColor = Color.Goldenrod
                 Case 5
-                    richTextBox1.SelectionColor = Color.Gray
+                    CommonLogRTB.SelectionColor = Color.Gray
                 Case 6
-                    richTextBox1.SelectionColor = Color.Goldenrod
+                    CommonLogRTB.SelectionColor = Color.Goldenrod
                 Case 7
-                    richTextBox1.SelectionColor = Color.Goldenrod
+                    CommonLogRTB.SelectionColor = Color.Goldenrod
                 Case 8
-                    richTextBox1.SelectionColor = Color.DarkGreen
+                    CommonLogRTB.SelectionColor = Color.DarkGreen
                 Case 9
-                    richTextBox1.SelectionColor = Color.Yellow
+                    CommonLogRTB.SelectionColor = Color.Yellow
                 Case Else
-                    richTextBox1.SelectionColor = Color.Black
+                    CommonLogRTB.SelectionColor = Color.Black
             End Select
             If clr = "[" Then
-                richTextBox1.SelectedText = temp1(index)
+                CommonLogRTB.SelectedText = temp1(index)
             Else
-                richTextBox1.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+                CommonLogRTB.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
             End If
         Next
     End Sub
@@ -705,13 +706,4 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click_2(sender As Object, e As EventArgs)
-
-        Dim hTargetWnd As IntPtr = NativeMethod.FindWindow(Nothing, "Ned")
-        datasend(hTargetWnd)
-    End Sub
-
-    Private Sub menuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles menuStrip1.ItemClicked
-
-    End Sub
 End Class

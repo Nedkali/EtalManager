@@ -25,11 +25,11 @@ Partial Class AddRawKeys
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.KeyMpqNameTBox = New System.Windows.Forms.TextBox()
+        Me.ClassicKeyTBox = New System.Windows.Forms.TextBox()
+        Me.ExpansionKeyTBox = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.AddButton = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
@@ -62,38 +62,38 @@ Partial Class AddRawKeys
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Expansion Key"
         '
-        'TextBox1
+        'KeyMpqNameTBox
         '
-        Me.TextBox1.Location = New System.Drawing.Point(8, 37)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(89, 20)
-        Me.TextBox1.TabIndex = 9
+        Me.KeyMpqNameTBox.Location = New System.Drawing.Point(8, 37)
+        Me.KeyMpqNameTBox.Name = "KeyMpqNameTBox"
+        Me.KeyMpqNameTBox.Size = New System.Drawing.Size(89, 20)
+        Me.KeyMpqNameTBox.TabIndex = 9
         '
-        'TextBox2
+        'ClassicKeyTBox
         '
-        Me.TextBox2.Location = New System.Drawing.Point(111, 37)
-        Me.TextBox2.MaxLength = 26
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(155, 20)
-        Me.TextBox2.TabIndex = 10
+        Me.ClassicKeyTBox.Location = New System.Drawing.Point(111, 37)
+        Me.ClassicKeyTBox.MaxLength = 26
+        Me.ClassicKeyTBox.Name = "ClassicKeyTBox"
+        Me.ClassicKeyTBox.Size = New System.Drawing.Size(155, 20)
+        Me.ClassicKeyTBox.TabIndex = 10
         '
-        'TextBox3
+        'ExpansionKeyTBox
         '
-        Me.TextBox3.Location = New System.Drawing.Point(276, 37)
-        Me.TextBox3.MaxLength = 26
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(155, 20)
-        Me.TextBox3.TabIndex = 11
+        Me.ExpansionKeyTBox.Location = New System.Drawing.Point(276, 37)
+        Me.ExpansionKeyTBox.MaxLength = 26
+        Me.ExpansionKeyTBox.Name = "ExpansionKeyTBox"
+        Me.ExpansionKeyTBox.Size = New System.Drawing.Size(155, 20)
+        Me.ExpansionKeyTBox.TabIndex = 11
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Button2)
+        Me.GroupBox1.Controls.Add(Me.AddButton)
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
+        Me.GroupBox1.Controls.Add(Me.ClassicKeyTBox)
+        Me.GroupBox1.Controls.Add(Me.ExpansionKeyTBox)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.KeyMpqNameTBox)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
@@ -102,14 +102,14 @@ Partial Class AddRawKeys
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
-        'Button2
+        'AddButton
         '
-        Me.Button2.Location = New System.Drawing.Point(255, 80)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 13
-        Me.Button2.Text = "Add Key"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.AddButton.Location = New System.Drawing.Point(255, 80)
+        Me.AddButton.Name = "AddButton"
+        Me.AddButton.Size = New System.Drawing.Size(75, 23)
+        Me.AddButton.TabIndex = 13
+        Me.AddButton.Text = "Add Key"
+        Me.AddButton.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -136,14 +136,14 @@ Partial Class AddRawKeys
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(469, 150)
+        Me.ClientSize = New System.Drawing.Size(469, 172)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(485, 188)
+        Me.MaximumSize = New System.Drawing.Size(485, 210)
         Me.MinimizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(485, 188)
+        Me.MinimumSize = New System.Drawing.Size(485, 210)
         Me.Name = "AddRawKeys"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Raw Keys"
@@ -157,11 +157,11 @@ Partial Class AddRawKeys
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents KeyMpqNameTBox As TextBox
+    Friend WithEvents ClassicKeyTBox As TextBox
+    Friend WithEvents ExpansionKeyTBox As TextBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents AddButton As Button
     Friend WithEvents Label4 As Label
 End Class
