@@ -6,7 +6,7 @@ Imports System.Security.Principal
 
 
 
-Public Class Form1
+Public Class Manager
 
 
 
@@ -37,23 +37,23 @@ Public Class Form1
 
                 Select Case y
                     Case ETAL_MGR_LOADING
-                        dataGridView1.Rows(x).Cells(6).Value = temp
+                        ProfilesDataGrid.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_READY
-                        dataGridView1.Rows(x).Cells(6).Value = temp
+                        ProfilesDataGrid.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_LOGIN
-                        dataGridView1.Rows(x).Cells(6).Value = "Login"
+                        ProfilesDataGrid.Rows(x).Cells(6).Value = "Login"
                         ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] Login")
                     Case ETAL_MGR_CREATE_GAME
-                        dataGridView1.Rows(x).Cells(6).Value = "Game Create"
+                        ProfilesDataGrid.Rows(x).Cells(6).Value = "Game Create"
                         ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] Game Create")
                     Case ETAL_MGR_INGAME
-                        y = Convert.ToInt32(dataGridView1.Rows(x).Cells(2).Value)
+                        y = Convert.ToInt32(ProfilesDataGrid.Rows(x).Cells(2).Value)
                         y = y + 1
-                        dataGridView1.Rows(x).Cells(2).Value = y
-                        dataGridView1.Rows(x).Cells(6).Value = "In Game"
+                        ProfilesDataGrid.Rows(x).Cells(2).Value = y
+                        ProfilesDataGrid.Rows(x).Cells(6).Value = "In Game"
                         ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")")
                     Case ETAL_MGR_RESTART
-                        dataGridView1.Rows(x).Cells(6).Value = "Restarting"
+                        ProfilesDataGrid.Rows(x).Cells(6).Value = "Restarting"
                     Case ETAL_MGR_CHICKEN
                         ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_PRINT_STATUS
@@ -66,7 +66,7 @@ Public Class Form1
                         ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case 555
                         Dim ckey = assignkeys(x)
-                        If ckey >= 0 And totalkeys(ckey).name <> dataGridView1.Rows(x).Cells(1).Value Then
+                        If ckey >= 0 And totalkeys(ckey).name <> ProfilesDataGrid.Rows(x).Cells(1).Value Then
                             restart(x)
                         End If
 
@@ -76,8 +76,8 @@ Public Class Form1
 
                     Case Else
 
-                        RichTextBox3.AppendText("Message rcv: int = " & y & " " & temp)
-                        RichTextBox3.AppendText("" & vbCrLf)
+                        ErrorTextBox.AppendText("Message rcv: int = " & y & " " & temp)
+                        ErrorTextBox.AppendText("" & vbCrLf)
                 End Select
                 cds = Nothing
 
@@ -85,8 +85,8 @@ Public Class Form1
         MyBase.WndProc(m)
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        dataGridView1.Rows.Add(9)
+    Private Sub Manager_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ProfilesDataGrid.Rows.Add(9)
         LoadProfiles()
         'ReadBinary()' Was used to load d2nt binary.cfg file
 
@@ -121,12 +121,18 @@ Public Class Form1
     End Sub
 
 
-    Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
-        form2action = ""
-        Form2.ShowDialog()
+    Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click, EditButton.Click
+        ProfileEditoraction = ""
+        If (sender Is Me.EditButton) Then
+            Dim a = ProfilesDataGrid.CurrentRow.Index
+            If a > Objects.Count - 1 Or a < 0 Or Objects.Count = 0 Then Return
+            If Objects(a).D2PID > 0 Then Return
+            ProfileEditoraction = "edit"
+        End If
+        ProfileEditor.ShowDialog()
     End Sub
 
-    Private Sub Exitbutton_Click(sender As Object, e As EventArgs) Handles Exitbutton.Click
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Application.Exit()
     End Sub
 
@@ -134,24 +140,19 @@ Public Class Form1
         Process.Start("www.projectetal.com")
     End Sub
 
-    Private Sub Editbutton_Click(sender As Object, e As EventArgs) Handles Editbutton.Click
-        Dim a = dataGridView1.CurrentRow.Index
-        If a > Objects.Count - 1 Or a < 0 Or Objects.Count = 0 Then Return
-        If Objects(a).D2PID > 0 Then Return
-        form2action = "edit"
-        Form2.ShowDialog()
+    Private Sub WikiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WikiToolStripMenuItem.Click
+        Process.Start("www.projectetal.com/wiki/index.php/Main_Page")
     End Sub
 
-
     Private Sub RemoveButton_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
-        Dim x As Integer = dataGridView1.CurrentRow.Index
+        Dim x As Integer = ProfilesDataGrid.CurrentRow.Index
         If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
         For index = 0 To Objects.Count - 1
             If Objects(index).D2PID > 0 Then Return
         Next
-        dataGridView1.Rows.RemoveAt(x)
+        ProfilesDataGrid.Rows.RemoveAt(x)
         Objects.RemoveAt(x)
-        If dataGridView1.RowCount < 9 Then dataGridView1.Rows.Add(1)
+        If ProfilesDataGrid.RowCount < 9 Then ProfilesDataGrid.Rows.Add(1)
 
     End Sub
 
@@ -194,7 +195,7 @@ Public Class Form1
             LogWriter.Close()
 
         Catch ex As Exception
-            RichTextBox3.AppendText(ex.Message)
+            ErrorTextBox.AppendText(ex.Message)
         End Try
 
 
@@ -252,26 +253,26 @@ Public Class Form1
 
         End Try
         For x = 0 To Objects.Count - 1
-            If dataGridView1.RowCount < Objects.Count Then dataGridView1.Rows.Add(1)
-            dataGridView1.Rows(x).Cells(0).Value = Objects(x).ProfileName
-            dataGridView1.Rows(x).Cells(2).Value = 0
-            dataGridView1.Rows(x).Cells(3).Value = 0
-            dataGridView1.Rows(x).Cells(4).Value = 0
-            dataGridView1.Rows(x).Cells(5).Value = 0
+            If ProfilesDataGrid.RowCount < Objects.Count Then ProfilesDataGrid.Rows.Add(1)
+            ProfilesDataGrid.Rows(x).Cells(0).Value = Objects(x).ProfileName
+            ProfilesDataGrid.Rows(x).Cells(2).Value = 0
+            ProfilesDataGrid.Rows(x).Cells(3).Value = 0
+            ProfilesDataGrid.Rows(x).Cells(4).Value = 0
+            ProfilesDataGrid.Rows(x).Cells(5).Value = 0
         Next
     End Sub
 
 
     Private Sub RunButton_Click(sender As Object, e As EventArgs) Handles RunButton.Click
 
-        Dim a As Integer = dataGridView1.CurrentRow.Index
+        Dim a As Integer = ProfilesDataGrid.CurrentRow.Index
         If a < 0 Or a > Objects.Count - 1 Then Return
         launchd2(a)
 
     End Sub
 
     Private Sub MoveUp_Click(sender As Object, e As EventArgs) Handles MoveUp.Click
-        Dim x As Integer = dataGridView1.CurrentRow.Index
+        Dim x As Integer = ProfilesDataGrid.CurrentRow.Index
         If x < 1 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
 
         For index = 0 To Objects.Count - 1
@@ -285,14 +286,14 @@ Public Class Form1
         Objects.Insert(x - 1, NewObject)
 
         For y = 0 To Objects.Count - 1
-            dataGridView1.Rows(y).Cells(0).Value = Objects(y).ProfileName
+            ProfilesDataGrid.Rows(y).Cells(0).Value = Objects(y).ProfileName
         Next
-        dataGridView1.Rows(x - 1).Selected = True
-        dataGridView1.CurrentCell = dataGridView1.Item(0, x - 1)
+        ProfilesDataGrid.Rows(x - 1).Selected = True
+        ProfilesDataGrid.CurrentCell = ProfilesDataGrid.Item(0, x - 1)
     End Sub
 
     Private Sub MoveDown_Click(sender As Object, e As EventArgs) Handles MoveDown.Click
-        Dim x As Integer = dataGridView1.CurrentRow.Index
+        Dim x As Integer = ProfilesDataGrid.CurrentRow.Index
         If x < 0 Or x > Objects.Count - 2 Or Objects.Count = 0 Then Return
 
         For index = 0 To Objects.Count - 1
@@ -305,16 +306,16 @@ Public Class Form1
         Objects.Insert(x + 1, NewObject)
 
         For y = 0 To Objects.Count - 1
-            dataGridView1.Rows(y).Cells(0).Value = Objects(y).ProfileName
+            ProfilesDataGrid.Rows(y).Cells(0).Value = Objects(y).ProfileName
         Next
 
-        dataGridView1.Rows(x + 1).Selected = True
-        dataGridView1.CurrentCell = dataGridView1.Item(0, x + 1)
+        ProfilesDataGrid.Rows(x + 1).Selected = True
+        ProfilesDataGrid.CurrentCell = ProfilesDataGrid.Item(0, x + 1)
 
     End Sub
 
     Private Sub StopButton_Click(sender As Object, e As EventArgs) Handles StopButton.Click
-        Dim a As Integer = dataGridView1.CurrentRow.Index
+        Dim a As Integer = ProfilesDataGrid.CurrentRow.Index
         If a > Objects.Count - 1 Then Return
 
         For Each proc As Process In Process.GetProcessesByName("Game")
@@ -323,13 +324,13 @@ Public Class Form1
             End If
         Next
         Objects(a).D2PID = 0
-        dataGridView1.Rows(a).Cells(1).Value = ""
-        dataGridView1.Rows(a).Cells(6).Value = ""
+        ProfilesDataGrid.Rows(a).Cells(1).Value = ""
+        ProfilesDataGrid.Rows(a).Cells(6).Value = ""
 
     End Sub
 
     Private Sub CopyButton_Click(sender As Object, e As EventArgs) Handles CopyButton.Click
-        Dim a As Integer = dataGridView1.CurrentRow.Index
+        Dim a As Integer = ProfilesDataGrid.CurrentRow.Index
         If a < 0 Or a > Objects.Count - 1 Then Return
         Dim newobject = New Profiles
 
@@ -365,14 +366,14 @@ Public Class Form1
 
         Objects.Add(newobject)
         a = Objects.Count - 1
-        dataGridView1.Rows(a).Cells(0).Value = Objects(a).ProfileName
-        dataGridView1.Rows(a).Cells(2).Value = Objects(a).Run
-        dataGridView1.Rows(a).Cells(3).Value = Objects(a).Restarts
-        dataGridView1.Rows(a).Cells(4).Value = Objects(a).Chickens
+        ProfilesDataGrid.Rows(a).Cells(0).Value = Objects(a).ProfileName
+        ProfilesDataGrid.Rows(a).Cells(2).Value = Objects(a).Run
+        ProfilesDataGrid.Rows(a).Cells(3).Value = Objects(a).Restarts
+        ProfilesDataGrid.Rows(a).Cells(4).Value = Objects(a).Chickens
         If a > 5 Then a = a - 5
         If a < 5 Then a = 0
-        dataGridView1.FirstDisplayedScrollingRowIndex = a
-        dataGridView1.CurrentCell = dataGridView1.Item(0, Objects.Count - 1)
+        ProfilesDataGrid.FirstDisplayedScrollingRowIndex = a
+        ProfilesDataGrid.CurrentCell = ProfilesDataGrid.Item(0, Objects.Count - 1)
 
 
     End Sub
@@ -398,8 +399,8 @@ Public Class Form1
             End If
         Next
         Objects(a).D2PID = 0
-        dataGridView1.Rows(a).Cells(1).Value = ""
-        dataGridView1.Rows(a).Cells(6).Value = ""
+        ProfilesDataGrid.Rows(a).Cells(1).Value = ""
+        ProfilesDataGrid.Rows(a).Cells(6).Value = ""
         Thread.Sleep(2000)
         launchd2(a)
 
@@ -411,7 +412,7 @@ Public Class Form1
             Dim d2app = Process.GetProcessesByName("Game")
             For Each process In d2app
                 If process.Id = Objects(a).D2PID Then
-                    RichTextBox3.AppendText("Profile already running") : Return
+                    ErrorTextBox.AppendText("Profile already running") : Return
                     Return
                 End If
             Next
@@ -427,7 +428,7 @@ Public Class Form1
         Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
 
         If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
-            RichTextBox3.AppendText("Unable to locate Game.exe")
+            ErrorTextBox.AppendText("Unable to locate Game.exe")
             Return
         End If
 
@@ -466,23 +467,23 @@ Public Class Form1
         Dim newvalue() As Byte = {&HEB, &H45}
         Dim address As New IntPtr(&H6FA80000 + &HB6B0)
         Try 'a287
-            If Not PInvoke.Kernel32.LoadRemoteLibrary(p, d2RelPath & "D2gfx.dll") Then RichTextBox3.AppendText(" Failed to load d2gfx")
-            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then RichTextBox3.AppendText(" failed to read window fix")
-            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then RichTextBox3.AppendText(" failed to write window fix")
+            If Not PInvoke.Kernel32.LoadRemoteLibrary(p, d2RelPath & "D2gfx.dll") Then ErrorTextBox.AppendText(" Failed to load d2gfx")
+            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then ErrorTextBox.AppendText(" failed to read window fix")
+            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then ErrorTextBox.AppendText(" failed to write window fix")
         Catch
-            RichTextBox3.AppendText(" error on window fix " & address.ToString)
+            ErrorTextBox.AppendText(" error on window fix " & address.ToString)
 
         End Try
 
         'loads/injects dll
-        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then RichTextBox3.AppendText(" Failed to load D2Etal.dll")
+        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then ErrorTextBox.AppendText(" Failed to load D2Etal.dll")
 
         'resume/start process
         PInvoke.Kernel32.ResumeProcess(p)
         Try
             p.WaitForInputIdle(3000)
         Catch ex As Exception
-            If (ex.Message.Contains("exited") = True) Then dataGridView1.Rows(a).Cells(6).Value = "Exited"
+            If (ex.Message.Contains("exited") = True) Then ProfilesDataGrid.Rows(a).Cells(6).Value = "Exited"
             'MessageBox.Show(ex.Message)
         End Try
 
@@ -494,7 +495,7 @@ Public Class Form1
             PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
             PInvoke.Kernel32.ResumeProcess(p)
         Catch ex As Exception
-            RichTextBox3.AppendText("Error reverting d2gfx patch")
+            ErrorTextBox.AppendText("Error reverting d2gfx patch")
         End Try
 
         If Objects(a).D2Minimized = 1 Then
@@ -524,46 +525,46 @@ Public Class Form1
     Private Sub ColorSetter3(ByVal text As String)
 
         If text.ToString().Contains("Ã¿c") = False Then
-            RichTextBox3.Select(0, 0) : RichTextBox3.SelectedText = vbCrLf
-            RichTextBox3.Select(0, 0)
-            RichTextBox3.SelectedText = text
-            RichTextBox3.SelectionColor = Color.Black
+            ErrorTextBox.Select(0, 0) : ErrorTextBox.SelectedText = vbCrLf
+            ErrorTextBox.Select(0, 0)
+            ErrorTextBox.SelectedText = text
+            ErrorTextBox.SelectionColor = Color.Black
             Return
         End If
 
         Dim temp1 = Split(text, "Ã¿c")
-        RichTextBox3.Select(0, 0) : RichTextBox3.SelectedText = vbCrLf : RichTextBox3.Select(0, 0)
+        ErrorTextBox.Select(0, 0) : ErrorTextBox.SelectedText = vbCrLf : ErrorTextBox.Select(0, 0)
         For index = 0 To temp1.Length - 1
             Dim clr = temp1(index).Substring(0, 1)
 
             Select Case clr
                 Case 0
-                    RichTextBox3.SelectionColor = Color.LightGray
+                    ErrorTextBox.SelectionColor = Color.LightGray
                 Case 1
-                    RichTextBox3.SelectionColor = Color.Red
+                    ErrorTextBox.SelectionColor = Color.Red
                 Case 2
-                    RichTextBox3.SelectionColor = Color.Green
+                    ErrorTextBox.SelectionColor = Color.Green
                 Case 3
-                    RichTextBox3.SelectionColor = Color.Blue
+                    ErrorTextBox.SelectionColor = Color.Blue
                 Case 4
-                    RichTextBox3.SelectionColor = Color.Goldenrod
+                    ErrorTextBox.SelectionColor = Color.Goldenrod
                 Case 5
-                    RichTextBox3.SelectionColor = Color.Gray
+                    ErrorTextBox.SelectionColor = Color.Gray
                 Case 6
-                    RichTextBox3.SelectionColor = Color.Goldenrod
+                    ErrorTextBox.SelectionColor = Color.Goldenrod
                 Case 7
-                    RichTextBox3.SelectionColor = Color.Goldenrod
+                    ErrorTextBox.SelectionColor = Color.Goldenrod
                 Case 8
-                    RichTextBox3.SelectionColor = Color.DarkGreen
+                    ErrorTextBox.SelectionColor = Color.DarkGreen
                 Case 9
-                    RichTextBox3.SelectionColor = Color.Yellow
+                    ErrorTextBox.SelectionColor = Color.Yellow
                 Case Else
-                    RichTextBox3.SelectionColor = Color.Black
+                    ErrorTextBox.SelectionColor = Color.Black
             End Select
             If clr = "[" Then
-                RichTextBox3.SelectedText = temp1(index)
+                ErrorTextBox.SelectedText = temp1(index)
             Else
-                RichTextBox3.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+                ErrorTextBox.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
             End If
         Next
 
@@ -572,46 +573,46 @@ Public Class Form1
     Private Sub ColorSetter2(ByVal text As String)
 
         If text.ToString().Contains("Ã¿c") = False Then
-            RichTextBox2.Select(0, 0) : RichTextBox2.SelectedText = vbCrLf
-            RichTextBox2.Select(0, 0)
-            RichTextBox2.SelectedText = text
-            RichTextBox2.SelectionColor = Color.Black
+            ItemTextBox.Select(0, 0) : ItemTextBox.SelectedText = vbCrLf
+            ItemTextBox.Select(0, 0)
+            ItemTextBox.SelectedText = text
+            ItemTextBox.SelectionColor = Color.Black
             Return
         End If
 
         Dim temp1 = Split(text, "Ã¿c")
-        RichTextBox2.Select(0, 0) : RichTextBox2.SelectedText = vbCrLf : RichTextBox2.Select(0, 0)
+        ItemTextBox.Select(0, 0) : ItemTextBox.SelectedText = vbCrLf : ItemTextBox.Select(0, 0)
         For index = 0 To temp1.Length - 1
             Dim clr = temp1(index).Substring(0, 1)
 
             Select Case clr
                 Case 0
-                    RichTextBox2.SelectionColor = Color.LightGray
+                    ItemTextBox.SelectionColor = Color.LightGray
                 Case 1
-                    RichTextBox2.SelectionColor = Color.Red
+                    ItemTextBox.SelectionColor = Color.Red
                 Case 2
-                    RichTextBox2.SelectionColor = Color.Green
+                    ItemTextBox.SelectionColor = Color.Green
                 Case 3
-                    RichTextBox2.SelectionColor = Color.Blue
+                    ItemTextBox.SelectionColor = Color.Blue
                 Case 4
-                    RichTextBox2.SelectionColor = Color.Goldenrod
+                    ItemTextBox.SelectionColor = Color.Goldenrod
                 Case 5
-                    RichTextBox2.SelectionColor = Color.Gray
+                    ItemTextBox.SelectionColor = Color.Gray
                 Case 6
-                    RichTextBox2.SelectionColor = Color.Goldenrod
+                    ItemTextBox.SelectionColor = Color.Goldenrod
                 Case 7
-                    RichTextBox2.SelectionColor = Color.Goldenrod
+                    ItemTextBox.SelectionColor = Color.Goldenrod
                 Case 8
-                    RichTextBox2.SelectionColor = Color.DarkGreen
+                    ItemTextBox.SelectionColor = Color.DarkGreen
                 Case 9
-                    RichTextBox2.SelectionColor = Color.Yellow
+                    ItemTextBox.SelectionColor = Color.Yellow
                 Case Else
-                    RichTextBox2.SelectionColor = Color.Black
+                    ItemTextBox.SelectionColor = Color.Black
             End Select
             If clr = "[" Then
-                RichTextBox2.SelectedText = temp1(index)
+                ItemTextBox.SelectedText = temp1(index)
             Else
-                RichTextBox2.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+                ItemTextBox.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
             End If
         Next
     End Sub

@@ -6,7 +6,7 @@
             Me.Close()
             Return
         End If
-        Dim a As Integer = Form1.dataGridView1.CurrentRow.Index
+        Dim a As Integer = Manager.ProfilesDataGrid.CurrentRow.Index
         Objects(a).AccPass = TextBox1.Text
         Me.DialogResult = DialogResult.OK
         Me.Close()
