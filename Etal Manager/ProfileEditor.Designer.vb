@@ -313,7 +313,7 @@ Partial Class ProfileEditor
         Me.DifficultyDBox.BackColor = System.Drawing.SystemColors.Control
         Me.DifficultyDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.DifficultyDBox.FormattingEnabled = True
-        Me.DifficultyDBox.Items.AddRange(New Object() {"Normal", "Nightmare", "Hell"})
+        Me.DifficultyDBox.Items.AddRange(New Object() {"Normal", "Nightmare", "Hell", "Highest"})
         Me.DifficultyDBox.Location = New System.Drawing.Point(307, 19)
         Me.DifficultyDBox.Name = "DifficultyDBox"
         Me.DifficultyDBox.Size = New System.Drawing.Size(76, 21)
@@ -635,7 +635,7 @@ Partial Class ProfileEditor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(504, 622)
+        Me.ClientSize = New System.Drawing.Size(504, 623)
         Me.ControlBox = False
         Me.Controls.Add(Me.label5)
         Me.Controls.Add(Me.GamesPerKeyTBox)

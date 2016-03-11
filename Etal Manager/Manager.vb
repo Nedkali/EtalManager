@@ -57,6 +57,7 @@ Public Class Manager
                     Case ETAL_MGR_CHICKEN
                         ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_PRINT_STATUS
+                        ProfilesDataGrid.Rows(x).Cells(6).Value = temp
                         ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
                     Case ETAL_MGR_COMMON
                         ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
@@ -463,11 +464,10 @@ Public Class Manager
         'If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2M.dll") Then RichTextBox3.AppendText(" Failed to load D2M.dll")
 
         'blocks 2nd instance check
+        Dim address As New IntPtr(&H400000 + &H57C8)
         Dim oldValue(1) As Byte
-        Dim newvalue() As Byte = {&HEB, &H45}
-        Dim address As New IntPtr(&H6FA80000 + &HB6B0)
+        Dim newvalue() As Byte = {&HEB, &H46}
         Try 'a287
-            If Not PInvoke.Kernel32.LoadRemoteLibrary(p, d2RelPath & "D2gfx.dll") Then ErrorTextBox.AppendText(" Failed to load d2gfx")
             If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then ErrorTextBox.AppendText(" failed to read window fix")
             If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then ErrorTextBox.AppendText(" failed to write window fix")
         Catch
