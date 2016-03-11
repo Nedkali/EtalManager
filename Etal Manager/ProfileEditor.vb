@@ -25,16 +25,14 @@ Public Class ProfileEditor
     Private Sub ManualSeekPathButton_Click(sender As Object, e As EventArgs) Handles ManualSeekPathButton.Click
         Dim D2Path As String = "C:\"
         Dim openFileDialog1 As OpenFileDialog = New OpenFileDialog
-        openFileDialog1.Filter = "Loader files|Game.exe|All files|*.*"
+        openFileDialog1.Filter = "Loader files|Game*.exe|All files|*.*"
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             D2Path = openFileDialog1.FileName
             D2PathTBox.Text = D2Path
         End If
     End Sub
 
-    Private Sub button4_Click(sender As Object, e As EventArgs) Handles button4.Click
-        Me.Close()
-    End Sub
+
 
 
     Private Sub OkAcceptButton_Click(sender As Object, e As EventArgs) Handles OkAcceptButton.Click
@@ -74,17 +72,17 @@ Public Class ProfileEditor
             If MinimizedCBox.Checked = False Then Objects(x).D2Minimized = 0
 
             Objects(x).CDkeyOwner = "" : Objects(x).CDkeyClassic = "" : Objects(x).CDkeyExpansion = ""
-            For index = 0 To DataGridView1.Rows.Count - 1
-                If DataGridView1.Rows(index).Cells(0).Value.ToString() = Nothing Then Continue For
+            For index = 0 To CDKeysDataGrid.Rows.Count - 1
+                If CDKeysDataGrid.Rows(index).Cells(0).Value.ToString() = Nothing Then Continue For
 
                 If Objects(x).CDkeyOwner = Nothing Then
-                    Objects(x).CDkeyOwner = DataGridView1.Rows(index).Cells(0).Value
-                    Objects(x).CDkeyClassic = DataGridView1.Rows(index).Cells(1).Value
-                    Objects(x).CDkeyExpansion = DataGridView1.Rows(index).Cells(2).Value
+                    Objects(x).CDkeyOwner = CDKeysDataGrid.Rows(index).Cells(0).Value
+                    Objects(x).CDkeyClassic = CDKeysDataGrid.Rows(index).Cells(1).Value
+                    Objects(x).CDkeyExpansion = CDKeysDataGrid.Rows(index).Cells(2).Value
                 Else
-                    Objects(x).CDkeyOwner = Objects(x).CDkeyOwner & ";" & DataGridView1.Rows(index).Cells(0).Value
-                    Objects(x).CDkeyClassic = Objects(x).CDkeyClassic & ";" & DataGridView1.Rows(index).Cells(1).Value
-                    Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion & ";" & DataGridView1.Rows(index).Cells(2).Value
+                    Objects(x).CDkeyOwner = Objects(x).CDkeyOwner & ";" & CDKeysDataGrid.Rows(index).Cells(0).Value
+                    Objects(x).CDkeyClassic = Objects(x).CDkeyClassic & ";" & CDKeysDataGrid.Rows(index).Cells(1).Value
+                    Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion & ";" & CDKeysDataGrid.Rows(index).Cells(2).Value
                 End If
             Next
 
@@ -200,7 +198,7 @@ Public Class ProfileEditor
     Private Sub ProfileEditor_Load(sender As Object, e As EventArgs) Handles Me.Load
         'Me.Left = Manager.Left + 20
         'Me.Top = Manager.Top + 80
-        DataGridView1.Rows.Clear()
+        CDKeysDataGrid.Rows.Clear()
 
         EntryPointDBox.Items.Clear()
         EntryPointDBox.Items.Add("Loader only")
@@ -290,28 +288,32 @@ Public Class ProfileEditor
 
 
         If Objects(x).CDkeyOwner = Nothing Then Return
-        DataGridView1.Rows.Clear()
+        CDKeysDataGrid.Rows.Clear()
 
         Dim temp = Objects(x).CDkeyOwner.Split(";")
         Dim temp1 = Objects(x).CDkeyClassic.Split(";")
         Dim temp2 = Objects(x).CDkeyExpansion.Split(";")
         For index = 0 To temp.Length - 1
-            DataGridView1.Rows.Add(temp(index), temp1(index), temp2(index))
+            CDKeysDataGrid.Rows.Add(temp(index), temp1(index), temp2(index))
         Next
 
     End Sub
 
     Private Sub RemoveKeyButton_Click(sender As Object, e As EventArgs) Handles RemoveKeyButton.Click
-        If DataGridView1.Rows.Count <= 0 Then
+        If CDKeysDataGrid.Rows.Count <= 0 Then
             Return
         End If
-        Dim x = DataGridView1.CurrentRow.Index
-        DataGridView1.Rows.RemoveAt(x)
+        Dim x = CDKeysDataGrid.CurrentRow.Index
+        CDKeysDataGrid.Rows.RemoveAt(x)
 
     End Sub
 
     Private Sub ProfileEditor_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         ProfileNameTBox.Focus()
+    End Sub
+
+    Private Sub button4_Click(sender As Object, e As EventArgs) Handles button4.Click
+        Me.Close()
     End Sub
 
 End Class

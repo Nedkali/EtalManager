@@ -71,7 +71,7 @@ Partial Class ProfileEditor
         Me.GamesPerKeyTBox = New System.Windows.Forms.TextBox()
         Me.RemoveKeyButton = New System.Windows.Forms.Button()
         Me.AddKeyButton = New System.Windows.Forms.Button()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.CDKeysDataGrid = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ClassicKeys = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ExpansionKeys = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -79,7 +79,7 @@ Partial Class ProfileEditor
         Me.groupBox2.SuspendLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupBox1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CDKeysDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'button4
@@ -567,15 +567,15 @@ Partial Class ProfileEditor
         Me.ToolTip1.SetToolTip(Me.AddKeyButton, "Click here to add CdKey sets or mpq files")
         Me.AddKeyButton.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'CDKeysDataGrid
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToResizeColumns = False
-        Me.DataGridView1.AllowUserToResizeRows = False
-        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.Control
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.ClassicKeys, Me.ExpansionKeys})
+        Me.CDKeysDataGrid.AllowUserToAddRows = False
+        Me.CDKeysDataGrid.AllowUserToDeleteRows = False
+        Me.CDKeysDataGrid.AllowUserToResizeColumns = False
+        Me.CDKeysDataGrid.AllowUserToResizeRows = False
+        Me.CDKeysDataGrid.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.CDKeysDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.CDKeysDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.ClassicKeys, Me.ExpansionKeys})
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -583,18 +583,18 @@ Partial Class ProfileEditor
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlLight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 415)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(480, 156)
-        Me.DataGridView1.TabIndex = 33
-        Me.DataGridView1.TabStop = False
+        Me.CDKeysDataGrid.DefaultCellStyle = DataGridViewCellStyle1
+        Me.CDKeysDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.CDKeysDataGrid.Location = New System.Drawing.Point(12, 415)
+        Me.CDKeysDataGrid.MultiSelect = False
+        Me.CDKeysDataGrid.Name = "CDKeysDataGrid"
+        Me.CDKeysDataGrid.ReadOnly = True
+        Me.CDKeysDataGrid.RowHeadersVisible = False
+        Me.CDKeysDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.CDKeysDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.CDKeysDataGrid.Size = New System.Drawing.Size(480, 156)
+        Me.CDKeysDataGrid.TabIndex = 33
+        Me.CDKeysDataGrid.TabStop = False
         '
         'Column1
         '
@@ -639,7 +639,7 @@ Partial Class ProfileEditor
         Me.ControlBox = False
         Me.Controls.Add(Me.label5)
         Me.Controls.Add(Me.GamesPerKeyTBox)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.CDKeysDataGrid)
         Me.Controls.Add(Me.AddKeyButton)
         Me.Controls.Add(Me.button4)
         Me.Controls.Add(Me.OkAcceptButton)
@@ -661,7 +661,7 @@ Partial Class ProfileEditor
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CDKeysDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -712,7 +712,7 @@ Partial Class ProfileEditor
     Private WithEvents DirectTextCBox As System.Windows.Forms.CheckBox
     Friend WithEvents RemoveKeyButton As Button
     Friend WithEvents AddKeyButton As Button
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents CDKeysDataGrid As DataGridView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents ClassicKeys As DataGridViewTextBoxColumn
     Friend WithEvents ExpansionKeys As DataGridViewTextBoxColumn
