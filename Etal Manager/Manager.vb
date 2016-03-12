@@ -122,16 +122,6 @@ Public Class Manager
     End Sub
 
 
-    Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click, EditButton.Click
-        ProfileEditoraction = ""
-        If (sender Is Me.EditButton) Then
-            Dim a = ProfilesDataGrid.CurrentRow.Index
-            If a > Objects.Count - 1 Or a < 0 Or Objects.Count = 0 Then Return
-            If Objects(a).D2PID > 0 Then Return
-            ProfileEditoraction = "edit"
-        End If
-        ProfileEditor.ShowDialog()
-    End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Application.Exit()
@@ -705,6 +695,21 @@ Public Class Manager
         End Try
 
 
+    End Sub
+
+    Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
+        ProfileEditoraction = ""
+        editposition = -1
+        ProfileEditor.ShowDialog()
+    End Sub
+
+    Private Sub EditButton_Click(sender As Object, e As EventArgs) Handles EditButton.Click
+
+        Dim x As Integer = ProfilesDataGrid.CurrentRow.Index
+        If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
+        ProfileEditoraction = "edit"
+        editposition = x
+        ProfileEditor.ShowDialog()
     End Sub
 
 End Class

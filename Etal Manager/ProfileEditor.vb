@@ -16,6 +16,7 @@ Public Class ProfileEditor
         D2Path = D2Path & "\Game.exe"
         D2Path.Replace("\\", "\")
         D2PathTBox.Text = D2Path
+        NewObject.D2Path = D2Path
     End Sub
 
     Private Sub RegErrorAck()
@@ -29,6 +30,7 @@ Public Class ProfileEditor
         If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             D2Path = openFileDialog1.FileName
             D2PathTBox.Text = D2Path
+            NewObject.D2Path = D2Path
         End If
     End Sub
 
@@ -54,81 +56,6 @@ Public Class ProfileEditor
             Return
         End If
 
-
-        If ProfileEditoraction = "edit" Then
-            Dim x As Integer = Manager.ProfilesDataGrid.CurrentRow.Index
-            Objects(x).ProfileName = ProfileNameTBox.Text
-            Objects(x).AccPass = ""
-            Objects(x).D2Path = D2PathTBox.Text
-            If WindowedCBox.Checked = True Then Objects(x).WindowMode = 1
-            If WindowedCBox.Checked = False Then Objects(x).WindowMode = 0
-            If NoSoundCBox.Checked = True Then Objects(x).D2Sound = 1
-            If NoSoundCBox.Checked = False Then Objects(x).D2Sound = 0
-            If LowQualityCBox.Checked = True Then Objects(x).D2Quality = 1
-            If LowQualityCBox.Checked = False Then Objects(x).D2Quality = 0
-            If DirectTextCBox.Checked = True Then Objects(x).D2DirectText = 1
-            If DirectTextCBox.Checked = False Then Objects(x).D2DirectText = 0
-            If MinimizedCBox.Checked = True Then Objects(x).D2Minimized = 1
-            If MinimizedCBox.Checked = False Then Objects(x).D2Minimized = 0
-
-            Objects(x).CDkeyOwner = "" : Objects(x).CDkeyClassic = "" : Objects(x).CDkeyExpansion = ""
-            For index = 0 To CDKeysDataGrid.Rows.Count - 1
-                If CDKeysDataGrid.Rows(index).Cells(0).Value.ToString() = Nothing Then Continue For
-
-                If Objects(x).CDkeyOwner = Nothing Then
-                    Objects(x).CDkeyOwner = CDKeysDataGrid.Rows(index).Cells(0).Value
-                    Objects(x).CDkeyClassic = CDKeysDataGrid.Rows(index).Cells(1).Value
-                    Objects(x).CDkeyExpansion = CDKeysDataGrid.Rows(index).Cells(2).Value
-                Else
-                    Objects(x).CDkeyOwner = Objects(x).CDkeyOwner & ";" & CDKeysDataGrid.Rows(index).Cells(0).Value
-                    Objects(x).CDkeyClassic = Objects(x).CDkeyClassic & ";" & CDKeysDataGrid.Rows(index).Cells(1).Value
-                    Objects(x).CDkeyExpansion = Objects(x).CDkeyExpansion & ";" & CDKeysDataGrid.Rows(index).Cells(2).Value
-                End If
-            Next
-
-            'Objects(x).CDkeys = textBox3.Text
-            Objects(x).CDkeySwap = GamesPerKeyTBox.Text
-            Objects(x).AccountName = AccountNameTBox.Text
-            'NewObject.AccPass - deliberately left out - we grab this when user selects run
-            Objects(x).D2PlayType = PlayTypeDBox.SelectedIndex
-            Objects(x).D2Difficulty = DifficultyDBox.SelectedIndex
-
-            If ServerDBox.Text = "U.S.West" Then Objects(x).Realm = 1
-            If ServerDBox.Text = "U.S.East" Then Objects(x).Realm = 2
-            If ServerDBox.Text = "Asia" Then Objects(x).Realm = 3
-            If ServerDBox.Text = "Europe" Then Objects(x).Realm = 4
-
-            If RandomGameNameCBox.Checked = True Then Objects(x).randomGame = 1
-            If RandomGameNameCBox.Checked = False Then Objects(x).randomGame = 0
-            If RandomGamePasswordCBox.Checked = True Then Objects(x).randompass = 1
-            If RandomGamePasswordCBox.Checked = False Then Objects(x).randompass = 0
-            Objects(x).GameName = GameNameTBox.Text
-            Objects(x).GamePass = GamePasswordTBox.Text
-            If radioButton1.Checked = True Then Objects(x).CharPosition = 0
-            If radioButton2.Checked = True Then Objects(x).CharPosition = 1
-            If radioButton3.Checked = True Then Objects(x).CharPosition = 2
-            If radioButton4.Checked = True Then Objects(x).CharPosition = 3
-            If radioButton5.Checked = True Then Objects(x).CharPosition = 4
-            If radioButton6.Checked = True Then Objects(x).CharPosition = 5
-            If radioButton7.Checked = True Then Objects(x).CharPosition = 6
-            If radioButton8.Checked = True Then Objects(x).CharPosition = 7
-            If EntryPointDBox.Text = "Loader Only" Then
-                Objects(x).D2starter = ""
-            Else
-                Objects(x).D2starter = EntryPointDBox.Text
-            End If
-            If Objects(x).CDkeySwap = Nothing Then
-                Objects(x).CDkeySwap = 0
-            End If
-
-
-            Manager.ProfilesDataGrid.Rows(x).Cells(0).Value = Objects(x).ProfileName
-            Me.Close()
-            Return
-        End If
-
-        If ProfileNameTBox.Text = Nothing Then Return
-        Dim NewObject As New Profiles
         NewObject.ProfileName = ProfileNameTBox.Text
         NewObject.D2Path = D2PathTBox.Text
         If WindowedCBox.Checked = True Then NewObject.WindowMode = 1
@@ -142,7 +69,12 @@ Public Class ProfileEditor
         If MinimizedCBox.Checked = True Then NewObject.D2Minimized = 1
         If MinimizedCBox.Checked = False Then NewObject.D2Minimized = 0
         'NewObject.CDkeys = textBox3.Text
-        NewObject.CDkeySwap = GamesPerKeyTBox.Text
+        If GamesPerKeyTBox.Text = Nothing Then
+            NewObject.CDkeySwap = 0
+        Else
+            NewObject.CDkeySwap = GamesPerKeyTBox.Text
+        End If
+
         NewObject.AccountName = AccountNameTBox.Text
         'NewObject.AccPass - deliberately left out - we grab this when user selects run
         NewObject.D2PlayType = PlayTypeDBox.SelectedIndex
@@ -170,9 +102,31 @@ Public Class ProfileEditor
         If EntryPointDBox.SelectedIndex = 0 Then NewObject.D2starter = ""
         If EntryPointDBox.SelectedIndex > 0 Then NewObject.D2starter = EntryPointDBox.SelectedText
 
-        Objects.Add(NewObject)
+        NewObject.CDkeyOwner = "" : NewObject.CDkeyClassic = "" : NewObject.CDkeyExpansion = ""
+        For index = 0 To CDKeysDataGrid.RowCount - 1
+            If NewObject.CDkeyOwner = Nothing Then
+                NewObject.CDkeyOwner = CDKeysDataGrid.Rows(index).Cells(0).Value
+                NewObject.CDkeyClassic = CDKeysDataGrid.Rows(index).Cells(1).Value
+                NewObject.CDkeyExpansion = CDKeysDataGrid.Rows(index).Cells(2).Value
+            Else
 
-        Manager.ProfilesDataGrid.Rows(Objects.Count - 1).Cells(0).Value = Objects(Objects.Count - 1).ProfileName
+                NewObject.CDkeyOwner = NewObject.CDkeyOwner + ";" + CDKeysDataGrid.Rows(index).Cells(0).Value
+                NewObject.CDkeyClassic = NewObject.CDkeyClassic + ";" + CDKeysDataGrid.Rows(index).Cells(1).Value
+                NewObject.CDkeyExpansion = NewObject.CDkeyExpansion + ";" + CDKeysDataGrid.Rows(index).Cells(2).Value
+            End If
+        Next
+
+        If ProfileEditoraction = "edit" Then
+            'DeepCopy()
+            Objects(editposition) = NewObject 'may need to do a deep copy here
+        Else
+            Objects.Add(NewObject)
+            Manager.ProfilesDataGrid.Rows(Objects.Count - 1).Cells(0).Value = Objects(Objects.Count - 1).ProfileName
+            Manager.ProfilesDataGrid.Rows(Objects.Count - 1).Cells(2).Value = 0
+            Manager.ProfilesDataGrid.Rows(Objects.Count - 1).Cells(3).Value = 0
+            Manager.ProfilesDataGrid.Rows(Objects.Count - 1).Cells(4).Value = 0
+            Manager.ProfilesDataGrid.Rows(Objects.Count - 1).Cells(5).Value = 0
+        End If
 
         Me.Close()
     End Sub
@@ -199,10 +153,13 @@ Public Class ProfileEditor
         'Me.Left = Manager.Left + 20
         'Me.Top = Manager.Top + 80
         CDKeysDataGrid.Rows.Clear()
-
+        D2PathTBox.Clear()
+        GameNameTBox.Clear()
+        GamePasswordTBox.Clear()
+        AccountNameTBox.Clear()
         EntryPointDBox.Items.Clear()
         EntryPointDBox.Items.Add("Loader only")
-        EntryPointDBox.SelectedIndex = 0
+
 
         If Directory.Exists(Application.StartupPath & "/scripts") Then
             For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath + "\scripts", FileIO.SearchOption.SearchTopLevelOnly, "*.ntj")
@@ -213,65 +170,54 @@ Public Class ProfileEditor
                 End If
             Next
         End If
-
+        Dim x As Integer = 0
 
         If ProfileEditoraction = "edit" Then
-
-            Dim x As Integer = Manager.ProfilesDataGrid.CurrentRow.Index
-
-            'MessageBox.Show("Value = " & x, "edit debug")
-            ProfileNameTBox.Text = Objects(x).ProfileName
-            D2PathTBox.Text = Objects(x).D2Path
-            WindowedCBox.Checked = Objects(x).WindowMode
-            NoSoundCBox.Checked = Objects(x).D2Sound
-            LowQualityCBox.Checked = Objects(x).D2Quality
-            DirectTextCBox.Checked = Objects(x).D2DirectText
-            MinimizedCBox.Checked = Objects(x).D2Minimized
-            'textBox3.Text = Objects(x).CDkeys
-            GamesPerKeyTBox.Text = Objects(x).CDkeySwap
-            AccountNameTBox.Text = Objects(x).AccountName
-            'NewObject.AccPass - deliberately left out - we grab this when user selects run
-            PlayTypeDBox.SelectedIndex = Objects(x).D2PlayType
-            DifficultyDBox.SelectedIndex = Objects(x).D2Difficulty
-            ServerDBox.SelectedIndex = Objects(x).Realm - 1
-            GameNameTBox.Text = Objects(x).GameName
-            GamePasswordTBox.Text = Objects(x).GamePass
-            RandomGameNameCBox.Checked = Objects(x).randomGame
-            RandomGamePasswordCBox.Checked = Objects(x).randompass
-            If Objects(x).CharPosition = 0 Then radioButton1.Checked = True
-            If Objects(x).CharPosition = 1 Then radioButton2.Checked = True
-            If Objects(x).CharPosition = 2 Then radioButton3.Checked = True
-            If Objects(x).CharPosition = 3 Then radioButton4.Checked = True
-            If Objects(x).CharPosition = 4 Then radioButton5.Checked = True
-            If Objects(x).CharPosition = 5 Then radioButton6.Checked = True
-            If Objects(x).CharPosition = 6 Then radioButton7.Checked = True
-            If Objects(x).CharPosition = 7 Then radioButton8.Checked = True
-            For y = 0 To EntryPointDBox.Items.Count - 1
-                If Objects(x).D2starter = EntryPointDBox.Items(y) Then EntryPointDBox.SelectedIndex = y
-            Next
-            If EntryPointDBox.SelectedIndex < 0 Then EntryPointDBox.Text = "Loader Only"
-
-            displaykeys(x)
-            Return
+            NewObject = Objects(editposition)
+        Else
+            NewObject = New Profiles
+            'PlayTypeDBox.SelectedIndex = 0
+            'radioButton1.Checked = True
+            'DifficultyDBox.SelectedIndex = 0
+            'ServerDBox.SelectedIndex = 0
         End If
-        ProfileNameTBox.Clear()
-        D2PathTBox.Clear()
-        WindowedCBox.Checked = True
-        NoSoundCBox.Checked = False
-        LowQualityCBox.Checked = False
-        DirectTextCBox.Checked = False
-        MinimizedCBox.Checked = False
-        AccountNameTBox.Clear()
-        GamesPerKeyTBox.Text = "0"
-        EntryPointDBox.SelectedIndex = 0
-        PlayTypeDBox.SelectedIndex = 0
-        ServerDBox.SelectedIndex = 0
-        DifficultyDBox.SelectedIndex = 0
-        GamePasswordTBox.Enabled = False
-        GameNameTBox.Enabled = False
-        RandomGamePasswordCBox.Checked = True
-        RandomGameNameCBox.Checked = True
-        radioButton1.Checked = True
+
+        'MessageBox.Show("Value = " & x, "edit debug")
+        ProfileNameTBox.Text = NewObject.ProfileName
+        D2PathTBox.Text = NewObject.D2Path
+        WindowedCBox.Checked = NewObject.WindowMode
+        NoSoundCBox.Checked = NewObject.D2Sound
+        LowQualityCBox.Checked = NewObject.D2Quality
+        DirectTextCBox.Checked = NewObject.D2DirectText
+        MinimizedCBox.Checked = NewObject.D2Minimized
+        'textBox3.Text = Objects(x).CDkeys
+        GamesPerKeyTBox.Text = NewObject.CDkeySwap
+        AccountNameTBox.Text = NewObject.AccountName
+        'NewObject.AccPass - deliberately left out - we grab this when user selects run
+        PlayTypeDBox.SelectedIndex = NewObject.D2PlayType
+        DifficultyDBox.SelectedIndex = NewObject.D2Difficulty
+        ServerDBox.SelectedIndex = NewObject.Realm - 1
+        GameNameTBox.Text = NewObject.GameName
+        GamePasswordTBox.Text = NewObject.GamePass
+        RandomGameNameCBox.Checked = NewObject.randomGame
+        RandomGamePasswordCBox.Checked = NewObject.randompass
+        If NewObject.CharPosition = 0 Then radioButton1.Checked = True
+        If NewObject.CharPosition = 1 Then radioButton2.Checked = True
+        If NewObject.CharPosition = 2 Then radioButton3.Checked = True
+        If NewObject.CharPosition = 3 Then radioButton4.Checked = True
+        If NewObject.CharPosition = 4 Then radioButton5.Checked = True
+        If NewObject.CharPosition = 5 Then radioButton6.Checked = True
+        If NewObject.CharPosition = 6 Then radioButton7.Checked = True
+        If NewObject.CharPosition = 7 Then radioButton8.Checked = True
+        For y = 0 To EntryPointDBox.Items.Count - 1
+            If NewObject.D2starter = EntryPointDBox.Items(y) Then EntryPointDBox.SelectedIndex = y
+        Next
+
+        If EntryPointDBox.SelectedIndex < 0 Then EntryPointDBox.Text = "Loader Only"
+        displaykeys()
+
+        Return
+
     End Sub
 
     Private Sub AddKeyButton_Click(sender As Object, e As EventArgs) Handles AddKeyButton.Click
@@ -279,20 +225,19 @@ Public Class ProfileEditor
             MessageBox.Show("You need to set Diablo folder first")
             Return
         End If
-        Dim x = Manager.ProfilesDataGrid.CurrentRow.Index
         AddRawKeys.ShowDialog()
-        displaykeys(x)
+        displaykeys()
     End Sub
 
-    Private Sub displaykeys(ByVal x)
+    Private Sub displaykeys()
 
 
-        If Objects(x).CDkeyOwner = Nothing Then Return
+        If NewObject.CDkeyOwner = Nothing Then Return
         CDKeysDataGrid.Rows.Clear()
 
-        Dim temp = Objects(x).CDkeyOwner.Split(";")
-        Dim temp1 = Objects(x).CDkeyClassic.Split(";")
-        Dim temp2 = Objects(x).CDkeyExpansion.Split(";")
+        Dim temp = NewObject.CDkeyOwner.Split(";")
+        Dim temp1 = NewObject.CDkeyClassic.Split(";")
+        Dim temp2 = NewObject.CDkeyExpansion.Split(";")
         For index = 0 To temp.Length - 1
             CDKeysDataGrid.Rows.Add(temp(index), temp1(index), temp2(index))
         Next
@@ -314,6 +259,41 @@ Public Class ProfileEditor
 
     Private Sub button4_Click(sender As Object, e As EventArgs) Handles button4.Click
         Me.Close()
+    End Sub
+
+    Private Sub DeepCopy()
+
+        Objects(editposition).ProfileName = NewObject.ProfileName
+        Objects(editposition).D2Path = NewObject.D2Path
+        Objects(editposition).WindowMode = NewObject.WindowMode
+        Objects(editposition).D2Sound = NewObject.D2Sound
+        Objects(editposition).D2Quality = NewObject.D2Quality
+        Objects(editposition).D2DirectText = NewObject.D2DirectText
+        Objects(editposition).D2Minimized = NewObject.D2Minimized
+        Objects(editposition).CDkeys = NewObject.CDkeys
+        Objects(editposition).CDkeySwap = NewObject.CDkeySwap
+        Objects(editposition).AccountName = NewObject.AccountName
+        Objects(editposition).AccPass = NewObject.AccPass
+        Objects(editposition).D2PlayType = NewObject.D2PlayType
+        Objects(editposition).D2Difficulty = NewObject.D2Difficulty
+        Objects(editposition).Realm = NewObject.Realm
+        Objects(editposition).randomGame = NewObject.randomGame
+        Objects(editposition).randompass = NewObject.randompass
+        Objects(editposition).GameName = NewObject.GameName
+        Objects(editposition).GamePass = NewObject.GamePass
+        Objects(editposition).CharPosition = NewObject.CharPosition
+        Objects(editposition).D2starter = NewObject.D2starter
+        Objects(editposition).D2PID = NewObject.D2PID
+        Objects(editposition).Run = NewObject.Run
+        Objects(editposition).Chickens = NewObject.Chickens
+        Objects(editposition).Restarts = NewObject.Restarts
+        Objects(editposition).Deaths = NewObject.Deaths
+        Objects(editposition).Flags = NewObject.Flags
+        Objects(editposition).CDkeyOwner = NewObject.CDkeyOwner
+        Objects(editposition).CDkeyClassic = NewObject.CDkeyClassic
+        Objects(editposition).CDkeyExpansion = NewObject.CDkeyExpansion
+
+
     End Sub
 
 End Class

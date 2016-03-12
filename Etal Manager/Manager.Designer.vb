@@ -23,7 +23,7 @@ Partial Class Manager
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Manager))
         Me.wwwetalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitButton = New System.Windows.Forms.Button()
@@ -69,7 +69,7 @@ Partial Class Manager
         'wwwetalToolStripMenuItem
         '
         Me.wwwetalToolStripMenuItem.Name = "wwwetalToolStripMenuItem"
-        Me.wwwetalToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.wwwetalToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
         Me.wwwetalToolStripMenuItem.Text = "Web &Site"
         '
         'ExitButton
@@ -80,7 +80,7 @@ Partial Class Manager
         Me.ExitButton.Size = New System.Drawing.Size(205, 27)
         Me.ExitButton.TabIndex = 8
         Me.ExitButton.Text = "E&xit"
-        Me.ToolTip1.SetToolTip(Me.Exitbutton, "Closes Etal Manager")
+        Me.ToolTip1.SetToolTip(Me.ExitButton, "Closes Etal Manager")
         Me.ExitButton.UseVisualStyleBackColor = True
         '
         'ItemLog
@@ -164,7 +164,7 @@ Partial Class Manager
         'WikiToolStripMenuItem
         '
         Me.WikiToolStripMenuItem.Name = "WikiToolStripMenuItem"
-        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.WikiToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
         Me.WikiToolStripMenuItem.Text = "&Wiki"
         '
         'SaveButton
@@ -197,7 +197,7 @@ Partial Class Manager
         Me.EditButton.Size = New System.Drawing.Size(62, 25)
         Me.EditButton.TabIndex = 3
         Me.EditButton.Text = "&Edit"
-        Me.ToolTip1.SetToolTip(Me.Editbutton, "Edit settings on selected profile" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This will reset selected profiles account pass" &
+        Me.ToolTip1.SetToolTip(Me.EditButton, "Edit settings on selected profile" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This will reset selected profiles account pass" &
         "word")
         Me.EditButton.UseVisualStyleBackColor = True
         '
@@ -246,14 +246,14 @@ Partial Class Manager
         Me.ProfilesDataGrid.BackgroundColor = System.Drawing.SystemColors.Control
         Me.ProfilesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.ProfilesDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.KeyFile, Me.Column2, Me.Column3, Me.Deaths, Me.Column4, Me.Column5})
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.ProfilesDataGrid.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.ProfilesDataGrid.DefaultCellStyle = DataGridViewCellStyle2
         Me.ProfilesDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.ProfilesDataGrid.GridColor = System.Drawing.SystemColors.ControlLight
         Me.ProfilesDataGrid.Location = New System.Drawing.Point(12, 121)
@@ -381,7 +381,7 @@ Partial Class Manager
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.ExitButton
-        Me.ClientSize = New System.Drawing.Size(617, 664)
+        Me.ClientSize = New System.Drawing.Size(617, 665)
         Me.Controls.Add(Me.CopyButton)
         Me.Controls.Add(Me.MoveDown)
         Me.Controls.Add(Me.MoveUp)

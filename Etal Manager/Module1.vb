@@ -4,12 +4,12 @@ Module Module1
 
     Public Objects As List(Of Profiles) = New List(Of Profiles)
     Public totalkeys As List(Of keyholder) = New List(Of keyholder)
-    Public current As List(Of keyholder) = New List(Of keyholder)
+    Public NewObject As New Profiles
 
     Public bw As BackgroundWorker1 = New BackgroundWorker1
     Public sendmsg As Integer = 0
     Public ProfileEditoraction As String
-
+    Public editposition As Integer = -1
 
     ''' <summary>
     ''' An application sends the WM_COPYDATA message to pass data to another 

@@ -4,7 +4,6 @@
     End Sub
 
     Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
-        Dim a = Manager.ProfilesDataGrid.CurrentRow.Index
 
         If KeyMpqNameTBox.Text.Length = 0 Then
             KeyMpqNameTBox.Focus()
@@ -12,15 +11,14 @@
             Return
         End If
 
-        Dim folder = Objects(a).D2Path
-        folder = folder.Replace("Game.exe", "")
+        Dim folder = NewObject.D2Path.Replace("Game.exe", "")
 
         If KeyMpqNameTBox.Text.Contains(".mpq") = True Then
 
             If My.Computer.FileSystem.FileExists(folder & KeyMpqNameTBox.Text) Then
-                Objects(a).CDkeyOwner = Objects(a).CDkeyOwner & ";" & KeyMpqNameTBox.Text
-                Objects(a).CDkeyClassic = Objects(a).CDkeyClassic & ";"
-                Objects(a).CDkeyExpansion = Objects(a).CDkeyExpansion & ";"
+                NewObject.CDkeyOwner = NewObject.CDkeyOwner & ";" & KeyMpqNameTBox.Text
+                NewObject.CDkeyClassic = NewObject.CDkeyClassic & ";"
+                NewObject.CDkeyExpansion = NewObject.CDkeyExpansion & ";"
                 Me.Close()
             Else
                 WarningsLabel.Text = "File must be Diablo II instaltion folder" & vbCrLf & "              or filename is incorrect!!"
@@ -40,17 +38,15 @@
         End If
 
 
-        If Objects(a).CDkeyOwner = Nothing Then
-            Objects(a).CDkeyOwner = KeyMpqNameTBox.Text
-            Objects(a).CDkeyClassic = ClassicKeyTBox.Text
-            Objects(a).CDkeyExpansion = ExpansionKeyTBox.Text
+        If NewObject.CDkeyOwner = Nothing Then
+            NewObject.CDkeyOwner = KeyMpqNameTBox.Text
+            NewObject.CDkeyClassic = ClassicKeyTBox.Text
+            NewObject.CDkeyExpansion = ExpansionKeyTBox.Text
         Else
-            Dim temp = Objects(a).CDkeyOwner
-            Dim classic = Objects(a).CDkeyClassic
-            Dim expans = Objects(a).CDkeyExpansion
-            Objects(a).CDkeyOwner = temp + ";" + KeyMpqNameTBox.Text
-            Objects(a).CDkeyClassic = classic + ";" + ClassicKeyTBox.Text
-            Objects(a).CDkeyExpansion = expans + ";" + ExpansionKeyTBox.Text
+
+            NewObject.CDkeyOwner = NewObject.CDkeyOwner + ";" + KeyMpqNameTBox.Text
+            NewObject.CDkeyClassic = NewObject.CDkeyClassic + ";" + ClassicKeyTBox.Text
+            NewObject.CDkeyExpansion = NewObject.CDkeyExpansion + ";" + ExpansionKeyTBox.Text
         End If
         Me.Close()
     End Sub

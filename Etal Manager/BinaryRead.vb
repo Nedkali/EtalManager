@@ -34,7 +34,7 @@ Module BinaryRead
 
         Dim ckey = assignkeys(x)
 
-        If ckey > 0 Then
+        If ckey >= 0 Then
             prof.KeyOwner = totalkeys(ckey).name
             prof.Classic = totalkeys(ckey).classic
             prof.Lod = totalkeys(ckey).lod
@@ -79,25 +79,9 @@ Module BinaryRead
 
     End Function
     Function assignkeys(ByVal x)
-        Return 0
         Dim xx = 0
         totalkeys.Clear()
-        Dim mpqkeys As Array
         Dim rawkeys As Array
-        Dim usekey As String = ""
-        If Objects(x).CDkeys <> Nothing Then
-            mpqkeys = Objects(x).CDkeys.Split(";")
-            'MessageBox.Show("here checking mpq's")
-            For index = 0 To mpqkeys.Length - 1
-                Dim newkeys As New keyholder
-                If mpqkeys(index) = Nothing Then Continue For
-                newkeys.name = mpqkeys(index)
-                newkeys.classic = ""
-                newkeys.lod = ""
-                totalkeys.Add(newkeys)
-            Next
-        End If
-        'MessageBox.Show("here checking totalkeys" & totalkeys.Count)
 
         If Objects(x).CDkeyOwner <> Nothing Then
             rawkeys = Objects(x).CDkeyOwner.Split(";")
@@ -111,7 +95,6 @@ Module BinaryRead
             Next
         End If
 
-
         Dim gamesperkey = 0  ' games per key
         If Objects(x).CDkeySwap <> Nothing Then
             gamesperkey = Convert.ToInt32(Objects(x).CDkeySwap)
@@ -120,6 +103,8 @@ Module BinaryRead
         Dim gamecount = Manager.ProfilesDataGrid.Rows(x).Cells(2).Value 'current game count
 
         If totalkeys.Count = 0 Then Return -1
+
+        If gamesperkey = 0 And totalkeys.Count > 0 Then Return 0
 
         If gamesperkey > 0 And gamecount > 0 Then
             Dim d = gamecount / gamesperkey
