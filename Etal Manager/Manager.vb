@@ -403,7 +403,7 @@ Public Class Manager
             Dim d2app = Process.GetProcessesByName("Game")
             For Each process In d2app
                 If process.Id = Objects(a).D2PID Then
-                    ErrorTextBox.AppendText("Profile already running") : Return
+                    'ColorSetter1("[" & timesetter() + Objects(a).ProfileName & "]" & "Ã¿c1Profile already running")
                     Return
                 End If
             Next
@@ -709,6 +709,7 @@ Public Class Manager
         If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
         ProfileEditoraction = "edit"
         editposition = x
+        Objects(x).AccPass = ""
         ProfileEditor.ShowDialog()
     End Sub
 
