@@ -39,6 +39,8 @@ Module BinaryRead
             prof.Classic = totalkeys(ckey).classic
             prof.Lod = totalkeys(ckey).lod
             Manager.ProfilesDataGrid.Rows(x).Cells(1).Value = totalkeys(ckey).name
+        Else
+            Manager.ProfilesDataGrid.Rows(x).Cells(1).Value = "Default"
         End If
 
         'random game needs to be moved to dll later?
@@ -71,7 +73,7 @@ Module BinaryRead
 
             writer.Close()
         Catch ex As Exception
-            Manager.ErrorTextBox.AppendText(ex.Message & vbCrLf)
+            Manager.ColorSetter3("[" & Manager.timesetter() & Objects(x).ProfileName & "]" & ex.Message)
             Return False
         End Try
 

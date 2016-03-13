@@ -270,7 +270,6 @@ Public Class ProfileEditor
         Objects(editposition).D2Quality = NewObject.D2Quality
         Objects(editposition).D2DirectText = NewObject.D2DirectText
         Objects(editposition).D2Minimized = NewObject.D2Minimized
-        Objects(editposition).CDkeys = NewObject.CDkeys
         Objects(editposition).CDkeySwap = NewObject.CDkeySwap
         Objects(editposition).AccountName = NewObject.AccountName
         Objects(editposition).AccPass = NewObject.AccPass

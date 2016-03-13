@@ -45,8 +45,6 @@ Module Module1
         Public Account As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=12)>
         Public AccPass As String
-        '<MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
-        'Public MpqFile As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Public KeyOwner As String
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>

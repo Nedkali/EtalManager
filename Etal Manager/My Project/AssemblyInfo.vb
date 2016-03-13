@@ -9,8 +9,8 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Etal Manager")> 
-<Assembly: AssemblyDescription("D2 Bot")> 
-<Assembly: AssemblyCompany("Etal Ned")> 
+<Assembly: AssemblyDescription("D2 Bot")>
+<Assembly: AssemblyCompany("Etal")>
 <Assembly: AssemblyProduct("Etal Manager")> 
 <Assembly: AssemblyCopyright("Copyright ©  2013")> 
 <Assembly: AssemblyTrademark("")> 

@@ -76,9 +76,7 @@ Public Class Manager
                         ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] Continuing next game")
 
                     Case Else
-
-                        ErrorTextBox.AppendText("Message rcv: int = " & y & " " & temp)
-                        ErrorTextBox.AppendText("" & vbCrLf)
+                        ColorSetter3("[" & temp1 + "Unknown]" & temp)
                 End Select
                 cds = Nothing
 
@@ -186,7 +184,7 @@ Public Class Manager
             LogWriter.Close()
 
         Catch ex As Exception
-            ErrorTextBox.AppendText(ex.Message)
+            ColorSetter3("[" & timesetter() + "Error] " & ex.Message)
         End Try
 
 
@@ -240,7 +238,7 @@ Public Class Manager
             CfgReader.Close()
 
         Catch ex As Exception
-            CommonLogRTB.AppendText("File Read Error")
+            ColorSetter3("[" & timesetter() & "Error] File Read Error")
 
         End Try
         For x = 0 To Objects.Count - 1
@@ -332,7 +330,6 @@ Public Class Manager
         newobject.D2Quality = Objects(a).D2Quality
         newobject.D2DirectText = Objects(a).D2DirectText
         newobject.D2Minimized = Objects(a).D2Minimized
-        newobject.CDkeys = Objects(a).CDkeys
         newobject.CDkeySwap = Objects(a).CDkeySwap
         newobject.AccountName = Objects(a).AccountName
         newobject.AccPass = Objects(a).AccPass
@@ -419,7 +416,7 @@ Public Class Manager
         Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
 
         If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
-            ErrorTextBox.AppendText("Unable to locate Game.exe")
+            ColorSetter1("[" & timesetter() + "Error] Unable to locate Game.exe")
             Return
         End If
 
@@ -427,9 +424,6 @@ Public Class Manager
 
         Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateNew("D2NT Profile", 71)
         If MemFile(mmf, a) = False Then Return
-
-        ' mpq setting ?????
-
 
 
         Dim ApArgs As String = ""
@@ -451,22 +445,20 @@ Public Class Manager
         p = PInvoke.Extensions.StartSuspended(p, p.StartInfo) 'loads D2 into memory
         Objects(a).D2PID = p.Id
 
-        'If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2M.dll") Then RichTextBox3.AppendText(" Failed to load D2M.dll")
-
         'blocks 2nd instance check
         Dim address As New IntPtr(&H400000 + &H57C8)
         Dim oldValue(1) As Byte
         Dim newvalue() As Byte = {&HEB, &H46}
         Try 'a287
-            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then ErrorTextBox.AppendText(" failed to read window fix")
-            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then ErrorTextBox.AppendText(" failed to write window fix")
+            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then ColorSetter3("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1failed to read window fix")
+            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then ColorSetter3("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1failed to write window fix")
         Catch
-            ErrorTextBox.AppendText(" error on window fix " & address.ToString)
+            ColorSetter3("[" & timesetter() + "Error] error on window fix " & address.ToString)
 
         End Try
 
         'loads/injects dll
-        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then ErrorTextBox.AppendText(" Failed to load D2Etal.dll")
+        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then ColorSetter3("[" & timesetter() + "Error]  Ã¿c1Failed to load D2Etal.dll")
 
         'resume/start process
         PInvoke.Kernel32.ResumeProcess(p)
@@ -485,7 +477,7 @@ Public Class Manager
             PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
             PInvoke.Kernel32.ResumeProcess(p)
         Catch ex As Exception
-            ErrorTextBox.AppendText("Error reverting d2gfx patch")
+            ColorSetter3("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1Error reverting d2gfx patch")
         End Try
 
         If Objects(a).D2Minimized = 1 Then
@@ -512,7 +504,7 @@ Public Class Manager
         Return temp1
     End Function
 
-    Private Sub ColorSetter3(ByVal text As String)
+    Public Sub ColorSetter3(ByVal text As String)
 
         If text.ToString().Contains("Ã¿c") = False Then
             ErrorTextBox.Select(0, 0) : ErrorTextBox.SelectedText = vbCrLf
@@ -560,7 +552,7 @@ Public Class Manager
 
     End Sub
 
-    Private Sub ColorSetter2(ByVal text As String)
+    Public Sub ColorSetter2(ByVal text As String)
 
         If text.ToString().Contains("Ã¿c") = False Then
             ItemTextBox.Select(0, 0) : ItemTextBox.SelectedText = vbCrLf
@@ -606,7 +598,7 @@ Public Class Manager
             End If
         Next
     End Sub
-    Private Sub ColorSetter1(ByVal text As String)
+    Public Sub ColorSetter1(ByVal text As String)
 
         If text.ToString().Contains("Ã¿c") = False Then
             CommonLogRTB.Select(0, 0) : CommonLogRTB.SelectedText = vbCrLf
@@ -706,7 +698,8 @@ Public Class Manager
     Private Sub EditButton_Click(sender As Object, e As EventArgs) Handles EditButton.Click
 
         Dim x As Integer = ProfilesDataGrid.CurrentRow.Index
-        If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return
+        If x < 0 Or x > Objects.Count - 1 Or Objects.Count = 0 Then Return ' out of range handling
+        If Objects(x).D2PID > 0 Then Return ' profile already running
         ProfileEditoraction = "edit"
         editposition = x
         Objects(x).AccPass = ""
