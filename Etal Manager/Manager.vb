@@ -420,7 +420,10 @@ Public Class Manager
             Return
         End If
 
+        ProfilesDataGrid.Rows(a).Cells(6).Value = "Loading"
+        ProfilesDataGrid.Refresh() ' ensures display occurs before next code line
 
+        ColorSetter1("[" & timesetter() & Objects(a).ProfileName & "] Loading")
 
         Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateNew("D2NT Profile", 71)
         If MemFile(mmf, a) = False Then Return
