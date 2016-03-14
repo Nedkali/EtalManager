@@ -118,6 +118,8 @@ Public Class ProfileEditor
         If ProfileEditoraction = "edit" Then
             'DeepCopy()
             Objects(editposition) = NewObject 'may need to do a deep copy here
+            Manager.ProfilesDataGrid.Rows(editposition).Cells(0).Value = Objects(editposition).ProfileName
+
         Else
             Objects.Add(NewObject)
             Manager.ProfilesDataGrid.Rows(Objects.Count - 1).Cells(0).Value = Objects(Objects.Count - 1).ProfileName

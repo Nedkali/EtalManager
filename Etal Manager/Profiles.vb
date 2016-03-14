@@ -10,7 +10,7 @@
     Public CDkeySwap As String = "0"
     Public AccountName As String = ""
     Public AccPass As String = ""
-    Public D2PlayType As Integer = 1
+    Public D2PlayType As Integer = 0
     Public D2Difficulty As Integer = 0
     Public Realm As Integer = 1
     Public randomGame As Integer = 1
