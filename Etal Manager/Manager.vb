@@ -42,29 +42,29 @@ Public Class Manager
                         ProfilesDataGrid.Rows(x).Cells(6).Value = temp
                     Case ETAL_MGR_LOGIN
                         ProfilesDataGrid.Rows(x).Cells(6).Value = "Login"
-                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] Login")
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] Login", Me.CommonLogRTB)
                     Case ETAL_MGR_CREATE_GAME
                         ProfilesDataGrid.Rows(x).Cells(6).Value = "Game Create"
-                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] Game Create")
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] Game Create", Me.CommonLogRTB)
                     Case ETAL_MGR_INGAME
                         y = Convert.ToInt32(ProfilesDataGrid.Rows(x).Cells(2).Value)
                         y = y + 1
                         ProfilesDataGrid.Rows(x).Cells(2).Value = y
                         ProfilesDataGrid.Rows(x).Cells(6).Value = "In Game"
-                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")")
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] In Game(" & y & ")", Me.CommonLogRTB)
                     Case ETAL_MGR_RESTART
                         ProfilesDataGrid.Rows(x).Cells(6).Value = "Restarting"
                     Case ETAL_MGR_CHICKEN
-                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] " & temp, Me.CommonLogRTB)
                     Case ETAL_MGR_PRINT_STATUS
                         ProfilesDataGrid.Rows(x).Cells(6).Value = temp
-                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] " & temp, Me.CommonLogRTB)
                     Case ETAL_MGR_COMMON
-                        ColorSetter1("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] " & temp, Me.CommonLogRTB)
                     Case ETAL_MGR_ITEM_LOG
-                        ColorSetter2("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] " & temp, Me.ItemTextBox)
                     Case ETAL_MGR_ERROR_LOG
-                        ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] " & temp)
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] " & temp, Me.ErrorTextBox)
                     Case 555
                         Dim ckey = assignkeys(x)
                         If ckey >= 0 And totalkeys(ckey).name <> ProfilesDataGrid.Rows(x).Cells(1).Value Then
@@ -73,10 +73,10 @@ Public Class Manager
 
                     Case 6153 ' used for dll to check if manager present
                         m.Result = 0
-                        ColorSetter3("[" & temp1 + Objects(x).ProfileName & "] Continuing next game")
+                        AddToMessageLogs("[" & temp1 + Objects(x).ProfileName & "] Continuing next game", Me.ErrorTextBox)
 
                     Case Else
-                        ColorSetter3("[" & temp1 + "Unknown]" & temp)
+                        AddToMessageLogs("[" & temp1 + "Unknown]" & temp, Me.ErrorTextBox)
                 End Select
                 cds = Nothing
 
@@ -184,7 +184,7 @@ Public Class Manager
             LogWriter.Close()
 
         Catch ex As Exception
-            ColorSetter3("[" & timesetter() + "Error] " & ex.Message)
+            AddToMessageLogs("[" & timesetter() + "Error] " & ex.Message, Me.ErrorTextBox)
         End Try
 
 
@@ -238,7 +238,7 @@ Public Class Manager
             CfgReader.Close()
 
         Catch ex As Exception
-            ColorSetter3("[" & timesetter() & "Error] File Read Error")
+            AddToMessageLogs("[" & timesetter() & "Error] File Read Error", Me.ErrorTextBox)
 
         End Try
         For x = 0 To Objects.Count - 1
@@ -400,7 +400,7 @@ Public Class Manager
             Dim d2app = Process.GetProcessesByName("Game")
             For Each process In d2app
                 If process.Id = Objects(a).D2PID Then
-                    'ColorSetter1("[" & timesetter() + Objects(a).ProfileName & "]" & "Ã¿c1Profile already running")
+                    'AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "]" & "Ã¿c1Profile already running", Me.CommonLogRTB)
                     Return
                 End If
             Next
@@ -416,14 +416,14 @@ Public Class Manager
         Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
 
         If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
-            ColorSetter1("[" & timesetter() + "Error] Unable to locate Game.exe")
+            AddToMessageLogs("[" & timesetter() + "Error] Unable to locate Game.exe", Me.CommonLogRTB)
             Return
         End If
 
         ProfilesDataGrid.Rows(a).Cells(6).Value = "Loading"
         ProfilesDataGrid.Refresh() ' ensures display occurs before next code line
 
-        ColorSetter1("[" & timesetter() & Objects(a).ProfileName & "] Loading")
+        AddToMessageLogs("[" & timesetter() & Objects(a).ProfileName & "] Loading", Me.CommonLogRTB)
 
         Dim mmf As MemoryMappedFile = MemoryMappedFile.CreateNew("D2NT Profile", 71)
         If MemFile(mmf, a) = False Then Return
@@ -453,15 +453,15 @@ Public Class Manager
         Dim oldValue(1) As Byte
         Dim newvalue() As Byte = {&HEB, &H46}
         Try 'a287
-            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then ColorSetter3("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1failed to read window fix")
-            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then ColorSetter3("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1failed to write window fix")
+            If Not PInvoke.Kernel32.ReadProcessMemory(p, address, oldValue) Then AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1failed to read window fix", Me.ErrorTextBox)
+            If PInvoke.Kernel32.WriteProcessMemory(p, address, newvalue) = 0 Then AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1failed to write window fix", Me.ErrorTextBox)
         Catch
-            ColorSetter3("[" & timesetter() + "Error] error on window fix " & address.ToString)
+            AddToMessageLogs("[" & timesetter() + "Error] error on window fix " & address.ToString, Me.ErrorTextBox)
 
         End Try
 
         'loads/injects dll
-        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then ColorSetter3("[" & timesetter() + "Error]  Ã¿c1Failed to load D2Etal.dll")
+        If Not PInvoke.Kernel32.LoadRemoteLibrary(p, Application.StartupPath & "\D2ETAL.dll") Then AddToMessageLogs("[" & timesetter() + "Error]  Ã¿c1Failed to load D2Etal.dll", Me.ErrorTextBox)
 
         'resume/start process
         PInvoke.Kernel32.ResumeProcess(p)
@@ -480,7 +480,7 @@ Public Class Manager
             PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
             PInvoke.Kernel32.ResumeProcess(p)
         Catch ex As Exception
-            ColorSetter3("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1Error reverting d2gfx patch")
+            AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1Error reverting d2gfx patch", Me.ErrorTextBox)
         End Try
 
         If Objects(a).D2Minimized = 1 Then
@@ -494,156 +494,68 @@ Public Class Manager
 
         Dim tnow As System.DateTime = System.DateTime.Now
         Dim temp1 As String = tnow.Hour.ToString()
-        If temp1.Length = 1 Then temp1 = "0" & temp1
-        temp1 = temp1 & "."
+        If tnow.Hour = 0 Then temp1 = "12"
+        temp1 = temp1 & ":"
 
         Dim temp2 = tnow.Minute.ToString()
         If temp2.Length = 1 Then temp2 = "0" & temp2
-        temp2 = temp2 & "."
+        temp2 = temp2 & ":"
         Dim temp3 = tnow.Second.ToString()
         If temp3.Length = 1 Then temp3 = "0" & temp3
-        temp3 = temp3 & "."
-        temp1 = temp1 & temp2 & temp3 & " "
+        Dim temp4
+        If tnow.Hour < 12 Then
+            temp4 = " AM"
+        Else
+            temp4 = " PM"
+        End If
+
+        temp1 = temp1 & temp2 & temp3 & temp4 & " "
         Return temp1
     End Function
 
-    Public Sub ColorSetter3(ByVal text As String)
+    Public Sub AddToMessageLogs(ByVal text As String, ByRef rtb As RichTextBox)
 
         If text.ToString().Contains("Ã¿c") = False Then
-            ErrorTextBox.Select(0, 0) : ErrorTextBox.SelectedText = vbCrLf
-            ErrorTextBox.Select(0, 0)
-            ErrorTextBox.SelectedText = text
-            ErrorTextBox.SelectionColor = Color.Black
+            rtb.Select(0, 0) : rtb.SelectedText = vbCrLf
+            rtb.Select(0, 0)
+            rtb.SelectedText = text
+            rtb.SelectionColor = Color.Black
             Return
         End If
 
         Dim temp1 = Split(text, "Ã¿c")
-        ErrorTextBox.Select(0, 0) : ErrorTextBox.SelectedText = vbCrLf : ErrorTextBox.Select(0, 0)
+        rtb.Select(0, 0) : rtb.SelectedText = vbCrLf : rtb.Select(0, 0)
         For index = 0 To temp1.Length - 1
             Dim clr = temp1(index).Substring(0, 1)
 
             Select Case clr
                 Case 0
-                    ErrorTextBox.SelectionColor = Color.LightGray
+                    rtb.SelectionColor = Color.LightGray
                 Case 1
-                    ErrorTextBox.SelectionColor = Color.Red
+                    rtb.SelectionColor = Color.Red
                 Case 2
-                    ErrorTextBox.SelectionColor = Color.Green
+                    rtb.SelectionColor = Color.Green
                 Case 3
-                    ErrorTextBox.SelectionColor = Color.Blue
+                    rtb.SelectionColor = Color.Blue
                 Case 4
-                    ErrorTextBox.SelectionColor = Color.Goldenrod
+                    rtb.SelectionColor = Color.Goldenrod
                 Case 5
-                    ErrorTextBox.SelectionColor = Color.Gray
+                    rtb.SelectionColor = Color.Gray
                 Case 6
-                    ErrorTextBox.SelectionColor = Color.Goldenrod
+                    rtb.SelectionColor = Color.Goldenrod
                 Case 7
-                    ErrorTextBox.SelectionColor = Color.Goldenrod
+                    rtb.SelectionColor = Color.Goldenrod
                 Case 8
-                    ErrorTextBox.SelectionColor = Color.DarkGreen
+                    rtb.SelectionColor = Color.DarkGreen
                 Case 9
-                    ErrorTextBox.SelectionColor = Color.Yellow
+                    rtb.SelectionColor = Color.Yellow
                 Case Else
-                    ErrorTextBox.SelectionColor = Color.Black
+                    rtb.SelectionColor = Color.Black
             End Select
             If clr = "[" Then
-                ErrorTextBox.SelectedText = temp1(index)
+                rtb.SelectedText = temp1(index)
             Else
-                ErrorTextBox.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
-            End If
-        Next
-
-    End Sub
-
-    Public Sub ColorSetter2(ByVal text As String)
-
-        If text.ToString().Contains("Ã¿c") = False Then
-            ItemTextBox.Select(0, 0) : ItemTextBox.SelectedText = vbCrLf
-            ItemTextBox.Select(0, 0)
-            ItemTextBox.SelectedText = text
-            ItemTextBox.SelectionColor = Color.Black
-            Return
-        End If
-
-        Dim temp1 = Split(text, "Ã¿c")
-        ItemTextBox.Select(0, 0) : ItemTextBox.SelectedText = vbCrLf : ItemTextBox.Select(0, 0)
-        For index = 0 To temp1.Length - 1
-            Dim clr = temp1(index).Substring(0, 1)
-
-            Select Case clr
-                Case 0
-                    ItemTextBox.SelectionColor = Color.LightGray
-                Case 1
-                    ItemTextBox.SelectionColor = Color.Red
-                Case 2
-                    ItemTextBox.SelectionColor = Color.Green
-                Case 3
-                    ItemTextBox.SelectionColor = Color.Blue
-                Case 4
-                    ItemTextBox.SelectionColor = Color.Goldenrod
-                Case 5
-                    ItemTextBox.SelectionColor = Color.Gray
-                Case 6
-                    ItemTextBox.SelectionColor = Color.Goldenrod
-                Case 7
-                    ItemTextBox.SelectionColor = Color.Goldenrod
-                Case 8
-                    ItemTextBox.SelectionColor = Color.DarkGreen
-                Case 9
-                    ItemTextBox.SelectionColor = Color.Yellow
-                Case Else
-                    ItemTextBox.SelectionColor = Color.Black
-            End Select
-            If clr = "[" Then
-                ItemTextBox.SelectedText = temp1(index)
-            Else
-                ItemTextBox.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
-            End If
-        Next
-    End Sub
-    Public Sub ColorSetter1(ByVal text As String)
-
-        If text.ToString().Contains("Ã¿c") = False Then
-            CommonLogRTB.Select(0, 0) : CommonLogRTB.SelectedText = vbCrLf
-            CommonLogRTB.Select(0, 0)
-            CommonLogRTB.SelectedText = text
-            CommonLogRTB.SelectionColor = Color.Black
-            Return
-        End If
-
-        Dim temp1 = Split(text, "Ã¿c")
-        CommonLogRTB.Select(0, 0) : CommonLogRTB.SelectedText = vbCrLf : CommonLogRTB.Select(0, 0)
-        For index = 0 To temp1.Length - 1
-            Dim clr = temp1(index).Substring(0, 1)
-
-            Select Case clr
-                Case 0
-                    CommonLogRTB.SelectionColor = Color.LightGray
-                Case 1
-                    CommonLogRTB.SelectionColor = Color.Red
-                Case 2
-                    CommonLogRTB.SelectionColor = Color.Green
-                Case 3
-                    CommonLogRTB.SelectionColor = Color.Blue
-                Case 4
-                    CommonLogRTB.SelectionColor = Color.Goldenrod
-                Case 5
-                    CommonLogRTB.SelectionColor = Color.Gray
-                Case 6
-                    CommonLogRTB.SelectionColor = Color.Goldenrod
-                Case 7
-                    CommonLogRTB.SelectionColor = Color.Goldenrod
-                Case 8
-                    CommonLogRTB.SelectionColor = Color.DarkGreen
-                Case 9
-                    CommonLogRTB.SelectionColor = Color.Yellow
-                Case Else
-                    CommonLogRTB.SelectionColor = Color.Black
-            End Select
-            If clr = "[" Then
-                CommonLogRTB.SelectedText = temp1(index)
-            Else
-                CommonLogRTB.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+                rtb.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
             End If
         Next
     End Sub

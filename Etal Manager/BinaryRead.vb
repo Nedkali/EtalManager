@@ -73,7 +73,7 @@ Module BinaryRead
 
             writer.Close()
         Catch ex As Exception
-            Manager.ColorSetter3("[" & Manager.timesetter() & Objects(x).ProfileName & "]" & ex.Message)
+            Manager.AddToMessageLogs("[" & Manager.timesetter() & Objects(x).ProfileName & "]" & ex.Message, Manager.ErrorTextBox)
             Return False
         End Try
 
