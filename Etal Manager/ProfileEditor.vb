@@ -8,20 +8,19 @@ Public Class ProfileEditor
 
         key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\Blizzard Entertainment\Diablo II")
         If key Is Nothing Then
-            RegErrorAck()
             Return
         End If
 
         Dim D2Path As String = key.GetValue("InstallPath").ToString()
-        D2Path = D2Path & "\Game.exe"
-        D2Path.Replace("\\", "\")
+        If D2Path.Substring(D2Path.Length - 1, 1) = "\" Then
+            D2Path = D2Path & "Game.exe"
+        Else
+            D2Path = D2Path & "\Game.exe"
+        End If
         D2PathTBox.Text = D2Path
         NewObject.D2Path = D2Path
     End Sub
 
-    Private Sub RegErrorAck()
-        MessageBox.Show("Unable to locate Registry entry", "ERROR", MessageBoxButtons.OK)
-    End Sub
 
     Private Sub ManualSeekPathButton_Click(sender As Object, e As EventArgs) Handles ManualSeekPathButton.Click
         Dim D2Path As String = "C:\"
