@@ -3,7 +3,7 @@
     Public ProfileName As String = ""
     Public D2Path As String = ""
     Public WindowMode As Integer = 1
-    Public D2Sound As Integer = 0
+    Public D2Sound As Integer = 1
     Public D2Quality As Integer = 0
     Public D2DirectText As Integer = 0
     Public D2Minimized As Integer = 0

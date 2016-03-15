@@ -24,7 +24,7 @@ Partial Class ProfileEditor
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProfileEditor))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.button4 = New System.Windows.Forms.Button()
         Me.OkAcceptButton = New System.Windows.Forms.Button()
         Me.label14 = New System.Windows.Forms.Label()
@@ -84,6 +84,7 @@ Partial Class ProfileEditor
         '
         'button4
         '
+        Me.button4.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.button4.Location = New System.Drawing.Point(389, 585)
         Me.button4.Name = "button4"
         Me.button4.Size = New System.Drawing.Size(85, 28)
@@ -398,6 +399,8 @@ Partial Class ProfileEditor
         'WindowedCBox
         '
         Me.WindowedCBox.AutoSize = True
+        Me.WindowedCBox.Checked = True
+        Me.WindowedCBox.CheckState = System.Windows.Forms.CheckState.Checked
         Me.WindowedCBox.Location = New System.Drawing.Point(19, 48)
         Me.WindowedCBox.Name = "WindowedCBox"
         Me.WindowedCBox.Size = New System.Drawing.Size(95, 17)
@@ -458,6 +461,8 @@ Partial Class ProfileEditor
         'NoSoundCBox
         '
         Me.NoSoundCBox.AutoSize = True
+        Me.NoSoundCBox.Checked = True
+        Me.NoSoundCBox.CheckState = System.Windows.Forms.CheckState.Checked
         Me.NoSoundCBox.Location = New System.Drawing.Point(124, 48)
         Me.NoSoundCBox.Name = "NoSoundCBox"
         Me.NoSoundCBox.Size = New System.Drawing.Size(74, 17)
@@ -577,14 +582,14 @@ Partial Class ProfileEditor
         Me.CDKeysDataGrid.BackgroundColor = System.Drawing.SystemColors.Control
         Me.CDKeysDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CDKeysDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.ClassicKeys, Me.ExpansionKeys})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CDKeysDataGrid.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CDKeysDataGrid.DefaultCellStyle = DataGridViewCellStyle1
         Me.CDKeysDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.CDKeysDataGrid.Location = New System.Drawing.Point(12, 415)
         Me.CDKeysDataGrid.MultiSelect = False

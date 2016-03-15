@@ -57,16 +57,31 @@ Public Class ProfileEditor
 
         NewObject.ProfileName = ProfileNameTBox.Text
         NewObject.D2Path = D2PathTBox.Text
-        If WindowedCBox.Checked = True Then NewObject.WindowMode = 1
-        If WindowedCBox.Checked = False Then NewObject.WindowMode = 0
-        If NoSoundCBox.Checked = True Then NewObject.D2Sound = 1
-        If NoSoundCBox.Checked = False Then NewObject.D2Sound = 0
-        If LowQualityCBox.Checked = True Then NewObject.D2Quality = 1
-        If LowQualityCBox.Checked = False Then NewObject.D2Quality = 0
-        If DirectTextCBox.Checked = True Then NewObject.D2DirectText = 1
-        If DirectTextCBox.Checked = False Then NewObject.D2DirectText = 0
-        If MinimizedCBox.Checked = True Then NewObject.D2Minimized = 1
-        If MinimizedCBox.Checked = False Then NewObject.D2Minimized = 0
+        If WindowedCBox.Checked = True Then
+            NewObject.WindowMode = 1
+        ElseIf WindowedCBox.Checked = False Then
+            NewObject.WindowMode = 0
+        End If
+        If NoSoundCBox.Checked = True Then
+            NewObject.D2Sound = 1
+        ElseIf NoSoundCBox.Checked = False Then
+            NewObject.D2Sound = 0
+        End If
+        If LowQualityCBox.Checked = True Then
+            NewObject.D2Quality = 1
+        ElseIf LowQualityCBox.Checked = False Then
+            NewObject.D2Quality = 0
+        End If
+        If DirectTextCBox.Checked = True Then
+            NewObject.D2DirectText = 1
+        ElseIf DirectTextCBox.Checked = False Then
+            NewObject.D2DirectText = 0
+        End If
+        If MinimizedCBox.Checked = True Then
+            NewObject.D2Minimized = 1
+        ElseIf MinimizedCBox.Checked = False Then
+            NewObject.D2Minimized = 0
+        End If
         'NewObject.CDkeys = textBox3.Text
         If GamesPerKeyTBox.Text = Nothing Then
             NewObject.CDkeySwap = 0
@@ -84,22 +99,40 @@ Public Class ProfileEditor
         If ServerDBox.Text = "Asia" Then NewObject.Realm = 3
         If ServerDBox.Text = "Europe" Then NewObject.Realm = 4
 
-        If RandomGameNameCBox.Checked = True Then NewObject.randomGame = 1
-        If RandomGameNameCBox.Checked = False Then NewObject.randomGame = 0
-        If RandomGamePasswordCBox.Checked = True Then NewObject.randompass = 1
-        If RandomGamePasswordCBox.Checked = False Then NewObject.randompass = 0
+        If RandomGameNameCBox.Checked = True Then
+            NewObject.randomGame = 1
+        ElseIf RandomGameNameCBox.Checked = False Then
+            NewObject.randomGame = 0
+        End If
+        If RandomGamePasswordCBox.Checked = True Then
+            NewObject.randompass = 1
+        ElseIf RandomGamePasswordCBox.Checked = False Then
+            NewObject.randompass = 0
+        End If
         NewObject.GameName = GameNameTBox.Text
         NewObject.GamePass = GamePasswordTBox.Text
-        If radioButton1.Checked = True Then NewObject.CharPosition = 0
-        If radioButton2.Checked = True Then NewObject.CharPosition = 1
-        If radioButton3.Checked = True Then NewObject.CharPosition = 2
-        If radioButton4.Checked = True Then NewObject.CharPosition = 3
-        If radioButton5.Checked = True Then NewObject.CharPosition = 4
-        If radioButton6.Checked = True Then NewObject.CharPosition = 5
-        If radioButton7.Checked = True Then NewObject.CharPosition = 6
-        If radioButton8.Checked = True Then NewObject.CharPosition = 7
-        If EntryPointDBox.SelectedIndex = 0 Then NewObject.D2starter = ""
-        If EntryPointDBox.SelectedIndex > 0 Then NewObject.D2starter = EntryPointDBox.SelectedText
+        If radioButton1.Checked = True Then
+            NewObject.CharPosition = 0
+        ElseIf radioButton2.Checked = True Then
+            NewObject.CharPosition = 1
+        ElseIf radioButton3.Checked = True Then
+            NewObject.CharPosition = 2
+        ElseIf radioButton4.Checked = True Then
+            NewObject.CharPosition = 3
+        ElseIf radioButton5.Checked = True Then
+            NewObject.CharPosition = 4
+        ElseIf radioButton6.Checked = True Then
+            NewObject.CharPosition = 5
+        ElseIf radioButton7.Checked = True Then
+            NewObject.CharPosition = 6
+        ElseIf radioButton8.Checked = True Then
+            NewObject.CharPosition = 7
+        End If
+        If EntryPointDBox.SelectedIndex = 0 Then
+            NewObject.D2starter = ""
+        ElseIf EntryPointDBox.SelectedIndex > 0 Then
+            NewObject.D2starter = EntryPointDBox.SelectedText
+        End If
 
         NewObject.CDkeyOwner = "" : NewObject.CDkeyClassic = "" : NewObject.CDkeyExpansion = ""
         For index = 0 To CDKeysDataGrid.RowCount - 1
@@ -135,8 +168,7 @@ Public Class ProfileEditor
     Private Sub RandomGameNameCBox_CheckedChanged(sender As Object, e As EventArgs) Handles RandomGameNameCBox.CheckedChanged
         If RandomGameNameCBox.Checked = True Then
             GameNameTBox.Enabled = False
-        End If
-        If RandomGameNameCBox.Checked = False Then
+        ElseIf RandomGameNameCBox.Checked = False Then
             GameNameTBox.Enabled = True
         End If
     End Sub
@@ -144,8 +176,7 @@ Public Class ProfileEditor
     Private Sub RandomGamePasswordCBox_CheckedChanged(sender As Object, e As EventArgs) Handles RandomGamePasswordCBox.CheckedChanged
         If RandomGamePasswordCBox.Checked = True Then
             GamePasswordTBox.Enabled = False
-        End If
-        If RandomGamePasswordCBox.Checked = False Then
+        ElseIf RandomGamePasswordCBox.Checked = False Then
             GamePasswordTBox.Enabled = True
         End If
     End Sub
@@ -202,14 +233,23 @@ Public Class ProfileEditor
         GamePasswordTBox.Text = NewObject.GamePass
         RandomGameNameCBox.Checked = NewObject.randomGame
         RandomGamePasswordCBox.Checked = NewObject.randompass
-        If NewObject.CharPosition = 0 Then radioButton1.Checked = True
-        If NewObject.CharPosition = 1 Then radioButton2.Checked = True
-        If NewObject.CharPosition = 2 Then radioButton3.Checked = True
-        If NewObject.CharPosition = 3 Then radioButton4.Checked = True
-        If NewObject.CharPosition = 4 Then radioButton5.Checked = True
-        If NewObject.CharPosition = 5 Then radioButton6.Checked = True
-        If NewObject.CharPosition = 6 Then radioButton7.Checked = True
-        If NewObject.CharPosition = 7 Then radioButton8.Checked = True
+        If NewObject.CharPosition = 0 Then
+            radioButton1.Checked = True
+        ElseIf NewObject.CharPosition = 1 Then
+            radioButton2.Checked = True
+        ElseIf NewObject.CharPosition = 2 Then
+            radioButton3.Checked = True
+        ElseIf NewObject.CharPosition = 3 Then
+            radioButton4.Checked = True
+        ElseIf NewObject.CharPosition = 4 Then
+            radioButton5.Checked = True
+        ElseIf NewObject.CharPosition = 5 Then
+            radioButton6.Checked = True
+        ElseIf NewObject.CharPosition = 6 Then
+            radioButton7.Checked = True
+        ElseIf NewObject.CharPosition = 7 Then
+            radioButton8.Checked = True
+        End If
         For y = 0 To EntryPointDBox.Items.Count - 1
             If NewObject.D2starter = EntryPointDBox.Items(y) Then EntryPointDBox.SelectedIndex = y
         Next

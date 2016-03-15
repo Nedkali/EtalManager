@@ -358,8 +358,11 @@ Public Class Manager
         ProfilesDataGrid.Rows(a).Cells(2).Value = Objects(a).Run
         ProfilesDataGrid.Rows(a).Cells(3).Value = Objects(a).Restarts
         ProfilesDataGrid.Rows(a).Cells(4).Value = Objects(a).Chickens
-        If a > 5 Then a = a - 5
-        If a < 5 Then a = 0
+        If a > 5 Then
+            a = a - 5
+        ElseIf a <= 5 Then
+            a = 0
+        End If
         ProfilesDataGrid.FirstDisplayedScrollingRowIndex = a
         ProfilesDataGrid.CurrentCell = ProfilesDataGrid.Item(0, Objects.Count - 1)
 
