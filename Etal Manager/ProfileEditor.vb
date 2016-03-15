@@ -206,6 +206,7 @@ Public Class ProfileEditor
 
         If ProfileEditoraction = "edit" Then
             NewObject = Objects(editposition)
+            Me.ProfileNameTBox.SelectAll()
         Else
             NewObject = New Profiles
             'PlayTypeDBox.SelectedIndex = 0
