@@ -555,7 +555,7 @@ Public Class Manager
             If clr = "[" Then
                 rtb.SelectedText = temp1(index)
             Else
-                rtb.SelectedText = temp1(index).Substring(1, temp1(index).Length - 2)
+                rtb.SelectedText = temp1(index).Substring(1, temp1(index).Length - 1)
             End If
         Next
     End Sub
