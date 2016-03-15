@@ -41,7 +41,7 @@ Partial Class AddRawKeys
         Me.Label1.Location = New System.Drawing.Point(10, 21)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(85, 13)
-        Me.Label1.TabIndex = 6
+        Me.Label1.TabIndex = 0
         Me.Label1.Text = "Key Owner/Mpq"
         '
         'Label2
@@ -50,7 +50,7 @@ Partial Class AddRawKeys
         Me.Label2.Location = New System.Drawing.Point(160, 21)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(61, 13)
-        Me.Label2.TabIndex = 7
+        Me.Label2.TabIndex = 2
         Me.Label2.Text = "Classic Key"
         '
         'Label3
@@ -59,7 +59,7 @@ Partial Class AddRawKeys
         Me.Label3.Location = New System.Drawing.Point(313, 21)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 13)
-        Me.Label3.TabIndex = 8
+        Me.Label3.TabIndex = 4
         Me.Label3.Text = "Expansion Key"
         '
         'KeyMpqNameTBox
@@ -67,7 +67,7 @@ Partial Class AddRawKeys
         Me.KeyMpqNameTBox.Location = New System.Drawing.Point(8, 37)
         Me.KeyMpqNameTBox.Name = "KeyMpqNameTBox"
         Me.KeyMpqNameTBox.Size = New System.Drawing.Size(89, 20)
-        Me.KeyMpqNameTBox.TabIndex = 9
+        Me.KeyMpqNameTBox.TabIndex = 1
         '
         'ClassicKeyTBox
         '
@@ -75,7 +75,7 @@ Partial Class AddRawKeys
         Me.ClassicKeyTBox.MaxLength = 26
         Me.ClassicKeyTBox.Name = "ClassicKeyTBox"
         Me.ClassicKeyTBox.Size = New System.Drawing.Size(155, 20)
-        Me.ClassicKeyTBox.TabIndex = 10
+        Me.ClassicKeyTBox.TabIndex = 3
         '
         'ExpansionKeyTBox
         '
@@ -83,7 +83,7 @@ Partial Class AddRawKeys
         Me.ExpansionKeyTBox.MaxLength = 26
         Me.ExpansionKeyTBox.Name = "ExpansionKeyTBox"
         Me.ExpansionKeyTBox.Size = New System.Drawing.Size(155, 20)
-        Me.ExpansionKeyTBox.TabIndex = 11
+        Me.ExpansionKeyTBox.TabIndex = 5
         '
         'GroupBox1
         '
@@ -107,7 +107,7 @@ Partial Class AddRawKeys
         Me.AddButton.Location = New System.Drawing.Point(255, 80)
         Me.AddButton.Name = "AddButton"
         Me.AddButton.Size = New System.Drawing.Size(75, 23)
-        Me.AddButton.TabIndex = 13
+        Me.AddButton.TabIndex = 7
         Me.AddButton.Text = "&Add Key"
         Me.AddButton.UseVisualStyleBackColor = True
         '
@@ -119,7 +119,7 @@ Partial Class AddRawKeys
         Me.Button1.MinimumSize = New System.Drawing.Size(75, 23)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 12
+        Me.Button1.TabIndex = 6
         Me.Button1.Text = "&Cancel"
         Me.Button1.UseVisualStyleBackColor = True
         '

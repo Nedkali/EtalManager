@@ -24,7 +24,7 @@ Partial Class ProfileEditor
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProfileEditor))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.button4 = New System.Windows.Forms.Button()
         Me.OkAcceptButton = New System.Windows.Forms.Button()
         Me.label14 = New System.Windows.Forms.Label()
@@ -87,7 +87,7 @@ Partial Class ProfileEditor
         Me.button4.Location = New System.Drawing.Point(389, 585)
         Me.button4.Name = "button4"
         Me.button4.Size = New System.Drawing.Size(85, 28)
-        Me.button4.TabIndex = 32
+        Me.button4.TabIndex = 12
         Me.button4.Text = "Cancel"
         Me.ToolTip1.SetToolTip(Me.button4, "Discard changes and close this window")
         Me.button4.UseVisualStyleBackColor = True
@@ -97,7 +97,7 @@ Partial Class ProfileEditor
         Me.OkAcceptButton.Location = New System.Drawing.Point(22, 585)
         Me.OkAcceptButton.Name = "OkAcceptButton"
         Me.OkAcceptButton.Size = New System.Drawing.Size(85, 28)
-        Me.OkAcceptButton.TabIndex = 31
+        Me.OkAcceptButton.TabIndex = 11
         Me.OkAcceptButton.Text = "OK"
         Me.ToolTip1.SetToolTip(Me.OkAcceptButton, "Accept changes to this profiles setings")
         Me.OkAcceptButton.UseVisualStyleBackColor = True
@@ -108,7 +108,7 @@ Partial Class ProfileEditor
         Me.label14.Location = New System.Drawing.Point(16, 82)
         Me.label14.Name = "label14"
         Me.label14.Size = New System.Drawing.Size(113, 13)
-        Me.label14.TabIndex = 47
+        Me.label14.TabIndex = 8
         Me.label14.Text = "Entry Point/Starter File"
         '
         'RandomGamePasswordCBox
@@ -117,7 +117,7 @@ Partial Class ProfileEditor
         Me.RandomGamePasswordCBox.Location = New System.Drawing.Point(337, 111)
         Me.RandomGamePasswordCBox.Name = "RandomGamePasswordCBox"
         Me.RandomGamePasswordCBox.Size = New System.Drawing.Size(66, 17)
-        Me.RandomGamePasswordCBox.TabIndex = 19
+        Me.RandomGamePasswordCBox.TabIndex = 15
         Me.RandomGamePasswordCBox.Text = "Random"
         Me.ToolTip1.SetToolTip(Me.RandomGamePasswordCBox, "A random password will be created for games")
         Me.RandomGamePasswordCBox.UseVisualStyleBackColor = True
@@ -128,7 +128,7 @@ Partial Class ProfileEditor
         Me.label12.Location = New System.Drawing.Point(159, 113)
         Me.label12.Name = "label12"
         Me.label12.Size = New System.Drawing.Size(56, 13)
-        Me.label12.TabIndex = 46
+        Me.label12.TabIndex = 13
         Me.label12.Text = "Game PW"
         '
         'RandomGameNameCBox
@@ -137,7 +137,7 @@ Partial Class ProfileEditor
         Me.RandomGameNameCBox.Location = New System.Drawing.Point(337, 80)
         Me.RandomGameNameCBox.Name = "RandomGameNameCBox"
         Me.RandomGameNameCBox.Size = New System.Drawing.Size(66, 17)
-        Me.RandomGameNameCBox.TabIndex = 18
+        Me.RandomGameNameCBox.TabIndex = 12
         Me.RandomGameNameCBox.Text = "Random"
         Me.ToolTip1.SetToolTip(Me.RandomGameNameCBox, "A random game name will be created for you")
         Me.RandomGameNameCBox.UseVisualStyleBackColor = True
@@ -173,7 +173,7 @@ Partial Class ProfileEditor
         Me.groupBox2.Location = New System.Drawing.Point(12, 231)
         Me.groupBox2.Name = "groupBox2"
         Me.groupBox2.Size = New System.Drawing.Size(480, 146)
-        Me.groupBox2.TabIndex = 25
+        Me.groupBox2.TabIndex = 5
         Me.groupBox2.TabStop = False
         Me.groupBox2.Text = "Game Settings"
         '
@@ -183,7 +183,7 @@ Partial Class ProfileEditor
         Me.GamePasswordTBox.MaxLength = 7
         Me.GamePasswordTBox.Name = "GamePasswordTBox"
         Me.GamePasswordTBox.Size = New System.Drawing.Size(100, 20)
-        Me.GamePasswordTBox.TabIndex = 15
+        Me.GamePasswordTBox.TabIndex = 14
         Me.ToolTip1.SetToolTip(Me.GamePasswordTBox, "Enter a password to play privately online")
         '
         'label13
@@ -192,7 +192,7 @@ Partial Class ProfileEditor
         Me.label13.Location = New System.Drawing.Point(149, 82)
         Me.label13.Name = "label13"
         Me.label13.Size = New System.Drawing.Size(66, 13)
-        Me.label13.TabIndex = 45
+        Me.label13.TabIndex = 10
         Me.label13.Text = "Game Name"
         '
         'GameNameTBox
@@ -200,7 +200,7 @@ Partial Class ProfileEditor
         Me.GameNameTBox.Location = New System.Drawing.Point(221, 78)
         Me.GameNameTBox.Name = "GameNameTBox"
         Me.GameNameTBox.Size = New System.Drawing.Size(100, 20)
-        Me.GameNameTBox.TabIndex = 14
+        Me.GameNameTBox.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.GameNameTBox, "Enter a name for games")
         '
         'EntryPointDBox
@@ -211,7 +211,7 @@ Partial Class ProfileEditor
         Me.EntryPointDBox.Location = New System.Drawing.Point(16, 109)
         Me.EntryPointDBox.Name = "EntryPointDBox"
         Me.EntryPointDBox.Size = New System.Drawing.Size(121, 21)
-        Me.EntryPointDBox.TabIndex = 11
+        Me.EntryPointDBox.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.EntryPointDBox, resources.GetString("EntryPointDBox.ToolTip"))
         '
         'radioButton1
@@ -221,7 +221,7 @@ Partial Class ProfileEditor
         Me.radioButton1.Location = New System.Drawing.Point(412, 48)
         Me.radioButton1.Name = "radioButton1"
         Me.radioButton1.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton1.TabIndex = 20
+        Me.radioButton1.TabIndex = 18
         Me.radioButton1.TabStop = True
         Me.radioButton1.Text = "1"
         Me.radioButton1.UseVisualStyleBackColor = True
@@ -232,7 +232,7 @@ Partial Class ProfileEditor
         Me.radioButton3.Location = New System.Drawing.Point(412, 71)
         Me.radioButton3.Name = "radioButton3"
         Me.radioButton3.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton3.TabIndex = 22
+        Me.radioButton3.TabIndex = 21
         Me.radioButton3.Text = "3"
         Me.radioButton3.UseVisualStyleBackColor = True
         '
@@ -242,7 +242,7 @@ Partial Class ProfileEditor
         Me.radioButton5.Location = New System.Drawing.Point(412, 94)
         Me.radioButton5.Name = "radioButton5"
         Me.radioButton5.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton5.TabIndex = 24
+        Me.radioButton5.TabIndex = 23
         Me.radioButton5.Text = "5"
         Me.radioButton5.UseVisualStyleBackColor = True
         '
@@ -252,7 +252,7 @@ Partial Class ProfileEditor
         Me.radioButton8.Location = New System.Drawing.Point(443, 117)
         Me.radioButton8.Name = "radioButton8"
         Me.radioButton8.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton8.TabIndex = 27
+        Me.radioButton8.TabIndex = 26
         Me.radioButton8.Text = "8"
         Me.radioButton8.UseVisualStyleBackColor = True
         '
@@ -262,7 +262,7 @@ Partial Class ProfileEditor
         Me.radioButton2.Location = New System.Drawing.Point(443, 48)
         Me.radioButton2.Name = "radioButton2"
         Me.radioButton2.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton2.TabIndex = 21
+        Me.radioButton2.TabIndex = 19
         Me.radioButton2.Text = "2"
         Me.radioButton2.UseVisualStyleBackColor = True
         '
@@ -272,7 +272,7 @@ Partial Class ProfileEditor
         Me.radioButton7.Location = New System.Drawing.Point(412, 117)
         Me.radioButton7.Name = "radioButton7"
         Me.radioButton7.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton7.TabIndex = 26
+        Me.radioButton7.TabIndex = 25
         Me.radioButton7.Text = "7"
         Me.radioButton7.UseVisualStyleBackColor = True
         '
@@ -282,7 +282,7 @@ Partial Class ProfileEditor
         Me.radioButton4.Location = New System.Drawing.Point(443, 71)
         Me.radioButton4.Name = "radioButton4"
         Me.radioButton4.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton4.TabIndex = 23
+        Me.radioButton4.TabIndex = 22
         Me.radioButton4.Text = "4"
         Me.radioButton4.UseVisualStyleBackColor = True
         '
@@ -292,7 +292,7 @@ Partial Class ProfileEditor
         Me.radioButton6.Location = New System.Drawing.Point(443, 94)
         Me.radioButton6.Name = "radioButton6"
         Me.radioButton6.Size = New System.Drawing.Size(31, 17)
-        Me.radioButton6.TabIndex = 25
+        Me.radioButton6.TabIndex = 24
         Me.radioButton6.Text = "6"
         Me.radioButton6.UseVisualStyleBackColor = True
         '
@@ -305,7 +305,7 @@ Partial Class ProfileEditor
         Me.ServerDBox.Location = New System.Drawing.Point(307, 48)
         Me.ServerDBox.Name = "ServerDBox"
         Me.ServerDBox.Size = New System.Drawing.Size(76, 21)
-        Me.ServerDBox.TabIndex = 17
+        Me.ServerDBox.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.ServerDBox, "Select what realm on battle.net you wish to play")
         '
         'DifficultyDBox
@@ -317,7 +317,7 @@ Partial Class ProfileEditor
         Me.DifficultyDBox.Location = New System.Drawing.Point(307, 19)
         Me.DifficultyDBox.Name = "DifficultyDBox"
         Me.DifficultyDBox.Size = New System.Drawing.Size(76, 21)
-        Me.DifficultyDBox.TabIndex = 16
+        Me.DifficultyDBox.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.DifficultyDBox, "Select a difficulty your char can handle")
         '
         'PlayTypeDBox
@@ -329,7 +329,7 @@ Partial Class ProfileEditor
         Me.PlayTypeDBox.Location = New System.Drawing.Point(131, 48)
         Me.PlayTypeDBox.Name = "PlayTypeDBox"
         Me.PlayTypeDBox.Size = New System.Drawing.Size(101, 21)
-        Me.PlayTypeDBox.TabIndex = 12
+        Me.PlayTypeDBox.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.PlayTypeDBox, "Select single player for offline games" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Select Battle.net for online games")
         '
         'label11
@@ -338,7 +338,7 @@ Partial Class ProfileEditor
         Me.label11.Location = New System.Drawing.Point(419, 29)
         Me.label11.Name = "label11"
         Me.label11.Size = New System.Drawing.Size(44, 13)
-        Me.label11.TabIndex = 24
+        Me.label11.TabIndex = 17
         Me.label11.Text = "Position"
         '
         'label10
@@ -347,7 +347,7 @@ Partial Class ProfileEditor
         Me.label10.Location = New System.Drawing.Point(415, 10)
         Me.label10.Name = "label10"
         Me.label10.Size = New System.Drawing.Size(53, 13)
-        Me.label10.TabIndex = 23
+        Me.label10.TabIndex = 16
         Me.label10.Text = "Character"
         Me.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -357,7 +357,7 @@ Partial Class ProfileEditor
         Me.label9.Location = New System.Drawing.Point(254, 52)
         Me.label9.Name = "label9"
         Me.label9.Size = New System.Drawing.Size(38, 13)
-        Me.label9.TabIndex = 21
+        Me.label9.TabIndex = 6
         Me.label9.Text = "Server"
         '
         'label8
@@ -366,7 +366,7 @@ Partial Class ProfileEditor
         Me.label8.Location = New System.Drawing.Point(254, 21)
         Me.label8.Name = "label8"
         Me.label8.Size = New System.Drawing.Size(47, 13)
-        Me.label8.TabIndex = 22
+        Me.label8.TabIndex = 4
         Me.label8.Text = "Difficulty"
         '
         'label7
@@ -375,7 +375,7 @@ Partial Class ProfileEditor
         Me.label7.Location = New System.Drawing.Point(131, 21)
         Me.label7.Name = "label7"
         Me.label7.Size = New System.Drawing.Size(54, 13)
-        Me.label7.TabIndex = 21
+        Me.label7.TabIndex = 2
         Me.label7.Text = "Play Type"
         '
         'label6
@@ -384,7 +384,7 @@ Partial Class ProfileEditor
         Me.label6.Location = New System.Drawing.Point(16, 21)
         Me.label6.Name = "label6"
         Me.label6.Size = New System.Drawing.Size(78, 13)
-        Me.label6.TabIndex = 20
+        Me.label6.TabIndex = 0
         Me.label6.Text = "Account Name"
         '
         'AccountNameTBox
@@ -392,7 +392,7 @@ Partial Class ProfileEditor
         Me.AccountNameTBox.Location = New System.Drawing.Point(16, 48)
         Me.AccountNameTBox.Name = "AccountNameTBox"
         Me.AccountNameTBox.Size = New System.Drawing.Size(100, 20)
-        Me.AccountNameTBox.TabIndex = 10
+        Me.AccountNameTBox.TabIndex = 1
         Me.ToolTip1.SetToolTip(Me.AccountNameTBox, "This must be the name used to login into your Battle Net account")
         '
         'WindowedCBox
@@ -432,7 +432,7 @@ Partial Class ProfileEditor
         Me.labelD2Path.Location = New System.Drawing.Point(15, 22)
         Me.labelD2Path.Name = "labelD2Path"
         Me.labelD2Path.Size = New System.Drawing.Size(43, 13)
-        Me.labelD2Path.TabIndex = 5
+        Me.labelD2Path.TabIndex = 0
         Me.labelD2Path.Text = "D2Path"
         '
         'D2PathTBox
@@ -442,7 +442,7 @@ Partial Class ProfileEditor
         Me.D2PathTBox.Name = "D2PathTBox"
         Me.D2PathTBox.ReadOnly = True
         Me.D2PathTBox.Size = New System.Drawing.Size(247, 20)
-        Me.D2PathTBox.TabIndex = 44
+        Me.D2PathTBox.TabIndex = 1
         Me.D2PathTBox.TabStop = False
         '
         'pictureBox1
@@ -471,7 +471,7 @@ Partial Class ProfileEditor
         Me.LabelProfileName.Location = New System.Drawing.Point(18, 116)
         Me.LabelProfileName.Name = "LabelProfileName"
         Me.LabelProfileName.Size = New System.Drawing.Size(67, 13)
-        Me.LabelProfileName.TabIndex = 23
+        Me.LabelProfileName.TabIndex = 1
         Me.LabelProfileName.Text = "Profile Name"
         '
         'ProfileNameTBox
@@ -479,7 +479,7 @@ Partial Class ProfileEditor
         Me.ProfileNameTBox.Location = New System.Drawing.Point(101, 113)
         Me.ProfileNameTBox.Name = "ProfileNameTBox"
         Me.ProfileNameTBox.Size = New System.Drawing.Size(205, 20)
-        Me.ProfileNameTBox.TabIndex = 1
+        Me.ProfileNameTBox.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.ProfileNameTBox, "Name for your profile " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "this can be anything you wish," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "use a word or name that h" &
         "elps distinguis from other profiles" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
@@ -507,7 +507,7 @@ Partial Class ProfileEditor
         Me.groupBox1.Location = New System.Drawing.Point(12, 140)
         Me.groupBox1.Name = "groupBox1"
         Me.groupBox1.Size = New System.Drawing.Size(480, 85)
-        Me.groupBox1.TabIndex = 24
+        Me.groupBox1.TabIndex = 3
         Me.groupBox1.TabStop = False
         Me.groupBox1.Text = "Loader Settings"
         '
@@ -537,7 +537,7 @@ Partial Class ProfileEditor
         Me.label5.Location = New System.Drawing.Point(171, 388)
         Me.label5.Name = "label5"
         Me.label5.Size = New System.Drawing.Size(89, 13)
-        Me.label5.TabIndex = 52
+        Me.label5.TabIndex = 7
         Me.label5.Text = "Game # / CDKey"
         '
         'GamesPerKeyTBox
@@ -545,7 +545,7 @@ Partial Class ProfileEditor
         Me.GamesPerKeyTBox.Location = New System.Drawing.Point(264, 384)
         Me.GamesPerKeyTBox.Name = "GamesPerKeyTBox"
         Me.GamesPerKeyTBox.Size = New System.Drawing.Size(30, 20)
-        Me.GamesPerKeyTBox.TabIndex = 29
+        Me.GamesPerKeyTBox.TabIndex = 8
         Me.GamesPerKeyTBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'RemoveKeyButton
@@ -553,7 +553,7 @@ Partial Class ProfileEditor
         Me.RemoveKeyButton.Location = New System.Drawing.Point(25, 381)
         Me.RemoveKeyButton.Name = "RemoveKeyButton"
         Me.RemoveKeyButton.Size = New System.Drawing.Size(101, 23)
-        Me.RemoveKeyButton.TabIndex = 28
+        Me.RemoveKeyButton.TabIndex = 6
         Me.RemoveKeyButton.Text = "Remove Key Set"
         Me.ToolTip1.SetToolTip(Me.RemoveKeyButton, "Deletes the selected Key set or mpq file")
         Me.RemoveKeyButton.UseVisualStyleBackColor = True
@@ -563,7 +563,7 @@ Partial Class ProfileEditor
         Me.AddKeyButton.Location = New System.Drawing.Point(380, 381)
         Me.AddKeyButton.Name = "AddKeyButton"
         Me.AddKeyButton.Size = New System.Drawing.Size(100, 23)
-        Me.AddKeyButton.TabIndex = 30
+        Me.AddKeyButton.TabIndex = 9
         Me.AddKeyButton.Text = "Add Key Set"
         Me.ToolTip1.SetToolTip(Me.AddKeyButton, "Click here to add CdKey sets or mpq files")
         Me.AddKeyButton.UseVisualStyleBackColor = True
@@ -577,14 +577,14 @@ Partial Class ProfileEditor
         Me.CDKeysDataGrid.BackgroundColor = System.Drawing.SystemColors.Control
         Me.CDKeysDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CDKeysDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.ClassicKeys, Me.ExpansionKeys})
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CDKeysDataGrid.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CDKeysDataGrid.DefaultCellStyle = DataGridViewCellStyle2
         Me.CDKeysDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.CDKeysDataGrid.Location = New System.Drawing.Point(12, 415)
         Me.CDKeysDataGrid.MultiSelect = False
@@ -594,7 +594,7 @@ Partial Class ProfileEditor
         Me.CDKeysDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.CDKeysDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.CDKeysDataGrid.Size = New System.Drawing.Size(480, 156)
-        Me.CDKeysDataGrid.TabIndex = 33
+        Me.CDKeysDataGrid.TabIndex = 10
         Me.CDKeysDataGrid.TabStop = False
         '
         'Column1
@@ -634,9 +634,11 @@ Partial Class ProfileEditor
         '
         'ProfileEditor
         '
+        Me.AcceptButton = Me.OkAcceptButton
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(504, 623)
+        Me.CancelButton = Me.button4
+        Me.ClientSize = New System.Drawing.Size(504, 622)
         Me.ControlBox = False
         Me.Controls.Add(Me.label5)
         Me.Controls.Add(Me.GamesPerKeyTBox)
