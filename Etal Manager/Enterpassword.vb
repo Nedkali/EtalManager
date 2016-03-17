@@ -14,12 +14,9 @@
 
     Private Sub Enterpassword_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TextBox1.Text = ""
+        TextBox1.Focus()
     End Sub
 
-    Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs)
-
-
-    End Sub
 
     Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
         If e.KeyCode.Equals(Keys.Enter) Then

@@ -48,6 +48,8 @@
             NewObject.CDkeyClassic = NewObject.CDkeyClassic + ";" + ClassicKeyTBox.Text
             NewObject.CDkeyExpansion = NewObject.CDkeyExpansion + ";" + ExpansionKeyTBox.Text
         End If
+
+
         Me.Close()
     End Sub
 

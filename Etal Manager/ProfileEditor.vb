@@ -269,6 +269,9 @@ Public Class ProfileEditor
         End If
         AddRawKeys.ShowDialog()
         displaykeys()
+        Dim keys = CDKeysDataGrid.RowCount - 1
+        CDKeysDataGrid.Rows(keys).Selected = True
+
     End Sub
 
     Private Sub displaykeys()
@@ -281,6 +284,7 @@ Public Class ProfileEditor
         Dim temp1 = NewObject.CDkeyClassic.Split(";")
         Dim temp2 = NewObject.CDkeyExpansion.Split(";")
         For index = 0 To temp.Length - 1
+            If temp(index) = Nothing Then Continue For
             CDKeysDataGrid.Rows.Add(temp(index), temp1(index), temp2(index))
         Next
 

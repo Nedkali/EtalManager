@@ -142,7 +142,9 @@ Public Class Manager
         ProfilesDataGrid.Rows.RemoveAt(x)
         Objects.RemoveAt(x)
         If ProfilesDataGrid.RowCount < 9 Then ProfilesDataGrid.Rows.Add(1)
-
+        If x > 0 Then
+            ProfilesDataGrid.Rows(x - 1).Selected = True
+        End If
     End Sub
 
     Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
@@ -256,6 +258,8 @@ Public Class Manager
 
         Dim a As Integer = ProfilesDataGrid.CurrentRow.Index
         If a < 0 Or a > Objects.Count - 1 Then Return
+        If Objects(a).D2PID > 0 Then Return
+
         launchd2(a)
 
     End Sub
@@ -365,7 +369,7 @@ Public Class Manager
         End If
         ProfilesDataGrid.FirstDisplayedScrollingRowIndex = a
         ProfilesDataGrid.CurrentCell = ProfilesDataGrid.Item(0, Objects.Count - 1)
-
+        'ProfilesDataGrid.Rows(ProfilesDataGrid.RowCount - 1).Selected = True
 
     End Sub
 
@@ -403,7 +407,7 @@ Public Class Manager
             Dim d2app = Process.GetProcessesByName("Game")
             For Each process In d2app
                 If process.Id = Objects(a).D2PID Then
-                    'AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "]" & "Ã¿c1Profile already running", Me.CommonLogRTB)
+                    AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "]" & "Ã¿c1Profile already running", Me.CommonLogRTB)
                     Return
                 End If
             Next
@@ -478,13 +482,14 @@ Public Class Manager
 
         mmf.Dispose()
         'removes instance check
-        Try
-            PInvoke.Kernel32.SuspendProcess(p)
-            PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
-            PInvoke.Kernel32.ResumeProcess(p)
-        Catch ex As Exception
-            AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1Error reverting d2gfx patch", Me.ErrorTextBox)
-        End Try
+        'Try
+        '    PInvoke.Kernel32.SuspendProcess(p)
+        '    PInvoke.Kernel32.WriteProcessMemory(p, address, oldValue)
+        '    PInvoke.Kernel32.ResumeProcess(p)
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message)
+        '    AddToMessageLogs("[" & timesetter() + Objects(a).ProfileName & "] Ã¿c1Error reverting d2gfx patch", Me.ErrorTextBox)
+        'End Try
 
         If Objects(a).D2Minimized = 1 Then
             ShowWindow(p.MainWindowHandle, 2)
@@ -622,6 +627,7 @@ Public Class Manager
         editposition = x
         Objects(x).AccPass = ""
         ProfileEditor.ShowDialog()
+        ProfilesDataGrid.Rows(ProfilesDataGrid.RowCount - 1).Selected = True
     End Sub
 
 End Class
