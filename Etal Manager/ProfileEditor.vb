@@ -278,10 +278,8 @@ Public Class ProfileEditor
 
     Private Sub displaykeys()
 
-
         If NewObject.CDkeyOwner = Nothing Then Return
         CDKeysDataGrid.Rows.Clear()
-
         Dim temp = NewObject.CDkeyOwner.Split(";")
         Dim temp1 = NewObject.CDkeyClassic.Split(";")
         Dim temp2 = NewObject.CDkeyExpansion.Split(";")
@@ -298,6 +296,20 @@ Public Class ProfileEditor
         End If
         Dim x = CDKeysDataGrid.CurrentRow.Index
         CDKeysDataGrid.Rows.RemoveAt(x)
+
+        NewObject.CDkeyOwner = "" : NewObject.CDkeyClassic = "" : NewObject.CDkeyExpansion = ""
+        For index = 0 To CDKeysDataGrid.RowCount - 1
+            If NewObject.CDkeyOwner = Nothing Then
+                NewObject.CDkeyOwner = CDKeysDataGrid.Rows(index).Cells(0).Value
+                NewObject.CDkeyClassic = CDKeysDataGrid.Rows(index).Cells(1).Value
+                NewObject.CDkeyExpansion = CDKeysDataGrid.Rows(index).Cells(2).Value
+            Else
+
+                NewObject.CDkeyOwner = NewObject.CDkeyOwner + ";" + CDKeysDataGrid.Rows(index).Cells(0).Value
+                NewObject.CDkeyClassic = NewObject.CDkeyClassic + ";" + CDKeysDataGrid.Rows(index).Cells(1).Value
+                NewObject.CDkeyExpansion = NewObject.CDkeyExpansion + ";" + CDKeysDataGrid.Rows(index).Cells(2).Value
+            End If
+        Next
 
     End Sub
 
