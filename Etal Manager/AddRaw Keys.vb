@@ -4,7 +4,6 @@
     End Sub
 
     Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles AddButton.Click
-
         If KeyMpqNameTBox.Text.Length = 0 Then
             KeyMpqNameTBox.Focus()
             WarningsLabel.Text = "Must enter a Name" : Return
@@ -28,13 +27,14 @@
         End If
         If ClassicKeyTBox.Text.Length <> 16 And ClassicKeyTBox.Text.Length <> 26 Then
             ClassicKeyTBox.Focus()
-            WarningsLabel.Text = "Invalid Classic key - must be 16 or 26 - (" & ClassicKeyTBox.Text.Length & ")" : Return
+            WarningsLabel.Text = "Invalid Classic key - must be 16 or 26 - (" & ClassicKeyTBox.Text.Length & ")"
             Return
         End If
 
         If ExpansionKeyTBox.Text.Length <> 16 And ExpansionKeyTBox.Text.Length <> 26 Then
             ExpansionKeyTBox.Focus()
-            WarningsLabel.Text = "Invalid Expansion key - must be 16 or 26 - (" & ExpansionKeyTBox.Text.Length & ")" : Return
+            WarningsLabel.Text = "Invalid Expansion key - must be 16 or 26 - (" & ExpansionKeyTBox.Text.Length & ")"
+            Return
         End If
 
 
@@ -49,14 +49,13 @@
             NewObject.CDkeyExpansion = NewObject.CDkeyExpansion + ";" + ExpansionKeyTBox.Text
         End If
 
-
-        Me.Close()
     End Sub
 
     Private Sub AddRawKeys_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        KeyMpqNameTBox.Clear()
+        WarningsLabel.Text = ""
         ClassicKeyTBox.Clear()
         ExpansionKeyTBox.Clear()
+        KeyMpqNameTBox.Clear()
         KeyMpqNameTBox.Focus()
     End Sub
 End Class

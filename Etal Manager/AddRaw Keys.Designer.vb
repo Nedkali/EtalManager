@@ -64,6 +64,7 @@ Partial Class AddRawKeys
         '
         'KeyMpqNameTBox
         '
+        Me.KeyMpqNameTBox.CausesValidation = False
         Me.KeyMpqNameTBox.Location = New System.Drawing.Point(8, 37)
         Me.KeyMpqNameTBox.Name = "KeyMpqNameTBox"
         Me.KeyMpqNameTBox.Size = New System.Drawing.Size(89, 20)
@@ -71,6 +72,7 @@ Partial Class AddRawKeys
         '
         'ClassicKeyTBox
         '
+        Me.ClassicKeyTBox.CausesValidation = False
         Me.ClassicKeyTBox.Location = New System.Drawing.Point(111, 37)
         Me.ClassicKeyTBox.MaxLength = 26
         Me.ClassicKeyTBox.Name = "ClassicKeyTBox"
@@ -79,6 +81,7 @@ Partial Class AddRawKeys
         '
         'ExpansionKeyTBox
         '
+        Me.ExpansionKeyTBox.CausesValidation = False
         Me.ExpansionKeyTBox.Location = New System.Drawing.Point(276, 37)
         Me.ExpansionKeyTBox.MaxLength = 26
         Me.ExpansionKeyTBox.Name = "ExpansionKeyTBox"
@@ -100,7 +103,7 @@ Partial Class AddRawKeys
         Me.GroupBox1.Size = New System.Drawing.Size(440, 118)
         Me.GroupBox1.TabIndex = 12
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
+        Me.GroupBox1.Text = "CD Key Information"
         '
         'AddButton
         '
@@ -127,7 +130,7 @@ Partial Class AddRawKeys
         '
         Me.WarningsLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.WarningsLabel.ForeColor = System.Drawing.Color.Crimson
-        Me.WarningsLabel.Location = New System.Drawing.Point(12, 133)
+        Me.WarningsLabel.Location = New System.Drawing.Point(12, 121)
         Me.WarningsLabel.Name = "WarningsLabel"
         Me.WarningsLabel.Size = New System.Drawing.Size(445, 29)
         Me.WarningsLabel.TabIndex = 13
