@@ -125,13 +125,14 @@ Partial Class AddRawKeys
         '
         'WarningsLabel
         '
-        Me.WarningsLabel.AutoSize = True
+        Me.WarningsLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.WarningsLabel.ForeColor = System.Drawing.Color.Crimson
-        Me.WarningsLabel.Location = New System.Drawing.Point(135, 133)
+        Me.WarningsLabel.Location = New System.Drawing.Point(12, 133)
         Me.WarningsLabel.Name = "WarningsLabel"
-        Me.WarningsLabel.Size = New System.Drawing.Size(10, 13)
+        Me.WarningsLabel.Size = New System.Drawing.Size(445, 29)
         Me.WarningsLabel.TabIndex = 13
         Me.WarningsLabel.Text = " "
+        Me.WarningsLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'AddRawKeys
         '
@@ -153,7 +154,6 @@ Partial Class AddRawKeys
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 

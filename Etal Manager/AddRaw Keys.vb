@@ -21,7 +21,7 @@
                 NewObject.CDkeyExpansion = NewObject.CDkeyExpansion & ";"
                 Me.Close()
             Else
-                WarningsLabel.Text = "File must be Diablo II instaltion folder" & vbCrLf & "              or filename is incorrect!!"
+                WarningsLabel.Text = "File must be Diablo II installation folder" & vbCrLf & "or filename is incorrect!!"
                 Return
             End If
 
