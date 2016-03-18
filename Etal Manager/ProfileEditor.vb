@@ -270,7 +270,9 @@ Public Class ProfileEditor
         AddRawKeys.ShowDialog()
         displaykeys()
         Dim keys = CDKeysDataGrid.RowCount - 1
-        CDKeysDataGrid.Rows(keys).Selected = True
+        If keys >= 0 Then
+            CDKeysDataGrid.Rows(keys).Selected = True
+        End If
 
     End Sub
 
