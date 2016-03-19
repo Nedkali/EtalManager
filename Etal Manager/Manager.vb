@@ -97,24 +97,23 @@ Public Class Manager
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         'MessageBox.Show("Monitoring clients")
-        While True
+        Dim checkclients As New List(Of Int32)
 
+        While True
+            checkclients.Clear()
             For Each proc As Process In Process.GetProcessesByName("Game")
+                ' handling non responsive clients
                 If proc.Responding = False Then
                     Thread.Sleep(5000)
                     If proc.Responding = False Then
                         For index = 0 To Objects.Count - 1
-
                             If proc.Id = Objects(index).D2PID Then
                                 restart(index)
                             End If
-
                         Next
                     End If
-
                 End If
             Next
-
             Thread.Sleep(1000)
         End While
     End Sub

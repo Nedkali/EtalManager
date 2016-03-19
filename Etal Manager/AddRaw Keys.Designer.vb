@@ -130,7 +130,7 @@ Partial Class AddRawKeys
         '
         Me.WarningsLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.WarningsLabel.ForeColor = System.Drawing.Color.Crimson
-        Me.WarningsLabel.Location = New System.Drawing.Point(12, 121)
+        Me.WarningsLabel.Location = New System.Drawing.Point(12, 122)
         Me.WarningsLabel.Name = "WarningsLabel"
         Me.WarningsLabel.Size = New System.Drawing.Size(445, 42)
         Me.WarningsLabel.TabIndex = 13

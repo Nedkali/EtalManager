@@ -130,9 +130,10 @@ Public Class ProfileEditor
         End If
         If EntryPointDBox.SelectedIndex = 0 Then
             NewObject.D2starter = ""
-        ElseIf EntryPointDBox.SelectedIndex > 0 Then
-            NewObject.D2starter = EntryPointDBox.SelectedText
+        Else
+            NewObject.D2starter = EntryPointDBox.Text
         End If
+
 
         NewObject.CDkeyOwner = "" : NewObject.CDkeyClassic = "" : NewObject.CDkeyExpansion = ""
         For index = 0 To CDKeysDataGrid.RowCount - 1
@@ -147,7 +148,7 @@ Public Class ProfileEditor
                 NewObject.CDkeyExpansion = NewObject.CDkeyExpansion + ";" + CDKeysDataGrid.Rows(index).Cells(2).Value
             End If
         Next
-
+        MessageBox.Show(NewObject.D2starter)
         If ProfileEditoraction = "edit" Then
             'DeepCopy()
             Objects(editposition) = NewObject 'may need to do a deep copy here
