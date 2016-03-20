@@ -2,6 +2,7 @@
 Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports System.Security.Principal
+Imports System.IO
 
 
 
@@ -310,11 +311,10 @@ Public Class Manager
         Dim a As Integer = ProfilesDataGrid.CurrentRow.Index
         If a > Objects.Count - 1 Then Return
 
-        For Each proc As Process In Process.GetProcessesByName("Game")
-            If proc.Id = Objects(a).D2PID Then
-                proc.Kill()
-            End If
-        Next
+        If Objects(a).D2PID > 0 Then
+            Dim proc As Process = Process.GetProcessById(Objects(a).D2PID)
+            If proc.ProcessName.Contains("Game") = True Then proc.Kill()
+        End If
         Objects(a).D2PID = 0
         ProfilesDataGrid.Rows(a).Cells(1).Value = ""
         ProfilesDataGrid.Rows(a).Cells(6).Value = ""
@@ -418,8 +418,7 @@ Public Class Manager
             If dr = DialogResult.Cancel Then Return
         End If
 
-
-        Dim d2RelPath = Replace(Objects(a).D2Path, "Game.exe", "")
+        Dim d2RelPath As String = Path.GetDirectoryName(Objects(a).D2Path)
 
         If My.Computer.FileSystem.FileExists(Objects(a).D2Path) = False Then
             AddToMessageLogs("[" & timesetter() + "Error] Unable to locate Game.exe", Me.CommonLogRTB)

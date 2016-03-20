@@ -1,4 +1,6 @@
-﻿Public Class AddRawKeys
+﻿Imports System.IO
+
+Public Class AddRawKeys
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
@@ -10,19 +12,18 @@
             Return
         End If
 
-        Dim folder = NewObject.D2Path.Replace("Game.exe", "")
+        'Dim exefolder = NewObject.D2Path.Split("\")
+        'Dim exe As String = exefolder.Last()
+        'MessageBox.Show(exe, "Error")
+
+        Dim folder As String = Path.GetDirectoryName(NewObject.D2Path)
 
         If KeyMpqNameTBox.Text.Contains(".mpq") = True Then
-            If My.Computer.FileSystem.FileExists(folder & KeyMpqNameTBox.Text) Then
-                If ClassicKeyTBox.Text.Length < 1 Then
-                    NewObject.CDkeyOwner = NewObject.CDkeyOwner & ";" & KeyMpqNameTBox.Text
-                    NewObject.CDkeyClassic = NewObject.CDkeyClassic & ";"
-                    NewObject.CDkeyExpansion = NewObject.CDkeyExpansion & ";"
-                    Me.Close()
-                Else
-                    WarningsLabel.Text = "Only set to use a MPQ file or raw keys. Not both."
-                    Return
-                End If
+            If My.Computer.FileSystem.FileExists(folder & "\" & KeyMpqNameTBox.Text) Then
+                NewObject.CDkeyOwner = NewObject.CDkeyOwner & ";" & KeyMpqNameTBox.Text
+                NewObject.CDkeyClassic = NewObject.CDkeyClassic & ";"
+                NewObject.CDkeyExpansion = NewObject.CDkeyExpansion & ";"
+                Me.Close()
             Else
                 WarningsLabel.Text = "File must be in Diablo II installation folder" & vbCrLf & "or filename is incorrect!!"
                 Return
