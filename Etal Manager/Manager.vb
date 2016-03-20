@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.Threading
 Imports System.Security.Principal
 Imports System.IO
+Imports System.Diagnostics.Process
 
 
 
@@ -115,7 +116,6 @@ Public Class Manager
                     End If
                 End If
             Next
-            Thread.Sleep(1000)
         End While
     End Sub
 
@@ -312,9 +312,12 @@ Public Class Manager
         If a > Objects.Count - 1 Then Return
 
         If Objects(a).D2PID > 0 Then
-            Dim proc As Process = Process.GetProcessById(Objects(a).D2PID)
-            If proc.ProcessName.Contains("Game") = True Then proc.Kill()
+            If IsProcessRunning(Objects(a).D2PID) Then
+                Dim proc As Process = Process.GetProcessById(Objects(a).D2PID)
+                If proc.ProcessName.Contains("Game") = True Then proc.Kill()
+            End If
         End If
+
         Objects(a).D2PID = 0
         ProfilesDataGrid.Rows(a).Cells(1).Value = ""
         ProfilesDataGrid.Rows(a).Cells(6).Value = ""
@@ -627,5 +630,14 @@ Public Class Manager
         ProfileEditor.ShowDialog()
         ProfilesDataGrid.Rows(ProfilesDataGrid.RowCount - 1).Selected = True
     End Sub
+
+    Public Function IsProcessRunning(ByVal a As Integer) As Boolean
+        For Each clsProcess As Process In Process.GetProcesses()
+            If clsProcess.Id = a Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
 
 End Class
