@@ -50,10 +50,10 @@ Public Class ProfileEditor
             Return
         End If
 
-        If GameNameTBox.Text = "" And RandomGameNameCBox.Checked = False Then
-            MessageBox.Show("Game Name not Entered", "Error")
-            Return
-        End If
+        'If GameNameTBox.Text = "" And RandomGameNameCBox.Checked = False Then
+        ' MessageBox.Show("Game Name not Entered", "Error")
+        'Return
+        ' End If
 
         NewObject.ProfileName = ProfileNameTBox.Text
         NewObject.D2Path = D2PathTBox.Text
@@ -148,7 +148,7 @@ Public Class ProfileEditor
                 NewObject.CDkeyExpansion = NewObject.CDkeyExpansion + ";" + CDKeysDataGrid.Rows(index).Cells(2).Value
             End If
         Next
-        MessageBox.Show(NewObject.D2starter)
+        'MessageBox.Show(NewObject.D2starter)
         If ProfileEditoraction = "edit" Then
             'DeepCopy()
             Objects(editposition) = NewObject 'may need to do a deep copy here

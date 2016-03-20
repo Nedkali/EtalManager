@@ -122,6 +122,7 @@ Partial Class ProfileEditor
         Me.RandomGamePasswordCBox.Text = "Random"
         Me.ToolTip1.SetToolTip(Me.RandomGamePasswordCBox, "A random password will be created for games")
         Me.RandomGamePasswordCBox.UseVisualStyleBackColor = True
+        Me.RandomGamePasswordCBox.Enabled = False
         '
         'label12
         '
@@ -142,6 +143,7 @@ Partial Class ProfileEditor
         Me.RandomGameNameCBox.Text = "Random"
         Me.ToolTip1.SetToolTip(Me.RandomGameNameCBox, "A random game name will be created for you")
         Me.RandomGameNameCBox.UseVisualStyleBackColor = True
+        Me.RandomGameNameCBox.Enabled = False
         '
         'groupBox2
         '
@@ -186,6 +188,7 @@ Partial Class ProfileEditor
         Me.GamePasswordTBox.Size = New System.Drawing.Size(100, 20)
         Me.GamePasswordTBox.TabIndex = 14
         Me.ToolTip1.SetToolTip(Me.GamePasswordTBox, "Enter a password to play privately online")
+        Me.GamePasswordTBox.Enabled = False
         '
         'label13
         '
@@ -203,6 +206,7 @@ Partial Class ProfileEditor
         Me.GameNameTBox.Size = New System.Drawing.Size(100, 20)
         Me.GameNameTBox.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.GameNameTBox, "Enter a name for games")
+        Me.GameNameTBox.Enabled = False
         '
         'EntryPointDBox
         '
@@ -214,6 +218,7 @@ Partial Class ProfileEditor
         Me.EntryPointDBox.Size = New System.Drawing.Size(121, 21)
         Me.EntryPointDBox.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.EntryPointDBox, resources.GetString("EntryPointDBox.ToolTip"))
+        Me.EntryPointDBox.Enabled = False
         '
         'radioButton1
         '
@@ -226,6 +231,7 @@ Partial Class ProfileEditor
         Me.radioButton1.TabStop = True
         Me.radioButton1.Text = "1"
         Me.radioButton1.UseVisualStyleBackColor = True
+        Me.radioButton1.Enabled = False
         '
         'radioButton3
         '
@@ -236,6 +242,7 @@ Partial Class ProfileEditor
         Me.radioButton3.TabIndex = 21
         Me.radioButton3.Text = "3"
         Me.radioButton3.UseVisualStyleBackColor = True
+        Me.radioButton3.Enabled = False
         '
         'radioButton5
         '
@@ -246,6 +253,7 @@ Partial Class ProfileEditor
         Me.radioButton5.TabIndex = 23
         Me.radioButton5.Text = "5"
         Me.radioButton5.UseVisualStyleBackColor = True
+        Me.radioButton5.Enabled = False
         '
         'radioButton8
         '
@@ -256,6 +264,7 @@ Partial Class ProfileEditor
         Me.radioButton8.TabIndex = 26
         Me.radioButton8.Text = "8"
         Me.radioButton8.UseVisualStyleBackColor = True
+        Me.radioButton8.Enabled = False
         '
         'radioButton2
         '
@@ -266,6 +275,7 @@ Partial Class ProfileEditor
         Me.radioButton2.TabIndex = 19
         Me.radioButton2.Text = "2"
         Me.radioButton2.UseVisualStyleBackColor = True
+        Me.radioButton2.Enabled = False
         '
         'radioButton7
         '
@@ -276,6 +286,7 @@ Partial Class ProfileEditor
         Me.radioButton7.TabIndex = 25
         Me.radioButton7.Text = "7"
         Me.radioButton7.UseVisualStyleBackColor = True
+        Me.radioButton7.Enabled = False
         '
         'radioButton4
         '
@@ -286,6 +297,7 @@ Partial Class ProfileEditor
         Me.radioButton4.TabIndex = 22
         Me.radioButton4.Text = "4"
         Me.radioButton4.UseVisualStyleBackColor = True
+        Me.radioButton4.Enabled = False
         '
         'radioButton6
         '
@@ -296,6 +308,7 @@ Partial Class ProfileEditor
         Me.radioButton6.TabIndex = 24
         Me.radioButton6.Text = "6"
         Me.radioButton6.UseVisualStyleBackColor = True
+        Me.radioButton6.Enabled = False
         '
         'ServerDBox
         '
@@ -308,6 +321,7 @@ Partial Class ProfileEditor
         Me.ServerDBox.Size = New System.Drawing.Size(76, 21)
         Me.ServerDBox.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.ServerDBox, "Select what realm on battle.net you wish to play")
+        Me.ServerDBox.Enabled = False
         '
         'DifficultyDBox
         '
@@ -320,6 +334,7 @@ Partial Class ProfileEditor
         Me.DifficultyDBox.Size = New System.Drawing.Size(76, 21)
         Me.DifficultyDBox.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.DifficultyDBox, "Select a difficulty your char can handle")
+        Me.DifficultyDBox.Enabled = False
         '
         'PlayTypeDBox
         '
@@ -332,6 +347,7 @@ Partial Class ProfileEditor
         Me.PlayTypeDBox.Size = New System.Drawing.Size(101, 21)
         Me.PlayTypeDBox.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.PlayTypeDBox, "Select single player for offline games" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Select Battle.net for online games")
+        Me.PlayTypeDBox.Enabled = False
         '
         'label11
         '
@@ -486,7 +502,7 @@ Partial Class ProfileEditor
         Me.ProfileNameTBox.Size = New System.Drawing.Size(205, 20)
         Me.ProfileNameTBox.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.ProfileNameTBox, "Name for your profile " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "this can be anything you wish," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "use a word or name that h" &
-        "elps distinguis from other profiles" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
+        "elps distinguish from other profiles" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
         'LowQualityCBox
         '
