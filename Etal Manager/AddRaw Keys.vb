@@ -14,10 +14,15 @@
 
         If KeyMpqNameTBox.Text.Contains(".mpq") = True Then
             If My.Computer.FileSystem.FileExists(folder & KeyMpqNameTBox.Text) Then
-                NewObject.CDkeyOwner = NewObject.CDkeyOwner & ";" & KeyMpqNameTBox.Text
-                NewObject.CDkeyClassic = NewObject.CDkeyClassic & ";"
-                NewObject.CDkeyExpansion = NewObject.CDkeyExpansion & ";"
-                Me.Close()
+                If ClassicKeyTBox.Text.Length < 1 Then
+                    NewObject.CDkeyOwner = NewObject.CDkeyOwner & ";" & KeyMpqNameTBox.Text
+                    NewObject.CDkeyClassic = NewObject.CDkeyClassic & ";"
+                    NewObject.CDkeyExpansion = NewObject.CDkeyExpansion & ";"
+                    Me.Close()
+                Else
+                    WarningsLabel.Text = "Only set to use a MPQ file or raw keys. Not both."
+                    Return
+                End If
             Else
                 WarningsLabel.Text = "File must be in Diablo II installation folder" & vbCrLf & "or filename is incorrect!!"
                 Return
