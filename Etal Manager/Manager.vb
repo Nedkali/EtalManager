@@ -99,23 +99,43 @@ Public Class Manager
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         'MessageBox.Show("Monitoring clients")
-        Dim checkclients As New List(Of Int32)
+        Dim checkclients As New List(Of Integer)
+        For index = 0 To Objects.Count - 1 ' sets up array
+            checkclients.Add(0)
+        Next
+
+        Dim chkproc As Process = Nothing
 
         While True
-            checkclients.Clear()
-            For Each proc As Process In Process.GetProcessesByName("Game")
-                ' handling non responsive clients
-                If proc.Responding = False Then
-                    Thread.Sleep(5000)
-                    If proc.Responding = False Then
-                        For index = 0 To Objects.Count - 1
-                            If proc.Id = Objects(index).D2PID Then
-                                restart(index)
+
+            If checkclients.Count < Objects.Count Then 'prevent exceptions when adding a new profile
+                checkclients.Add(0)
+            End If
+
+            For index = 0 To Objects.Count - 1 ' cycle thru profiles to find running profile
+                If Objects(index).D2PID > 0 Then 'profile running
+                    Try
+                        chkproc = GetProcessById(Objects(index).D2PID)
+                        If chkproc.HasExited = True Then ' game client has exited
+                            restart(index)
+                        End If
+
+                        If chkproc.Responding = True Then
+                            checkclients(index) = 0 'reset counter
+                        Else
+                            checkclients(index) += 1
+                            If checkclients(index) > 5 Then 'default 5 seconds
+                                chkproc.Kill()
                             End If
-                        Next
-                    End If
+                        End If
+                    Catch ex As Exception
+                        restart(index)
+                    End Try
+
+
                 End If
             Next
+            Thread.Sleep(1000)
         End While
     End Sub
 
@@ -388,20 +408,25 @@ Public Class Manager
 
     End Function
 
+    Delegate Sub RestartCallback(ByVal [a] As Integer)
 
     Private Sub restart(ByVal a)
-        For Each proc As Process In Process.GetProcessesByName("Game")
-            If proc.Id = Objects(a).D2PID Then
-                proc.Kill()
-            End If
-        Next
-        Objects(a).D2PID = 0
-        ProfilesDataGrid.Rows(a).Cells(1).Value = ""
-        ProfilesDataGrid.Rows(a).Cells(6).Value = ""
-        Thread.Sleep(2000)
-        launchd2(a)
+
+        If Me.InvokeRequired Then
+            Dim d As New RestartCallback(AddressOf restart)
+            Me.Invoke(d, New Object() {[a]})
+        Else
+            Objects(a).D2PID = 0
+            ProfilesDataGrid.Rows(a).Cells(1).Value = ""
+            ProfilesDataGrid.Rows(a).Cells(6).Value = ""
+            ProfilesDataGrid.Refresh()
+            Thread.Sleep(2000)
+            Me.launchd2([a])
+        End If
 
     End Sub
+
+
 
     Private Sub launchd2(ByVal a)
 
@@ -429,7 +454,7 @@ Public Class Manager
         End If
 
         ProfilesDataGrid.Rows(a).Cells(6).Value = "Loading"
-        ProfilesDataGrid.Refresh() ' ensures display occurs before next code line
+        Me.ProfilesDataGrid.Refresh() ' ensures display occurs before next code line
 
         AddToMessageLogs("[" & timesetter() & Objects(a).ProfileName & "] Loading", Me.CommonLogRTB)
 
