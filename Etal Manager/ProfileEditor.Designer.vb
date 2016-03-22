@@ -115,6 +115,7 @@ Partial Class ProfileEditor
         'RandomGamePasswordCBox
         '
         Me.RandomGamePasswordCBox.AutoSize = True
+        Me.RandomGamePasswordCBox.Enabled = False
         Me.RandomGamePasswordCBox.Location = New System.Drawing.Point(337, 111)
         Me.RandomGamePasswordCBox.Name = "RandomGamePasswordCBox"
         Me.RandomGamePasswordCBox.Size = New System.Drawing.Size(66, 17)
@@ -122,7 +123,6 @@ Partial Class ProfileEditor
         Me.RandomGamePasswordCBox.Text = "Random"
         Me.ToolTip1.SetToolTip(Me.RandomGamePasswordCBox, "A random password will be created for games")
         Me.RandomGamePasswordCBox.UseVisualStyleBackColor = True
-        Me.RandomGamePasswordCBox.Enabled = False
         '
         'label12
         '
@@ -136,6 +136,7 @@ Partial Class ProfileEditor
         'RandomGameNameCBox
         '
         Me.RandomGameNameCBox.AutoSize = True
+        Me.RandomGameNameCBox.Enabled = False
         Me.RandomGameNameCBox.Location = New System.Drawing.Point(337, 80)
         Me.RandomGameNameCBox.Name = "RandomGameNameCBox"
         Me.RandomGameNameCBox.Size = New System.Drawing.Size(66, 17)
@@ -143,7 +144,6 @@ Partial Class ProfileEditor
         Me.RandomGameNameCBox.Text = "Random"
         Me.ToolTip1.SetToolTip(Me.RandomGameNameCBox, "A random game name will be created for you")
         Me.RandomGameNameCBox.UseVisualStyleBackColor = True
-        Me.RandomGameNameCBox.Enabled = False
         '
         'groupBox2
         '
@@ -182,13 +182,13 @@ Partial Class ProfileEditor
         '
         'GamePasswordTBox
         '
+        Me.GamePasswordTBox.Enabled = False
         Me.GamePasswordTBox.Location = New System.Drawing.Point(221, 109)
         Me.GamePasswordTBox.MaxLength = 7
         Me.GamePasswordTBox.Name = "GamePasswordTBox"
         Me.GamePasswordTBox.Size = New System.Drawing.Size(100, 20)
         Me.GamePasswordTBox.TabIndex = 14
         Me.ToolTip1.SetToolTip(Me.GamePasswordTBox, "Enter a password to play privately online")
-        Me.GamePasswordTBox.Enabled = False
         '
         'label13
         '
@@ -201,29 +201,30 @@ Partial Class ProfileEditor
         '
         'GameNameTBox
         '
+        Me.GameNameTBox.Enabled = False
         Me.GameNameTBox.Location = New System.Drawing.Point(221, 78)
         Me.GameNameTBox.Name = "GameNameTBox"
         Me.GameNameTBox.Size = New System.Drawing.Size(100, 20)
         Me.GameNameTBox.TabIndex = 11
         Me.ToolTip1.SetToolTip(Me.GameNameTBox, "Enter a name for games")
-        Me.GameNameTBox.Enabled = False
         '
         'EntryPointDBox
         '
         Me.EntryPointDBox.BackColor = System.Drawing.SystemColors.Control
         Me.EntryPointDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.EntryPointDBox.Enabled = False
         Me.EntryPointDBox.FormattingEnabled = True
         Me.EntryPointDBox.Location = New System.Drawing.Point(16, 109)
         Me.EntryPointDBox.Name = "EntryPointDBox"
         Me.EntryPointDBox.Size = New System.Drawing.Size(121, 21)
         Me.EntryPointDBox.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.EntryPointDBox, resources.GetString("EntryPointDBox.ToolTip"))
-        Me.EntryPointDBox.Enabled = False
         '
         'radioButton1
         '
         Me.radioButton1.AutoSize = True
         Me.radioButton1.Checked = True
+        Me.radioButton1.Enabled = False
         Me.radioButton1.Location = New System.Drawing.Point(412, 48)
         Me.radioButton1.Name = "radioButton1"
         Me.radioButton1.Size = New System.Drawing.Size(31, 17)
@@ -231,89 +232,89 @@ Partial Class ProfileEditor
         Me.radioButton1.TabStop = True
         Me.radioButton1.Text = "1"
         Me.radioButton1.UseVisualStyleBackColor = True
-        Me.radioButton1.Enabled = False
         '
         'radioButton3
         '
         Me.radioButton3.AutoSize = True
+        Me.radioButton3.Enabled = False
         Me.radioButton3.Location = New System.Drawing.Point(412, 71)
         Me.radioButton3.Name = "radioButton3"
         Me.radioButton3.Size = New System.Drawing.Size(31, 17)
         Me.radioButton3.TabIndex = 21
         Me.radioButton3.Text = "3"
         Me.radioButton3.UseVisualStyleBackColor = True
-        Me.radioButton3.Enabled = False
         '
         'radioButton5
         '
         Me.radioButton5.AutoSize = True
+        Me.radioButton5.Enabled = False
         Me.radioButton5.Location = New System.Drawing.Point(412, 94)
         Me.radioButton5.Name = "radioButton5"
         Me.radioButton5.Size = New System.Drawing.Size(31, 17)
         Me.radioButton5.TabIndex = 23
         Me.radioButton5.Text = "5"
         Me.radioButton5.UseVisualStyleBackColor = True
-        Me.radioButton5.Enabled = False
         '
         'radioButton8
         '
         Me.radioButton8.AutoSize = True
+        Me.radioButton8.Enabled = False
         Me.radioButton8.Location = New System.Drawing.Point(443, 117)
         Me.radioButton8.Name = "radioButton8"
         Me.radioButton8.Size = New System.Drawing.Size(31, 17)
         Me.radioButton8.TabIndex = 26
         Me.radioButton8.Text = "8"
         Me.radioButton8.UseVisualStyleBackColor = True
-        Me.radioButton8.Enabled = False
         '
         'radioButton2
         '
         Me.radioButton2.AutoSize = True
+        Me.radioButton2.Enabled = False
         Me.radioButton2.Location = New System.Drawing.Point(443, 48)
         Me.radioButton2.Name = "radioButton2"
         Me.radioButton2.Size = New System.Drawing.Size(31, 17)
         Me.radioButton2.TabIndex = 19
         Me.radioButton2.Text = "2"
         Me.radioButton2.UseVisualStyleBackColor = True
-        Me.radioButton2.Enabled = False
         '
         'radioButton7
         '
         Me.radioButton7.AutoSize = True
+        Me.radioButton7.Enabled = False
         Me.radioButton7.Location = New System.Drawing.Point(412, 117)
         Me.radioButton7.Name = "radioButton7"
         Me.radioButton7.Size = New System.Drawing.Size(31, 17)
         Me.radioButton7.TabIndex = 25
         Me.radioButton7.Text = "7"
         Me.radioButton7.UseVisualStyleBackColor = True
-        Me.radioButton7.Enabled = False
         '
         'radioButton4
         '
         Me.radioButton4.AutoSize = True
+        Me.radioButton4.Enabled = False
         Me.radioButton4.Location = New System.Drawing.Point(443, 71)
         Me.radioButton4.Name = "radioButton4"
         Me.radioButton4.Size = New System.Drawing.Size(31, 17)
         Me.radioButton4.TabIndex = 22
         Me.radioButton4.Text = "4"
         Me.radioButton4.UseVisualStyleBackColor = True
-        Me.radioButton4.Enabled = False
         '
         'radioButton6
         '
         Me.radioButton6.AutoSize = True
+        Me.radioButton6.Enabled = False
         Me.radioButton6.Location = New System.Drawing.Point(443, 94)
         Me.radioButton6.Name = "radioButton6"
         Me.radioButton6.Size = New System.Drawing.Size(31, 17)
         Me.radioButton6.TabIndex = 24
         Me.radioButton6.Text = "6"
         Me.radioButton6.UseVisualStyleBackColor = True
-        Me.radioButton6.Enabled = False
         '
         'ServerDBox
         '
         Me.ServerDBox.BackColor = System.Drawing.SystemColors.Control
         Me.ServerDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ServerDBox.Enabled = False
         Me.ServerDBox.FormattingEnabled = True
         Me.ServerDBox.Items.AddRange(New Object() {"U.S. West", "U.S. East", "Asia", "Europe"})
         Me.ServerDBox.Location = New System.Drawing.Point(307, 48)
@@ -321,12 +322,12 @@ Partial Class ProfileEditor
         Me.ServerDBox.Size = New System.Drawing.Size(76, 21)
         Me.ServerDBox.TabIndex = 7
         Me.ToolTip1.SetToolTip(Me.ServerDBox, "Select what realm on battle.net you wish to play")
-        Me.ServerDBox.Enabled = False
         '
         'DifficultyDBox
         '
         Me.DifficultyDBox.BackColor = System.Drawing.SystemColors.Control
         Me.DifficultyDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.DifficultyDBox.Enabled = False
         Me.DifficultyDBox.FormattingEnabled = True
         Me.DifficultyDBox.Items.AddRange(New Object() {"Normal", "Nightmare", "Hell", "Highest"})
         Me.DifficultyDBox.Location = New System.Drawing.Point(307, 19)
@@ -334,12 +335,12 @@ Partial Class ProfileEditor
         Me.DifficultyDBox.Size = New System.Drawing.Size(76, 21)
         Me.DifficultyDBox.TabIndex = 5
         Me.ToolTip1.SetToolTip(Me.DifficultyDBox, "Select a difficulty your char can handle")
-        Me.DifficultyDBox.Enabled = False
         '
         'PlayTypeDBox
         '
         Me.PlayTypeDBox.BackColor = System.Drawing.SystemColors.Control
         Me.PlayTypeDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.PlayTypeDBox.Enabled = False
         Me.PlayTypeDBox.FormattingEnabled = True
         Me.PlayTypeDBox.Items.AddRange(New Object() {"Single Player", "Battle.Net"})
         Me.PlayTypeDBox.Location = New System.Drawing.Point(131, 48)
@@ -347,7 +348,6 @@ Partial Class ProfileEditor
         Me.PlayTypeDBox.Size = New System.Drawing.Size(101, 21)
         Me.PlayTypeDBox.TabIndex = 3
         Me.ToolTip1.SetToolTip(Me.PlayTypeDBox, "Select single player for offline games" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Select Battle.net for online games")
-        Me.PlayTypeDBox.Enabled = False
         '
         'label11
         '
@@ -659,7 +659,7 @@ Partial Class ProfileEditor
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.button4
-        Me.ClientSize = New System.Drawing.Size(504, 622)
+        Me.ClientSize = New System.Drawing.Size(504, 623)
         Me.ControlBox = False
         Me.Controls.Add(Me.label5)
         Me.Controls.Add(Me.GamesPerKeyTBox)

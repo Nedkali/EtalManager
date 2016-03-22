@@ -356,4 +356,14 @@ Public Class ProfileEditor
 
     End Sub
 
+    Private Sub GamesPerKeyTBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles GamesPerKeyTBox.KeyPress
+        If GamesPerKeyTBox.Text.Length = 2 Then
+            e.Handled = True
+            Return
+        End If
+
+        If (Not Char.IsDigit(e.KeyChar)) Then
+            e.Handled = True
+        End If
+    End Sub
 End Class
