@@ -4,6 +4,7 @@ Imports System.IO
 Public Class ProfileEditor
 
     Private Sub AutoDetedPathButton_Click(sender As Object, e As EventArgs) Handles AutoDetedPathButton.Click
+
         Dim key As Microsoft.Win32.RegistryKey
 
         key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\Blizzard Entertainment\Diablo II")

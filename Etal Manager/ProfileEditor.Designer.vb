@@ -24,7 +24,7 @@ Partial Class ProfileEditor
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ProfileEditor))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.button4 = New System.Windows.Forms.Button()
         Me.OkAcceptButton = New System.Windows.Forms.Button()
         Me.label14 = New System.Windows.Forms.Label()
@@ -89,7 +89,7 @@ Partial Class ProfileEditor
         Me.button4.Name = "button4"
         Me.button4.Size = New System.Drawing.Size(85, 28)
         Me.button4.TabIndex = 12
-        Me.button4.Text = "Cancel"
+        Me.button4.Text = "&Cancel"
         Me.ToolTip1.SetToolTip(Me.button4, "Discard changes and close this window")
         Me.button4.UseVisualStyleBackColor = True
         '
@@ -99,7 +99,7 @@ Partial Class ProfileEditor
         Me.OkAcceptButton.Name = "OkAcceptButton"
         Me.OkAcceptButton.Size = New System.Drawing.Size(85, 28)
         Me.OkAcceptButton.TabIndex = 11
-        Me.OkAcceptButton.Text = "OK"
+        Me.OkAcceptButton.Text = "&OK"
         Me.ToolTip1.SetToolTip(Me.OkAcceptButton, "Accept changes to this profiles setings")
         Me.OkAcceptButton.UseVisualStyleBackColor = True
         '
@@ -115,7 +115,6 @@ Partial Class ProfileEditor
         'RandomGamePasswordCBox
         '
         Me.RandomGamePasswordCBox.AutoSize = True
-        Me.RandomGamePasswordCBox.Enabled = False
         Me.RandomGamePasswordCBox.Location = New System.Drawing.Point(337, 111)
         Me.RandomGamePasswordCBox.Name = "RandomGamePasswordCBox"
         Me.RandomGamePasswordCBox.Size = New System.Drawing.Size(66, 17)
@@ -131,12 +130,11 @@ Partial Class ProfileEditor
         Me.label12.Name = "label12"
         Me.label12.Size = New System.Drawing.Size(56, 13)
         Me.label12.TabIndex = 13
-        Me.label12.Text = "Game PW"
+        Me.label12.Text = "Game P&W"
         '
         'RandomGameNameCBox
         '
         Me.RandomGameNameCBox.AutoSize = True
-        Me.RandomGameNameCBox.Enabled = False
         Me.RandomGameNameCBox.Location = New System.Drawing.Point(337, 80)
         Me.RandomGameNameCBox.Name = "RandomGameNameCBox"
         Me.RandomGameNameCBox.Size = New System.Drawing.Size(66, 17)
@@ -182,7 +180,6 @@ Partial Class ProfileEditor
         '
         'GamePasswordTBox
         '
-        Me.GamePasswordTBox.Enabled = False
         Me.GamePasswordTBox.Location = New System.Drawing.Point(221, 109)
         Me.GamePasswordTBox.MaxLength = 7
         Me.GamePasswordTBox.Name = "GamePasswordTBox"
@@ -197,11 +194,10 @@ Partial Class ProfileEditor
         Me.label13.Name = "label13"
         Me.label13.Size = New System.Drawing.Size(66, 13)
         Me.label13.TabIndex = 10
-        Me.label13.Text = "Game Name"
+        Me.label13.Text = "&Game Name"
         '
         'GameNameTBox
         '
-        Me.GameNameTBox.Enabled = False
         Me.GameNameTBox.Location = New System.Drawing.Point(221, 78)
         Me.GameNameTBox.Name = "GameNameTBox"
         Me.GameNameTBox.Size = New System.Drawing.Size(100, 20)
@@ -212,7 +208,6 @@ Partial Class ProfileEditor
         '
         Me.EntryPointDBox.BackColor = System.Drawing.SystemColors.Control
         Me.EntryPointDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.EntryPointDBox.Enabled = False
         Me.EntryPointDBox.FormattingEnabled = True
         Me.EntryPointDBox.Location = New System.Drawing.Point(16, 109)
         Me.EntryPointDBox.Name = "EntryPointDBox"
@@ -224,97 +219,88 @@ Partial Class ProfileEditor
         '
         Me.radioButton1.AutoSize = True
         Me.radioButton1.Checked = True
-        Me.radioButton1.Enabled = False
         Me.radioButton1.Location = New System.Drawing.Point(412, 48)
         Me.radioButton1.Name = "radioButton1"
         Me.radioButton1.Size = New System.Drawing.Size(31, 17)
         Me.radioButton1.TabIndex = 18
         Me.radioButton1.TabStop = True
-        Me.radioButton1.Text = "1"
+        Me.radioButton1.Text = "&1"
         Me.radioButton1.UseVisualStyleBackColor = True
         '
         'radioButton3
         '
         Me.radioButton3.AutoSize = True
-        Me.radioButton3.Enabled = False
         Me.radioButton3.Location = New System.Drawing.Point(412, 71)
         Me.radioButton3.Name = "radioButton3"
         Me.radioButton3.Size = New System.Drawing.Size(31, 17)
         Me.radioButton3.TabIndex = 21
-        Me.radioButton3.Text = "3"
+        Me.radioButton3.Text = "&3"
         Me.radioButton3.UseVisualStyleBackColor = True
         '
         'radioButton5
         '
         Me.radioButton5.AutoSize = True
-        Me.radioButton5.Enabled = False
         Me.radioButton5.Location = New System.Drawing.Point(412, 94)
         Me.radioButton5.Name = "radioButton5"
         Me.radioButton5.Size = New System.Drawing.Size(31, 17)
         Me.radioButton5.TabIndex = 23
-        Me.radioButton5.Text = "5"
+        Me.radioButton5.Text = "&5"
         Me.radioButton5.UseVisualStyleBackColor = True
         '
         'radioButton8
         '
         Me.radioButton8.AutoSize = True
-        Me.radioButton8.Enabled = False
         Me.radioButton8.Location = New System.Drawing.Point(443, 117)
         Me.radioButton8.Name = "radioButton8"
         Me.radioButton8.Size = New System.Drawing.Size(31, 17)
         Me.radioButton8.TabIndex = 26
-        Me.radioButton8.Text = "8"
+        Me.radioButton8.Text = "&8"
         Me.radioButton8.UseVisualStyleBackColor = True
         '
         'radioButton2
         '
         Me.radioButton2.AutoSize = True
-        Me.radioButton2.Enabled = False
         Me.radioButton2.Location = New System.Drawing.Point(443, 48)
         Me.radioButton2.Name = "radioButton2"
         Me.radioButton2.Size = New System.Drawing.Size(31, 17)
         Me.radioButton2.TabIndex = 19
-        Me.radioButton2.Text = "2"
+        Me.radioButton2.Text = "&2"
         Me.radioButton2.UseVisualStyleBackColor = True
         '
         'radioButton7
         '
         Me.radioButton7.AutoSize = True
-        Me.radioButton7.Enabled = False
         Me.radioButton7.Location = New System.Drawing.Point(412, 117)
         Me.radioButton7.Name = "radioButton7"
         Me.radioButton7.Size = New System.Drawing.Size(31, 17)
         Me.radioButton7.TabIndex = 25
-        Me.radioButton7.Text = "7"
+        Me.radioButton7.Text = "&7"
         Me.radioButton7.UseVisualStyleBackColor = True
         '
         'radioButton4
         '
         Me.radioButton4.AutoSize = True
-        Me.radioButton4.Enabled = False
         Me.radioButton4.Location = New System.Drawing.Point(443, 71)
         Me.radioButton4.Name = "radioButton4"
         Me.radioButton4.Size = New System.Drawing.Size(31, 17)
         Me.radioButton4.TabIndex = 22
-        Me.radioButton4.Text = "4"
+        Me.radioButton4.Text = "&4"
         Me.radioButton4.UseVisualStyleBackColor = True
         '
         'radioButton6
         '
         Me.radioButton6.AutoSize = True
-        Me.radioButton6.Enabled = False
         Me.radioButton6.Location = New System.Drawing.Point(443, 94)
         Me.radioButton6.Name = "radioButton6"
         Me.radioButton6.Size = New System.Drawing.Size(31, 17)
         Me.radioButton6.TabIndex = 24
-        Me.radioButton6.Text = "6"
+        Me.radioButton6.Text = "&6"
         Me.radioButton6.UseVisualStyleBackColor = True
         '
         'ServerDBox
         '
         Me.ServerDBox.BackColor = System.Drawing.SystemColors.Control
         Me.ServerDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ServerDBox.Enabled = False
         Me.ServerDBox.FormattingEnabled = True
         Me.ServerDBox.Items.AddRange(New Object() {"U.S. West", "U.S. East", "Asia", "Europe"})
         Me.ServerDBox.Location = New System.Drawing.Point(307, 48)
@@ -327,7 +313,6 @@ Partial Class ProfileEditor
         '
         Me.DifficultyDBox.BackColor = System.Drawing.SystemColors.Control
         Me.DifficultyDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.DifficultyDBox.Enabled = False
         Me.DifficultyDBox.FormattingEnabled = True
         Me.DifficultyDBox.Items.AddRange(New Object() {"Normal", "Nightmare", "Hell", "Highest"})
         Me.DifficultyDBox.Location = New System.Drawing.Point(307, 19)
@@ -340,7 +325,6 @@ Partial Class ProfileEditor
         '
         Me.PlayTypeDBox.BackColor = System.Drawing.SystemColors.Control
         Me.PlayTypeDBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.PlayTypeDBox.Enabled = False
         Me.PlayTypeDBox.FormattingEnabled = True
         Me.PlayTypeDBox.Items.AddRange(New Object() {"Single Player", "Battle.Net"})
         Me.PlayTypeDBox.Location = New System.Drawing.Point(131, 48)
@@ -402,7 +386,7 @@ Partial Class ProfileEditor
         Me.label6.Name = "label6"
         Me.label6.Size = New System.Drawing.Size(78, 13)
         Me.label6.TabIndex = 0
-        Me.label6.Text = "Account Name"
+        Me.label6.Text = "Account &Name"
         '
         'AccountNameTBox
         '
@@ -421,7 +405,7 @@ Partial Class ProfileEditor
         Me.WindowedCBox.Name = "WindowedCBox"
         Me.WindowedCBox.Size = New System.Drawing.Size(95, 17)
         Me.WindowedCBox.TabIndex = 4
-        Me.WindowedCBox.Text = "Window Mode"
+        Me.WindowedCBox.Text = "&Window Mode"
         Me.WindowedCBox.UseVisualStyleBackColor = True
         '
         'AutoDetedPathButton
@@ -430,7 +414,7 @@ Partial Class ProfileEditor
         Me.AutoDetedPathButton.Name = "AutoDetedPathButton"
         Me.AutoDetedPathButton.Size = New System.Drawing.Size(111, 23)
         Me.AutoDetedPathButton.TabIndex = 3
-        Me.AutoDetedPathButton.Text = "Auto Detection"
+        Me.AutoDetedPathButton.Text = "A&uto Detection"
         Me.ToolTip1.SetToolTip(Me.AutoDetedPathButton, "Tries to locate Diablo II installation folder" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If path doesn't appear you will ne" &
         "ed to use the beside this one")
         Me.AutoDetedPathButton.UseVisualStyleBackColor = True
@@ -441,7 +425,7 @@ Partial Class ProfileEditor
         Me.ManualSeekPathButton.Name = "ManualSeekPathButton"
         Me.ManualSeekPathButton.Size = New System.Drawing.Size(42, 23)
         Me.ManualSeekPathButton.TabIndex = 2
-        Me.ManualSeekPathButton.Text = "..."
+        Me.ManualSeekPathButton.Text = "&..."
         Me.ToolTip1.SetToolTip(Me.ManualSeekPathButton, "Search for Diablo II folder if Auto Detection fails")
         Me.ManualSeekPathButton.UseVisualStyleBackColor = True
         '
@@ -452,7 +436,7 @@ Partial Class ProfileEditor
         Me.labelD2Path.Name = "labelD2Path"
         Me.labelD2Path.Size = New System.Drawing.Size(43, 13)
         Me.labelD2Path.TabIndex = 0
-        Me.labelD2Path.Text = "D2Path"
+        Me.labelD2Path.Text = "&D2Path"
         '
         'D2PathTBox
         '
@@ -483,7 +467,7 @@ Partial Class ProfileEditor
         Me.NoSoundCBox.Name = "NoSoundCBox"
         Me.NoSoundCBox.Size = New System.Drawing.Size(74, 17)
         Me.NoSoundCBox.TabIndex = 5
-        Me.NoSoundCBox.Text = "No Sound"
+        Me.NoSoundCBox.Text = "No &Sound"
         Me.NoSoundCBox.UseVisualStyleBackColor = True
         '
         'LabelProfileName
@@ -493,7 +477,7 @@ Partial Class ProfileEditor
         Me.LabelProfileName.Name = "LabelProfileName"
         Me.LabelProfileName.Size = New System.Drawing.Size(67, 13)
         Me.LabelProfileName.TabIndex = 1
-        Me.LabelProfileName.Text = "Profile Name"
+        Me.LabelProfileName.Text = "&Profile Name"
         '
         'ProfileNameTBox
         '
@@ -511,7 +495,7 @@ Partial Class ProfileEditor
         Me.LowQualityCBox.Name = "LowQualityCBox"
         Me.LowQualityCBox.Size = New System.Drawing.Size(81, 17)
         Me.LowQualityCBox.TabIndex = 6
-        Me.LowQualityCBox.Text = "Low Quality"
+        Me.LowQualityCBox.Text = "Low &Quality"
         Me.LowQualityCBox.UseVisualStyleBackColor = True
         '
         'groupBox1
@@ -539,7 +523,7 @@ Partial Class ProfileEditor
         Me.MinimizedCBox.Name = "MinimizedCBox"
         Me.MinimizedCBox.Size = New System.Drawing.Size(89, 17)
         Me.MinimizedCBox.TabIndex = 8
-        Me.MinimizedCBox.Text = "Minimized D2"
+        Me.MinimizedCBox.Text = "&Minimized D2"
         Me.MinimizedCBox.UseVisualStyleBackColor = True
         '
         'DirectTextCBox
@@ -549,7 +533,7 @@ Partial Class ProfileEditor
         Me.DirectTextCBox.Name = "DirectTextCBox"
         Me.DirectTextCBox.Size = New System.Drawing.Size(72, 17)
         Me.DirectTextCBox.TabIndex = 7
-        Me.DirectTextCBox.Text = "Direct Txt"
+        Me.DirectTextCBox.Text = "Direct &Txt"
         Me.DirectTextCBox.UseVisualStyleBackColor = True
         '
         'label5
@@ -559,7 +543,7 @@ Partial Class ProfileEditor
         Me.label5.Name = "label5"
         Me.label5.Size = New System.Drawing.Size(89, 13)
         Me.label5.TabIndex = 7
-        Me.label5.Text = "Game # / CDKey"
+        Me.label5.Text = "Game # / CD&Key"
         '
         'GamesPerKeyTBox
         '
@@ -575,7 +559,7 @@ Partial Class ProfileEditor
         Me.RemoveKeyButton.Name = "RemoveKeyButton"
         Me.RemoveKeyButton.Size = New System.Drawing.Size(101, 23)
         Me.RemoveKeyButton.TabIndex = 6
-        Me.RemoveKeyButton.Text = "Remove Key Set"
+        Me.RemoveKeyButton.Text = "&Remove Key Set"
         Me.ToolTip1.SetToolTip(Me.RemoveKeyButton, "Deletes the selected Key set or mpq file")
         Me.RemoveKeyButton.UseVisualStyleBackColor = True
         '
@@ -585,7 +569,7 @@ Partial Class ProfileEditor
         Me.AddKeyButton.Name = "AddKeyButton"
         Me.AddKeyButton.Size = New System.Drawing.Size(100, 23)
         Me.AddKeyButton.TabIndex = 9
-        Me.AddKeyButton.Text = "Add Key Set"
+        Me.AddKeyButton.Text = "&Add Key Set"
         Me.ToolTip1.SetToolTip(Me.AddKeyButton, "Click here to add CdKey sets or mpq files")
         Me.AddKeyButton.UseVisualStyleBackColor = True
         '
@@ -598,14 +582,14 @@ Partial Class ProfileEditor
         Me.CDKeysDataGrid.BackgroundColor = System.Drawing.SystemColors.Control
         Me.CDKeysDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CDKeysDataGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.ClassicKeys, Me.ExpansionKeys})
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlLight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.CDKeysDataGrid.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlLight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.CDKeysDataGrid.DefaultCellStyle = DataGridViewCellStyle9
         Me.CDKeysDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.CDKeysDataGrid.Location = New System.Drawing.Point(12, 415)
         Me.CDKeysDataGrid.MultiSelect = False
@@ -659,7 +643,7 @@ Partial Class ProfileEditor
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.button4
-        Me.ClientSize = New System.Drawing.Size(504, 623)
+        Me.ClientSize = New System.Drawing.Size(504, 622)
         Me.ControlBox = False
         Me.Controls.Add(Me.label5)
         Me.Controls.Add(Me.GamesPerKeyTBox)
